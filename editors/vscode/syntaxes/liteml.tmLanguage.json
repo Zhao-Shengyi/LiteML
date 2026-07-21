@@ -1,0 +1,225 @@
+{
+  "scopeName": "source.liteml",
+  "name": "LiteML",
+  "fileTypes": [".lite"],
+  "patterns": [
+    { "include": "#doctype" },
+    { "include": "#comments" },
+    { "include": "#raw-html-block" },
+    { "include": "#php-block" },
+    { "include": "#code-block" },
+    { "include": "#long-text" },
+    { "include": "#raw-html-line" },
+    { "include": "#line-content" }
+  ],
+  "repository": {
+
+    "doctype": {
+      "match": "^(\\s*)(!\\s+html5)\\b",
+      "captures": {
+        "2": { "name": "keyword.control.doctype.liteml" }
+      }
+    },
+
+    "comments": {
+      "match": "^(\\s*)(@\\s+.*)$",
+      "captures": {
+        "2": { "name": "comment.line.liteml" }
+      }
+    },
+
+    "raw-html-block": {
+      "begin": "^(\\s*)(@raw)\\s*$",
+      "end": "^(\\s*)(@endraw)\\s*$",
+      "beginCaptures": {
+        "2": { "name": "keyword.control.raw.liteml" }
+      },
+      "endCaptures": {
+        "2": { "name": "keyword.control.raw.liteml" }
+      },
+      "patterns": [
+        { "match": ".*", "name": "markup.raw.liteml" }
+      ]
+    },
+
+    "php-block": {
+      "begin": "^(\\s*)(@php)\\s*$",
+      "end": "^(\\s*)(@endphp)\\s*$",
+      "beginCaptures": {
+        "2": { "name": "keyword.control.php.liteml" }
+      },
+      "endCaptures": {
+        "2": { "name": "keyword.control.php.liteml" }
+      },
+      "patterns": [
+        { "match": ".*", "name": "source.php.embedded.liteml" }
+      ]
+    },
+
+    "code-block": {
+      "begin": "```(\\w*)\\s*$",
+      "end": "^```\\s*$",
+      "beginCaptures": {
+        "1": { "name": "string.other.language.liteml" }
+      },
+      "patterns": [
+        { "match": ".*", "name": "markup.code.liteml" }
+      ]
+    },
+
+    "long-text": {
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "patterns": [
+        { "match": ".*", "name": "string.quoted.triple.liteml" }
+      ]
+    },
+
+    "raw-html-line": {
+      "match": "^(\\s*)(<.*)$",
+      "captures": {
+        "2": { "name": "markup.raw.html.liteml" }
+      }
+    },
+
+    "line-content": {
+      "patterns": [
+        { "include": "#variables" },
+        { "include": "#php-directives" },
+        { "include": "#macros" },
+        { "include": "#layout-directives" },
+        { "include": "#interaction-directives" },
+        { "include": "#behavior-directives" },
+        { "include": "#tags" }
+      ]
+    },
+
+    "variables": {
+      "patterns": [
+        {
+          "begin": "\\{\\{",
+          "end": "\\}\\}",
+          "name": "variable.other.php.liteml",
+          "patterns": [
+            { "match": "[^}]+", "name": "source.php.embedded.liteml" }
+          ]
+        },
+        {
+          "begin": "\\{!!",
+          "end": "!!\\}",
+          "name": "variable.other.php.unescaped.liteml",
+          "patterns": [
+            { "match": "[^!}]+", "name": "source.php.embedded.liteml" }
+          ]
+        }
+      ]
+    },
+
+    "php-directives": {
+      "patterns": [
+        {
+          "match": "(@if|@elseif|@else|@endif|@foreach|@endforeach|@while|@endwhile|@for|@endfor|@include|@php|@endphp)\\b",
+          "name": "keyword.control.php.liteml"
+        },
+        {
+          "match": "\\([^)]*\\)",
+          "name": "meta.arguments.php.liteml"
+        }
+      ]
+    },
+
+    "macros": {
+      "patterns": [
+        {
+          "match": "(@audio|@video|@embed|@icon|@css|@js)\\b",
+          "name": "support.function.macro.liteml"
+        },
+        {
+          "match": "\\([^)]*\\)",
+          "name": "meta.arguments.macro.liteml"
+        }
+      ]
+    },
+
+    "layout-directives": {
+      "patterns": [
+        {
+          "match": "@(flex|grid|waterfall|position|transition|hide)(!?)\\b",
+          "name": "support.type.layout.liteml",
+          "captures": {
+            "2": { "name": "keyword.operator.eject.liteml" }
+          }
+        },
+        {
+          "match": "\\([^)]*\\)",
+          "name": "meta.arguments.layout.liteml"
+        }
+      ]
+    },
+
+    "interaction-directives": {
+      "patterns": [
+        {
+          "match": "@(modal|theme-toggle|like)(!?)\\b",
+          "name": "support.type.interaction.liteml",
+          "captures": {
+            "2": { "name": "keyword.operator.eject.liteml" }
+          }
+        },
+        {
+          "match": "\\([^)]*\\)",
+          "name": "meta.arguments.interaction.liteml"
+        }
+      ]
+    },
+
+    "behavior-directives": {
+      "patterns": [
+        {
+          "match": "(\\[\\*)(required|email|url|minlength|maxlength|range|pattern)(=?)([^\\]]*)(\\])",
+          "captures": {
+            "1": { "name": "punctuation.definition.behavior.begin.liteml" },
+            "2": { "name": "entity.other.attribute-name.behavior.liteml" },
+            "3": { "name": "keyword.operator.assignment.liteml" },
+            "4": { "name": "string.quoted.behavior-value.liteml" },
+            "5": { "name": "punctuation.definition.behavior.end.liteml" }
+          }
+        },
+        {
+          "match": "\\[\\*[^\\]]*\\]",
+          "name": "entity.other.attribute-name.behavior.liteml"
+        }
+      ]
+    },
+
+    "tags": {
+      "patterns": [
+        {
+          "match": "(?<![@\\w])([a-zA-Z_][\\w-]*)(?=[.#\\[]|\\s|$|![\\w(])",
+          "name": "entity.name.tag.liteml"
+        },
+        {
+          "match": "#([a-zA-Z_][\\w-]*)",
+          "name": "entity.other.attribute-id.liteml"
+        },
+        {
+          "match": "\\.([a-zA-Z_][\\w-]*)",
+          "name": "entity.other.attribute-class.liteml"
+        },
+        {
+          "match": "\\[([\\w-]+)\\s*(=)\\s*([^\\]]*)\\s*\\]",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.liteml" },
+            "2": { "name": "keyword.operator.assignment.liteml" },
+            "3": { "name": "string.quoted.attribute-value.liteml" }
+          }
+        },
+        {
+          "match": "\\[[^\\]]*\\]",
+          "name": "entity.other.attribute-name.liteml"
+        }
+      ]
+    }
+
+  }
+}

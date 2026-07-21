@@ -1,0 +1,79 @@
+{
+  "name": "liteml",
+  "displayName": "LiteML",
+  "description": "LiteML 语言支持 — 语法高亮、诊断检查、代码补全",
+  "version": "0.1.0",
+  "publisher": "liteml",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "liteml",
+    "template",
+    "language",
+    "lite"
+  ],
+  "icon": "icon.png",
+  "activationEvents": [
+    "onLanguage:liteml"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "liteml",
+        "aliases": ["LiteML", "liteml"],
+        "extensions": [".lite"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./file-icon.png",
+          "dark": "./file-icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "liteml",
+        "scopeName": "source.liteml",
+        "path": "./syntaxes/liteml.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "liteml.compile",
+        "title": "LiteML: 编译当前文件"
+      },
+      {
+        "command": "liteml.compilePhp",
+        "title": "LiteML: 编译为 PHP"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "liteml.compile",
+        "key": "ctrl+alt+b",
+        "when": "editorLangId == liteml"
+      }
+    ],
+    "configuration": {
+      "title": "LiteML",
+      "properties": {
+        "liteml.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "liteml.py 编译器的路径。留空则自动在项目目录中查找。"
+        },
+        "liteml.lintOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "保存时自动检查语法错误"
+        }
+      }
+    }
+  }
+}

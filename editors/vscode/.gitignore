@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+
+# IDE (keep launch.json for debug, exclude the rest)
+.vscode/settings.json
+.vscode/*.code-snippets
+
+# Extension build artifacts
+*.vsix
+out/
+dist/

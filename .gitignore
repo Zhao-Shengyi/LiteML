@@ -8,8 +8,8 @@ __pycache__/
 *.pyo
 *.egg-info/
 
-# IDE
-.vscode/
+# IDE (根目录级别)
+/.vscode/
 .idea/
 *.swp
 *.swo
