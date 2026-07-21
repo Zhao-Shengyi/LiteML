@@ -1,0 +1,103 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    title LiteML 全部特性测试
+
+  body
+    h1 LiteML 特性测试大全
+
+    @ ====== 1. 基础标签与属性 ======
+    div#app.container
+      h1.title 标题文字
+      p.desc.intro 这是一段描述文字
+      a[href=/about][target=_blank] 关于我们
+      input[type=text][placeholder=请输入][required]
+
+    @ ====== 2. 多媒体宏 ======
+    @audio(song.mp3 | controls)
+    @audio(song.mp3, song.ogg | controls, autoplay)
+    @video(movie.mp4 | controls, width=100%)
+    @embed(https://example.com/video | ratio=16:9)
+    @icon(star)
+    ![Logo](logo.png)
+
+    @ ====== 3. 外部资源 ======
+    @css(style.css)
+    @js(app.js | defer)
+
+    @ ====== 4. 布局指令 (LiteCSS) ======
+    div@flex(center, between)
+      div.item 项目 1
+      div.item 项目 2
+
+    div@grid(cols=3, gap=20px, mobile-cols=1)
+      div.card 卡片 1
+      div.card 卡片 2
+      div.card 卡片 3
+
+    div@waterfall(cols=4, gap=16px)
+      div.card 瀑布流 1
+      div.card 瀑布流 2
+      div.card 瀑布流 3
+      div.card 瀑布流 4
+
+    div@position(fixed, top=0, right=0)
+      p 固定在右上角
+
+    div@transition(all 0.3s ease)
+      p 悬停有效果
+
+    p@hide(mobile) 手机端隐藏
+
+    @ ====== 5. 交互指令 (LiteJS) ======
+    button.btn@modal(open=#my-dialog) 打开弹窗
+    dialog#my-dialog@modal
+      h2 弹窗标题
+      p 弹窗内容
+      button 关闭
+
+    button@like 点赞
+
+    @ ====== 6. 行为属性 ======
+    form
+      input[type=email][*required][*email]
+      input[type=text][*required][*minlength=2]
+      input[type=number][*required][*range=1,100]
+
+    @ ====== 7. 长文本块 ======
+    article.post
+      h1 博客文章
+      """
+      这是第一段文字。可以使用三引号来写长篇内容。
+
+      空一行就会变成新的段落。非常适合写博客文章。
+      """
+
+    @ ====== 8. 代码块 ======
+    @css
+      ```css
+      body { background: #f0f9ff; }
+      .card { padding: 1rem; }
+      ```
+
+    @js
+      ```js
+      function hello() {
+        console.log('Hello LiteML!');
+      }
+      ```
+
+    @ ====== 9. 逃生舱（原生 HTML 混写） ======
+    <video src="demo.mp4" controls autoplay muted>
+      <source src="demo.webm" type="video/webm">
+    </video>
+
+    @ ====== 10. @raw 块 ======
+    @raw
+      <div class="custom-widget">
+        <p>这是原始 HTML</p>
+      </div>
+
+    footer
+      p LiteML v0.1 - 完整特性测试

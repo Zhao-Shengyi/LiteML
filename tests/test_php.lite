@@ -1,0 +1,32 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    title {{ $page_title }} - 用户列表
+
+  body
+    h1 用户管理
+
+    @if($is_admin)
+      div.admin-panel
+        p 欢迎管理员！
+        a[href=/admin] 进入管理后台
+    @else
+      div.user-panel
+        p 普通用户
+
+    ul.user-list
+      @foreach($users as $user)
+        li
+          strong {{ $user.name }}
+          span (@{{ $user.email }})
+
+    footer
+      p &copy; {{ $year }} MyApp
+
+    @js
+      ```js
+      function greet() {
+        alert('Hello from LiteML!');
+      }
+      ```
