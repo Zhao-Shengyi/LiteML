@@ -78,7 +78,8 @@ Examples:
     args = parser.parse_args()
 
     if not args.command or args.command == 'version':
-        print('LiteML Compiler v0.2')
+        from core import __version__
+        print(f'LiteML Compiler v{__version__}')
         print('https://github.com/Zhao-Shengyi/LiteML')
         return
 
