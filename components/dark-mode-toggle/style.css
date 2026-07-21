@@ -1,0 +1,38 @@
+/* 暗色模式切换按钮 */
+.dm-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 999px;
+  background: var(--bg-color, #fff);
+  color: var(--text-color, #333);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.dm-toggle:hover {
+  opacity: 0.8;
+}
+
+.dm-icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* 暗色模式样式 — 由 JS 切换 data-theme 属性 */
+[data-theme="dark"] .dm-toggle {
+  --bg-color: #2d3748;
+  --border-color: #4a5568;
+  --text-color: #e2e8f0;
+}
+
+[data-theme="dark"] .dm-toggle .dm-icon::before {
+  content: "☀️";
+}
+
+[data-theme="dark"] .dm-toggle .dm-text::before {
+  content: "亮色模式";
+}

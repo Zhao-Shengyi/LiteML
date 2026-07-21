@@ -1,0 +1,11 @@
+{
+  "name": "dark-mode-toggle",
+  "description": "暗色/亮色模式切换按钮",
+  "author": "LiteML",
+  "version": "1.0.0",
+  "files": {
+    "template": "template.html",
+    "style": "style.css",
+    "script": "script.js"
+  }
+}

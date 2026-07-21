@@ -5,6 +5,10 @@
   "version": "0.1.0",
   "publisher": "liteml",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zhao-Shengyi/LiteML.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -18,7 +22,6 @@
     "language",
     "lite"
   ],
-  "icon": "icon.png",
   "activationEvents": [
     "onLanguage:liteml"
   ],
@@ -29,11 +32,7 @@
         "id": "liteml",
         "aliases": ["LiteML", "liteml"],
         "extensions": [".lite"],
-        "configuration": "./language-configuration.json",
-        "icon": {
-          "light": "./file-icon.png",
-          "dark": "./file-icon.png"
-        }
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [

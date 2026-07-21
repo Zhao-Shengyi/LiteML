@@ -94,11 +94,12 @@ function findCompiler(projectRoot) {
   const configPath = vscode.workspace.getConfiguration('liteml').get('compilerPath');
   if (configPath && fs.existsSync(configPath)) return configPath;
 
-  // 在项目目录查找
+  // 在项目目录查找（新版 core/cli.py 和旧版 liteml.py）
   const candidates = [
+    path.join(projectRoot || '', 'core', 'cli.py'),
     path.join(projectRoot || '', 'liteml.py'),
-    path.join(projectRoot || '', 'LiteML', 'liteml.py'),
-    path.join(projectRoot || '', '..', 'LiteML', 'liteml.py')
+    path.join(projectRoot || '', 'LiteML', 'core', 'cli.py'),
+    path.join(projectRoot || '', '..', 'LiteML', 'core', 'cli.py'),
   ];
 
   for (const candidate of candidates) {
@@ -110,30 +111,42 @@ function findCompiler(projectRoot) {
 
 /**
  * 使用 Python 编译器做完整诊断
+ * 将源码写入临时文件，用 build 命令验证语法
  */
 function checkWithCompiler(doc) {
   const diagnostics = [];
-  const compilerPath = findCompiler(vscode.workspace.workspaceFolders?.[0]?.uri?.fsPath);
+  const projectRoot = vscode.workspace.workspaceFolders?.[0]?.uri?.fsPath;
+  const compilerPath = findCompiler(projectRoot);
 
   if (!compilerPath) return null; // 找不到编译器，回退到 JS 检查
 
+  const tmpDir = path.join(projectRoot || '/tmp', '.liteml-tmp');
+  const tmpFile = path.join(tmpDir, '___check_.lite');
+  const tmpOut = path.join(tmpDir, '___check_.html');
+
   try {
-    const source = doc.getText();
+    // 确保临时目录存在
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
+
+    // 写入源码到临时文件
+    fs.writeFileSync(tmpFile, doc.getText(), 'utf-8');
+
+    // 执行编译，捕获错误输出
     const result = execSync(
-      `python3 "${compilerPath}" check --stdin`,
-      {
-        input: source,
-        encoding: 'utf-8',
-        timeout: 5000
-      }
+      `python3 "${compilerPath}" build "${tmpFile}" -o "${tmpOut}"`,
+      { encoding: 'utf-8', timeout: 5000 }
     );
     // 编译成功，无错误
     return diagnostics;
   } catch (err) {
-    // 解析 Python 编译器的错误输出
+    // 解析编译器的错误输出
+    // 编译器报错格式示例：
+    //   Error at line 12: 未闭合的标签: div
+    //   Error line 5: 未知指令: @foobar
     if (err.stderr) {
       const errorLines = err.stderr.split('\n');
       for (const errLine of errorLines) {
+        // 匹配 "Error at line N: message" 或 "Error line N: message"
         const match = errLine.match(/^Error\s+(?:at\s+)?line\s+(\d+):\s*(.+)$/i);
         if (match) {
           const line = parseInt(match[1]) - 1; // 转为 0-indexed
@@ -143,38 +156,43 @@ function checkWithCompiler(doc) {
             message: msg,
             severity: vscode.DiagnosticSeverity.Error
           });
-        } else if (errLine.match(/^SyntaxError|^Error|^Traceback/)) {
-          // 可能包含 Python 堆栈信息，尝试提取行号
-          const tbMatch = errLine.match(/File\s+".*?",\s*line\s+(\d+)/);
-          if (tbMatch) {
-            // 这是 Python 内部错误，不直接报告给用户
-          }
         }
       }
     }
 
-    // 如果编译器返回非零但没解析到错误，说明是编译器内部错误
-    if (diagnostics.length === 0) {
-      if (err.stderr) {
-        // 尝试把整个 stderr 作为错误信息
-        const msg = err.stderr.split('\n').filter(l => l.trim())[0];
-        if (msg) {
+    // 如果 stdout 里有错误信息也解析（部分编译器输出到 stdout）
+    if (err.stdout && diagnostics.length === 0) {
+      const outLines = err.stdout.split('\n');
+      for (const outLine of outLines) {
+        const match = outLine.match(/^Error\s+(?:at\s+)?line\s+(\d+):\s*(.+)$/i);
+        if (match) {
+          const line = parseInt(match[1]) - 1;
           diagnostics.push({
-            line: 0,
-            message: `编译器错误: ${msg}`,
+            line: Math.max(0, line),
+            message: match[2],
             severity: vscode.DiagnosticSeverity.Error
           });
         }
-      } else {
-        diagnostics.push({
-          line: 0,
-          message: `编译器调用失败: ${err.message}`,
-          severity: vscode.DiagnosticSeverity.Error
-        });
       }
     }
 
+    // 如果仍然没解析到任何错误，但编译失败了，给一个通用提示
+    if (diagnostics.length === 0) {
+      diagnostics.push({
+        line: 0,
+        message: '编译失败：请检查文件语法。上述位置可能存在错误。',
+        severity: vscode.DiagnosticSeverity.Error
+      });
+    }
+
     return diagnostics;
+  } finally {
+    // 清理临时文件
+    try {
+      if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
+      if (fs.existsSync(tmpOut)) fs.unlinkSync(tmpOut);
+      if (fs.existsSync(tmpDir)) fs.rmdirSync(tmpDir);
+    } catch (_) { /* ignore cleanup errors */ }
   }
 }
 
@@ -399,14 +417,16 @@ function checkBasic(doc) {
 function lintDocument(doc) {
   if (doc.languageId !== 'liteml') return [];
 
-  // 优先用 Python 编译器
+  // 基本检查（缩进、标签拼写、控制流配对等）
+  const diagnostics = checkBasic(doc);
+
+  // 再用 Python 编译器补充检查（如果可用）
   const compilerResult = checkWithCompiler(doc);
   if (compilerResult !== null) {
-    return compilerResult;
+    diagnostics.push(...compilerResult);
   }
 
-  // 回退到 JS 基本检查
-  return checkBasic(doc);
+  return diagnostics;
 }
 
 module.exports = { lintDocument };
