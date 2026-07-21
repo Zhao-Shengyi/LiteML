@@ -17,8 +17,12 @@ from .parser import (
     classify_line, parse_tag_line,
     parse_include_path, parse_eject_component, parse_use_component,
 )
-from .directives import render_macro, apply_directive, render_behavior
+from .directive_macros import render_macro, render_behavior
+from .directive_loader import get_handler, discover as discover_directives
 from .component import ComponentLoader
+
+# 启动时自动发现所有指令插件
+discover_directives()
 
 
 class LiteMLCompiler:
@@ -395,15 +399,22 @@ class LiteMLCompiler:
             self.output_lines.append(f'{self._prefix()}{content}')
             return
 
-        # 处理标签上的指令
+        # 处理标签上的指令（通过 directive_loader 插件系统）
         if node.directives:
+            state = {
+                'id_counter': self.id_counter,
+                'ejected_styles': self.ejected_styles,
+                'ejected_scripts': self.ejected_scripts,
+                'mode': self.mode,
+            }
             for (dir_name, dir_params, eject) in node.directives:
-                self.id_counter = apply_directive(
-                    node, dir_name, dir_params,
-                    self.id_counter,
-                    self.ejected_styles,
-                    self.ejected_scripts
-                )
+                handler = get_handler(dir_name)
+                if handler:
+                    handler(node, dir_params, state)
+                else:
+                    # 未注册的指令 — 按原名输出（容错）
+                    pass
+            self.id_counter = state['id_counter']
 
         # PHP 插值处理
         if self.mode == Mode.PHP:

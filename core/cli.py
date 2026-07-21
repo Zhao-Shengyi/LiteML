@@ -68,6 +68,10 @@ Examples:
     cp.add_argument('action', choices=['list', 'init'], help='操作')
     cp.add_argument('name', nargs='?', help='组件名 (init 时需要)')
 
+    # ── directives ──
+    dp = sub.add_parser('directives', help='列出所有可用指令')
+    dp.add_argument('action', choices=['list'], help='操作')
+
     # ── version ──
     sub.add_parser('version', help='显示版本')
 
@@ -84,6 +88,8 @@ Examples:
         _cmd_watch(args)
     elif args.command == 'components':
         _cmd_components(args)
+    elif args.command == 'directives':
+        _cmd_directives(args)
 
 
 # ══════════════════════════════════════════════
@@ -174,6 +180,18 @@ def _cmd_components(args):
             print(f'💡 编辑 components/{args.name}/ 下的文件来定义组件内容。')
         else:
             print(f'❌ 组件 {args.name} 已存在。')
+
+
+def _cmd_directives(args):
+    """directives 子命令"""
+    from core.directive_loader import list_directives
+    dirs = list_directives()
+    if dirs:
+        print(f'可用指令 ({len(dirs)}):')
+        for d in dirs:
+            print(f'  @{d}')
+    else:
+        print('没有已注册的指令。')
 
 
 if __name__ == '__main__':

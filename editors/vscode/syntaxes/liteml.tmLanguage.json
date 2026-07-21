@@ -17,14 +17,14 @@
     "doctype": {
       "match": "^(\\s*)(!\\s+html5)\\b",
       "captures": {
-        "2": { "name": "keyword.control.doctype.liteml" }
+        "2": { "name": "keyword.control.doctype" }
       }
     },
 
     "comments": {
       "match": "^(\\s*)(@\\s+.*)$",
       "captures": {
-        "2": { "name": "comment.line.liteml" }
+        "2": { "name": "comment.line" }
       }
     },
 
@@ -32,13 +32,13 @@
       "begin": "^(\\s*)(@raw)\\s*$",
       "end": "^(\\s*)(@endraw)\\s*$",
       "beginCaptures": {
-        "2": { "name": "keyword.control.raw.liteml" }
+        "2": { "name": "keyword.control" }
       },
       "endCaptures": {
-        "2": { "name": "keyword.control.raw.liteml" }
+        "2": { "name": "keyword.control" }
       },
       "patterns": [
-        { "match": ".*", "name": "markup.raw.liteml" }
+        { "match": ".*", "name": "markup.raw" }
       ]
     },
 
@@ -46,13 +46,13 @@
       "begin": "^(\\s*)(@php)\\s*$",
       "end": "^(\\s*)(@endphp)\\s*$",
       "beginCaptures": {
-        "2": { "name": "keyword.control.php.liteml" }
+        "2": { "name": "keyword.control.php" }
       },
       "endCaptures": {
-        "2": { "name": "keyword.control.php.liteml" }
+        "2": { "name": "keyword.control.php" }
       },
       "patterns": [
-        { "match": ".*", "name": "source.php.embedded.liteml" }
+        { "match": ".*", "name": "source.php.embedded" }
       ]
     },
 
@@ -60,10 +60,10 @@
       "begin": "```(\\w*)\\s*$",
       "end": "^```\\s*$",
       "beginCaptures": {
-        "1": { "name": "string.other.language.liteml" }
+        "1": { "name": "string.other" }
       },
       "patterns": [
-        { "match": ".*", "name": "markup.code.liteml" }
+        { "match": ".*", "name": "markup.code" }
       ]
     },
 
@@ -71,14 +71,14 @@
       "begin": "\"\"\"",
       "end": "\"\"\"",
       "patterns": [
-        { "match": ".*", "name": "string.quoted.triple.liteml" }
+        { "match": ".*", "name": "string.quoted.triple" }
       ]
     },
 
     "raw-html-line": {
       "match": "^(\\s*)(<.*)$",
       "captures": {
-        "2": { "name": "markup.raw.html.liteml" }
+        "2": { "name": "markup.raw.html" }
       }
     },
 
@@ -90,6 +90,7 @@
         { "include": "#layout-directives" },
         { "include": "#interaction-directives" },
         { "include": "#behavior-directives" },
+        { "include": "#use-component" },
         { "include": "#tags" }
       ]
     },
@@ -99,17 +100,17 @@
         {
           "begin": "\\{\\{",
           "end": "\\}\\}",
-          "name": "variable.other.php.liteml",
+          "name": "variable.other.php",
           "patterns": [
-            { "match": "[^}]+", "name": "source.php.embedded.liteml" }
+            { "match": "[^}]+", "name": "source.php.embedded" }
           ]
         },
         {
           "begin": "\\{!!",
           "end": "!!\\}",
-          "name": "variable.other.php.unescaped.liteml",
+          "name": "variable.other.php",
           "patterns": [
-            { "match": "[^!}]+", "name": "source.php.embedded.liteml" }
+            { "match": "[^!}]+", "name": "source.php.embedded" }
           ]
         }
       ]
@@ -119,11 +120,11 @@
       "patterns": [
         {
           "match": "(@if|@elseif|@else|@endif|@foreach|@endforeach|@while|@endwhile|@for|@endfor|@include|@php|@endphp)\\b",
-          "name": "keyword.control.php.liteml"
+          "name": "keyword.control.php"
         },
         {
           "match": "\\([^)]*\\)",
-          "name": "meta.arguments.php.liteml"
+          "name": "meta.arguments"
         }
       ]
     },
@@ -132,11 +133,11 @@
       "patterns": [
         {
           "match": "(@audio|@video|@embed|@icon|@css|@js)\\b",
-          "name": "support.function.macro.liteml"
+          "name": "support.function"
         },
         {
           "match": "\\([^)]*\\)",
-          "name": "meta.arguments.macro.liteml"
+          "name": "meta.arguments"
         }
       ]
     },
@@ -145,14 +146,14 @@
       "patterns": [
         {
           "match": "@(flex|grid|waterfall|position|transition|hide)(!?)\\b",
-          "name": "support.type.layout.liteml",
+          "name": "support.type",
           "captures": {
-            "2": { "name": "keyword.operator.eject.liteml" }
+            "2": { "name": "keyword.operator" }
           }
         },
         {
           "match": "\\([^)]*\\)",
-          "name": "meta.arguments.layout.liteml"
+          "name": "meta.arguments"
         }
       ]
     },
@@ -161,16 +162,24 @@
       "patterns": [
         {
           "match": "@(modal|theme-toggle|like)(!?)\\b",
-          "name": "support.type.interaction.liteml",
+          "name": "support.type",
           "captures": {
-            "2": { "name": "keyword.operator.eject.liteml" }
+            "2": { "name": "keyword.operator" }
           }
         },
         {
           "match": "\\([^)]*\\)",
-          "name": "meta.arguments.interaction.liteml"
+          "name": "meta.arguments"
         }
       ]
+    },
+
+    "use-component": {
+      "match": "^\\s*(@use)\\s+([\\w-]+)",
+      "captures": {
+        "1": { "name": "keyword.control" },
+        "2": { "name": "support.class.component" }
+      }
     },
 
     "behavior-directives": {
@@ -178,16 +187,16 @@
         {
           "match": "(\\[\\*)(required|email|url|minlength|maxlength|range|pattern)(=?)([^\\]]*)(\\])",
           "captures": {
-            "1": { "name": "punctuation.definition.behavior.begin.liteml" },
-            "2": { "name": "entity.other.attribute-name.behavior.liteml" },
-            "3": { "name": "keyword.operator.assignment.liteml" },
-            "4": { "name": "string.quoted.behavior-value.liteml" },
-            "5": { "name": "punctuation.definition.behavior.end.liteml" }
+            "1": { "name": "punctuation.definition" },
+            "2": { "name": "entity.other.attribute-name" },
+            "3": { "name": "keyword.operator.assignment" },
+            "4": { "name": "string.quoted" },
+            "5": { "name": "punctuation.definition" }
           }
         },
         {
           "match": "\\[\\*[^\\]]*\\]",
-          "name": "entity.other.attribute-name.behavior.liteml"
+          "name": "entity.other.attribute-name"
         }
       ]
     },
@@ -196,27 +205,27 @@
       "patterns": [
         {
           "match": "(?<![@\\w])([a-zA-Z_][\\w-]*)(?=[.#\\[]|\\s|$|![\\w(])",
-          "name": "entity.name.tag.liteml"
+          "name": "entity.name.tag"
         },
         {
           "match": "#([a-zA-Z_][\\w-]*)",
-          "name": "entity.other.attribute-id.liteml"
+          "name": "entity.other.attribute.id"
         },
         {
           "match": "\\.([a-zA-Z_][\\w-]*)",
-          "name": "entity.other.attribute-class.liteml"
+          "name": "entity.other.attribute.class"
         },
         {
           "match": "\\[([\\w-]+)\\s*(=)\\s*([^\\]]*)\\s*\\]",
           "captures": {
-            "1": { "name": "entity.other.attribute-name.liteml" },
-            "2": { "name": "keyword.operator.assignment.liteml" },
-            "3": { "name": "string.quoted.attribute-value.liteml" }
+            "1": { "name": "entity.other.attribute-name" },
+            "2": { "name": "keyword.operator.assignment" },
+            "3": { "name": "string.quoted" }
           }
         },
         {
           "match": "\\[[^\\]]*\\]",
-          "name": "entity.other.attribute-name.liteml"
+          "name": "entity.other.attribute-name"
         }
       ]
     }
