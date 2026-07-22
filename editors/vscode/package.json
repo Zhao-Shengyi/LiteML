@@ -23,7 +23,7 @@
     "lite"
   ],
   "activationEvents": [
-    "onLanguage:liteml"
+    "onStartupFinished"
   ],
   "main": "./extension.js",
   "contributes": {
