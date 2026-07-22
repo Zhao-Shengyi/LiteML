@@ -22,14 +22,14 @@
 ### 做了什么
 - 全面扫描 19 个 Python 文件、9 个指令插件、15 个组件、12 个模板、3 个网站页面、VS Code 扩展
 - 修复 VS Code `language-configuration.json` 的行注释配置 `@` → `!`
-- 更新 `AGENTS.md` 移除不存在的 `--eject` 文档
+- 更新 `docs/AGENTS.md` 移除不存在的 `--eject` 文档
 
 ### 问题与修复
 1. **language-configuration.json 行注释还是 `@`**
    - 语法已从 `@` 改为 `!`，但 VS Code 配置未同步
    - 修复：`lineComment` 改为 `"! "`
 
-2. **AGENTS.md 提到 `--eject` 但 cli.py 未实现**
+2. **docs/AGENTS.md 提到 `--eject` 但 cli.py 未实现**
    - 实际指令已自动内联展开，无需独立 eject 开关
    - 修复：删除该行文档
 
@@ -75,7 +75,7 @@
 ### 做了什么
 - 创建 `website/` 目录，用 LiteML 构建官方文档网站
   - `index.html` — 首页（英雄区 + 核心特性 + 快速开始 + 模板画廊）
-  - `syntax.html` — 完整语法参考（整合 SYNTAX.md 全部内容）
+  - `syntax.html` — 完整语法参考（整合 docs/SYNTAX.md 全部内容）
   - `history.html` — 开发历程（整合两个 MEMORY.md 的时间线）
 - 所有页面中英双语，使用自定义 website/style.css
 - 修复 `parser.py` 属性值引号问题：`[attr="value with spaces"]` 现在正确编译
@@ -114,7 +114,7 @@
 - 修复了 `.class` 和 `#id` 简写（无标签名时默认 div）：
   - `classify_line` 中 `.` 和 `#` 开头的行归为 tag 类型
   - `parse_tag_line` 中无标签名时检查是否以 `.`/`#` 开头，默认 tag 为 `div`
-- 更新了 `parser.py`、`compiler.py`、VS Code grammar、SYNTAX.md、test 文件、prompt 文件
+- 更新了 `parser.py`、`compiler.py`、VS Code grammar、docs/SYNTAX.md、test 文件、prompt 文件
 
 ### 动机
 - `@` 同时用于注释和指令（`@flex`、`@modal`...）容易混淆

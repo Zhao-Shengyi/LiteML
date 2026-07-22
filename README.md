@@ -1,8 +1,6 @@
 # LiteML
 
-> 🚀 **想快速上手？** 下载项目根目录的 [`liteml-quickstart.zip`](liteml-quickstart.zip) 解压即用，内含编译器 + 完整教程 + 双代码对照示例。
->
-> Want to get started quickly? Download [`liteml-quickstart.zip`](liteml-quickstart.zip) — includes the compiler, full tutorial, and dual-code example.
+
 
 **Lightweight Markup Language / 轻量级标记语言**
 
@@ -48,23 +46,12 @@ liteml build 你的文件.lite -o 输出.html
 
 ### 方式二：从源码运行
 
-```bash
-git clone https://github.com/Zhao-Shengyi/LiteML.git
-cd LiteML
-python3 core/cli.py build 你的文件.lite -o 输出.html
-```
-
-### 方式三：快速入门包
-
-下载 `liteml-quickstart.zip`，解压即用：
-
 ## Documentation / 文档
 
 | Document / 文档 | Description / 说明 |
 | :--- | :--- |
-| [SYNTAX.md](SYNTAX.md) | Full syntax reference / 完整语法参考手册 |
+| [docs/SYNTAX.md](docs/SYNTAX.md) | Full syntax reference / 完整语法参考手册 |
 | [README.md](README.md) | This file / 本文件 |
-| [`liteml-quickstart.zip`](liteml-quickstart.zip) | Quickstart pack: compiler + tutorial + examples / 快速入门包：编译器 + 教程 + 示例 |
 
 ## Project Structure / 项目结构
 
@@ -79,12 +66,22 @@ LiteML/
 │   ├── component.py   ←   组件加载
 │   └── ...
 ├── components/        ← 组件仓库
-│   └── dark-mode-toggle/
+├── templates/         ← CSS 主题模板
 ├── tests/             ← 测试文件
+├── website/           ← 官方网站
+├── docs/              ← 文档
+│   ├── SYNTAX.md      ←   语法参考
+│   ├── AGENTS.md      ←   AI 代理指引
+│   └── prompts/       ←   提示词
+├── packages/          ← 打包发布
+│   ├── npm/           ←   npm 包裹器
+│   ├── build/         ←   pip 构建产物 (gitignored)
+│   └── *.egg-info/    ←   pip 元数据 (gitignored)
 ├── editors/vscode/    ← VS Code 扩展
-├── prompts/           ← AI 提示词
-├── liteml-quickstart.zip  ← 快速入门包
-└── README.md / SYNTAX.md
+├── pyproject.toml     ← pip 打包配置
+├── MEMORY.md          ← 开发记忆
+├── TODO.md            ← 开发规划
+└── README.md
 ```
 
 ## License / 许可证
