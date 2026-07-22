@@ -1,207 +1,207 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>开发历程 · LiteML / Development History</title>
-    <meta name="description" content="LiteML 编译器的完整开发历程 — 从概念到实现的关键决策、Bug 修复和经验教训。">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container">
-        <a class="logo" href="index.html">
-          <span class="logo-symbol">L</span>
-          | iteML
-        </a>
-        <div class="nav-links">
-          <a href="index.html">首页 / Home</a>
-          <a href="syntax.html">语法 / Syntax</a>
-          <a class="active" href="history.html">历程 / History</a>
-          <a href="https://github.com/Zhao-Shengyi/LiteML" target="_blank">GitHub</a>
-        </div>
-      </div>
-    </header>
-    <div class="container timeline-page">
-      <h1>🏗️ 开发历程 / Development History</h1>
-      <p>从概念到实现的关键决策、Bug 修复和经验教训。完全开源。</p>
-      <p>Key decisions, bug fixes, and lessons learned from concept to implementation. Fully open source.</p>
-      <div class="timeline">
-        <div class="timeline-item featured">
-          <div class="timeline-date">2026-07-22</div>
-          <div class="timeline-title">🎨 官网 + CSS 模板系统 / Website & Theme System</div>
-          <div class="timeline-body">
-            <p>创建官方网站（LiteML 自举构建），同步修复属性值引号嵌套 Bug。</p>
-            <p>Created the official website built with LiteML itself (self-bootstrapping). Fixed the nested-quote bug in attribute values.</p>
-            <p>完成 12 款 CSS 模板，<code>@template(name)</code> 一行引用，每款配中英双语示例。</p>
-            <p>12 CSS themes with <code>@template(name)</code> one-line usage, each with bilingual examples.</p>
-          </div>
-        </div>
-        <div class="timeline-item featured">
-          <div class="timeline-date">2026-07-22</div>
-          <div class="timeline-title">🔧 语法清理 + .class 简写修复 / Syntax Cleanup</div>
-          <div class="timeline-body">
-            <p>注释从 <code>@</code> → <code>!</code>（<code>@</code> 兼容）；组件引用 <code>@use</code> → <code>use</code>。</p>
-            <p>Comments: <code>@</code> → <code>!</code> (<code>@</code> still works). Components: <code>@use</code> → <code>use</code>.</p>
-            <p>修复 <code>.container</code>、<code>#main</code> 等简写不被识别的问题：省略标签名时默认 <code>div</code>。</p>
-            <p>Fixed <code>.container</code> / <code>#main</code> shorthand — defaults to <code>div</code> when no tag name is given.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026-07-21</div>
-          <div class="timeline-title">🏗️ 重构：模块拆分 / Refactoring into core/ Package</div>
-          <div class="timeline-body">
-            <p>单文件 <code>liteml.py</code>（1046 行）→ <code>core/</code> 包，8 个模块各司其职：</p>
-            <p>Monolithic <code>liteml.py</code> (1046 lines) → <code>core/</code> package with 8 focused modules:</p>
-            <ul>
-              <li>parser / compiler / cli / tui 独立 / separated</li>
-              <li>directive_loader + directive_macros + directives/ 插件体系 / plugin system</li>
-              <li>component.py 组件加载器 / component loader</li>
-            </ul>
-            <p>同时创建了 Textual TUI（<code>core/tui.py</code>），实现可视化编辑预览。</p>
-            <p>Also created a Textual TUI (<code>core/tui.py</code>) for visual editing and preview.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026-07-21</div>
-          <div class="timeline-title">💻 VS Code 扩展 / VS Code Extension</div>
-          <div class="timeline-body">
-            <p>完整的 VS Code 扩展，包含：</p>
-            <p>A full VS Code extension featuring:</p>
-            <ul>
-              <li>TextMate 语法高亮覆盖全部 token / syntax highlighting for all tokens</li>
-              <li>诊断检查器（缩进、未知标签、PHP 配对等 9 类）/ linter (indentation, unknown tags, PHP pairing)</li>
-              <li>一键编译（Ctrl+Alt+B）/ one-click compile</li>
-            </ul>
-            <p>修复了 linter 中 JS 检查和编译器检查的短路问题。</p>
-            <p>Fixed the linter's short-circuit issue between JS checks and compiler checks.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026-07-21</div>
-          <div class="timeline-title">⚙️ 编译器开发 / Compiler Development</div>
-          <div class="timeline-body">
-            <p>用 Python 标准库实现完整编译器，约 1000 行。支持：</p>
-            <p>A full compiler in ~1000 lines of pure Python stdlib. Features:</p>
-            <ul>
-              <li>HTML / PHP 双模式输出 / dual output modes</li>
-              <li>缩进嵌套 + CSS 选择器语法 / indentation nesting + CSS selectors</li>
-              <li>布局 / 交互指令 + LiteJS 无代码交互 / layout & interaction directives</li>
-              <li>PHP 模板引擎（@if, @foreach, {{ $var }}）/ PHP template engine</li>
-              <li>Eject 回退、@raw 块、长文本、代码块 / eject, raw blocks, long text, code blocks</li>
-              <li>CLI build / watch 命令</li>
-            </ul>
-            <p>修复了 6 个核心 Bug（缩进栈、@else 输出、PHP 指令关闭等）。</p>
-            <p>Fixed 6 core bugs (indent stack, @else output, PHP directive closing, etc.).</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2026-07-21</div>
-          <div class="timeline-title">📝 语法文档 + 双语化 / Documentation & Bilingual</div>
-          <div class="timeline-body">
-            <p>创建 <code>SYNTAX.md</code>（1090 行，13 章），全部中英双语。</p>
-            <p>Created <code>SYNTAX.md</code> (1090 lines, 13 chapters), fully bilingual.</p>
-            <p>编写 AI 提示词（prompts/）：教 AI 写 LiteML、反编译 HTML 回 LiteML。</p>
-            <p>Wrote AI prompts (prompts/): teach AI to write LiteML and decompile HTML back to LiteML.</p>
-          </div>
-        </div>
-      </div>
-      <h2>关键决策 / Key Decisions</h2>
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>决策 / Decision</th>
-            <th>方案 / Choice</th>
-            <th>理由 / Rationale</th>
-          </tr>
-          <tr>
-            <td>编译语言 / Language</td>
-            <td>Python 标准库 / Python stdlib</td>
-            <td>零依赖，即开即用 / Zero dependencies</td>
-          </tr>
-          <tr>
-            <td>模块结构 / Structure</td>
-            <td>core/ 包拆分 / Package split</td>
-            <td>单文件 1000+ 行难以维护 / Monolith too large</td>
-          </tr>
-          <tr>
-            <td>指令系统 / Directives</td>
-            <td>@directive 装饰器 + 自动发现</td>
-            <td>新增指令只需创建一个 .py 文件</td>
-          </tr>
-          <tr>
-            <td>组件加载 / Components</td>
-            <td>约定式 + component.json</td>
-            <td>简单场景直接放文件，复杂场景显式声明</td>
-          </tr>
-          <tr>
-            <td>CSS 模板 / Themes</td>
-            <td>@template 宏内联读取 / Inline macro</td>
-            <td>无需额外构建步骤 / No extra build step</td>
-          </tr>
-          <tr>
-            <td>注释语法 / Comments</td>
-            <td>! 前缀</td>
-            <td>与 @ 指令区分，避免混淆 / Distinguish from @ directives</td>
-          </tr>
-        </table>
-      </div>
-      <h2>已知问题 / Known Issues</h2>
-      <ul>
-        <li>Markdown 图片语法 <code>![alt](src)</code> 在重构中丢失 — 可用 <code>img[src=url][alt=text]</code> 替代 / Was lost in refactoring — use <code>img[src=url][alt=text]</code> instead</li>
-        <li>attribute 值含空格时已修复引号嵌套问题 / Quote nesting fixed for attribute values with spaces</li>
-        <li>尚无 CI/CD（GitHub Actions）/ No CI/CD yet</li>
-        <li>尚无自动化测试框架 / No automated test framework yet</li>
-      </ul>
-      <h2>项目结构 / Project Structure</h2>
-      <div class="code-showcase">
-        <div class="code-showcase-header">
-          <div class="code-dots">
-            <div class="code-dot">
-            </div>
-            <div class="code-dot">
-            </div>
-            <div class="code-dot">
-            </div>
-          </div>
-          <div class="code-tabs">
-            <button class="code-tab active">📁 LiteML /</button>
-          </div>
-        </div>
-        <div class="code-body">
-          <pre>
-            | LiteML/
-            | ├── <span class="tag">core/</span>          ← 编译器包 / Compiler
-            | │   ├── cli.py          ← 命令行 / CLI
-            | │   ├── tui.py          ← 终端 UI / Terminal UI
-            | │   ├── compiler.py     ← 编译核心 / Core compiler
-            | │   ├── parser.py       ← 语法解析 / Parser
-            | │   ├── directive_loader.py
-            | │   ├── directive_macros.py
-            | │   ├── component.py    ← 组件加载 / Components
-            | │   ├── directives/     ← 9 个插件指令 / Plugins
-            | │   ├── models.py
-            | │   └── constants.py
-            | ├── <span class="tag">components/</span>    ← 14 个 UI 组件 / UI Components
-            | ├── <span class="tag">templates/</span>     ← 12 款 CSS 模板 / CSS Themes
-            | ├── <span class="tag">website/</span>       ← 官网源码 / Website
-            | ├── <span class="tag">editors/vscode/</span> ← VS Code 扩展
-            | └── <span class="tag">tests/</span>         ← 测试文件 / Tests
-          </pre>
-        </div>
-      </div>
-    </div>
-    <footer class="site-footer">
-      <div class="container">
-        <p>LiteML · 开源 MIT 协议 / Open Source MIT License</p>
-        <p>
-          <a href="https://github.com/Zhao-Shengyi/LiteML">GitHub</a>
-          <span style="opacity:0.3;margin:0 0.5rem">·</span>
-          <a href="index.html">首页 / Home</a>
-          <span style="opacity:0.3;margin:0 0.5rem">·</span>
-          <a href="syntax.html">语法 / Syntax</a>
-        </p>
-      </div>
-    </footer>
-  </body>
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title> · LiteML / Development History</title>
+ <meta name="description" content="LiteML — Bug ">
+ <link rel="stylesheet" href="style.css">
+ </head>
+ <body>
+ <header class="site-header">
+ <div class="container">
+ <a class="logo" href="index.html">
+ <span class="logo-symbol">L</span>
+ | iteML
+ </a>
+ <div class="nav-links">
+ <a href="index.html"> / Home</a>
+ <a href="syntax.html"> / Syntax</a>
+ <a class="active" href="history.html"> / History</a>
+ <a href="https://github.com/Zhao-Shengyi/LiteML" target="_blank">GitHub</a>
+ </div>
+ </div>
+ </header>
+ <div class="container timeline-page">
+ <h1> / Development History</h1>
+ <p>Bug </p>
+ <p>Key decisions, bug fixes, and lessons learned from concept to implementation. Fully open source.</p>
+ <div class="timeline">
+ <div class="timeline-item featured">
+ <div class="timeline-date">2026-07-22</div>
+ <div class="timeline-title"> + CSS / Website & Theme System</div>
+ <div class="timeline-body">
+ <p>LiteML Bug</p>
+ <p>Created the official website built with LiteML itself (self-bootstrapping). Fixed the nested-quote bug in attribute values.</p>
+ <p> 12 CSS <code>@template(name)</code> </p>
+ <p>12 CSS themes with <code>@template(name)</code> one-line usage, each with bilingual examples.</p>
+ </div>
+ </div>
+ <div class="timeline-item featured">
+ <div class="timeline-date">2026-07-22</div>
+ <div class="timeline-title"> + .class / Syntax Cleanup</div>
+ <div class="timeline-body">
+ <p> <code>@</code> → <code>!</code><code>@</code> <code>@use</code> → <code>use</code></p>
+ <p>Comments: <code>@</code> → <code>!</code> (<code>@</code> still works). Components: <code>@use</code> → <code>use</code>.</p>
+ <p> <code>.container</code><code>#main</code> <code>div</code></p>
+ <p>Fixed <code>.container</code> / <code>#main</code> shorthand — defaults to <code>div</code> when no tag name is given.</p>
+ </div>
+ </div>
+ <div class="timeline-item">
+ <div class="timeline-date">2026-07-21</div>
+ <div class="timeline-title"> / Refactoring into core/ Package</div>
+ <div class="timeline-body">
+ <p> <code>liteml.py</code>1046 → <code>core/</code> 8 </p>
+ <p>Monolithic <code>liteml.py</code> (1046 lines) → <code>core/</code> package with 8 focused modules:</p>
+ <ul>
+ <li>parser / compiler / cli / tui / separated</li>
+ <li>directive_loader + directive_macros + directives/ / plugin system</li>
+ <li>component.py / component loader</li>
+ </ul>
+ <p> Textual TUI<code>core/tui.py</code></p>
+ <p>Also created a Textual TUI (<code>core/tui.py</code>) for visual editing and preview.</p>
+ </div>
+ </div>
+ <div class="timeline-item">
+ <div class="timeline-date">2026-07-21</div>
+ <div class="timeline-title"> VS Code / VS Code Extension</div>
+ <div class="timeline-body">
+ <p> VS Code </p>
+ <p>A full VS Code extension featuring:</p>
+ <ul>
+ <li>TextMate token / syntax highlighting for all tokens</li>
+ <li>PHP 9 / linter (indentation, unknown tags, PHP pairing)</li>
+ <li>Ctrl+Alt+B/ one-click compile</li>
+ </ul>
+ <p> linter JS </p>
+ <p>Fixed the linter's short-circuit issue between JS checks and compiler checks.</p>
+ </div>
+ </div>
+ <div class="timeline-item">
+ <div class="timeline-date">2026-07-21</div>
+ <div class="timeline-title"> / Compiler Development</div>
+ <div class="timeline-body">
+ <p> Python 1000 </p>
+ <p>A full compiler in ~1000 lines of pure Python stdlib. Features:</p>
+ <ul>
+ <li>HTML / PHP / dual output modes</li>
+ <li> + CSS / indentation nesting + CSS selectors</li>
+ <li> / + LiteJS / layout & interaction directives</li>
+ <li>PHP @if, @foreach, {{ $var }}/ PHP template engine</li>
+ <li>Eject @raw / eject, raw blocks, long text, code blocks</li>
+ <li>CLI build / watch </li>
+ </ul>
+ <p> 6 Bug@else PHP </p>
+ <p>Fixed 6 core bugs (indent stack, @else output, PHP directive closing, etc.).</p>
+ </div>
+ </div>
+ <div class="timeline-item">
+ <div class="timeline-date">2026-07-21</div>
+ <div class="timeline-title"> + / Documentation & Bilingual</div>
+ <div class="timeline-body">
+ <p> <code>SYNTAX.md</code>1090 13 </p>
+ <p>Created <code>SYNTAX.md</code> (1090 lines, 13 chapters), fully bilingual.</p>
+ <p> AI prompts/ AI LiteML HTML LiteML</p>
+ <p>Wrote AI prompts (prompts/): teach AI to write LiteML and decompile HTML back to LiteML.</p>
+ </div>
+ </div>
+ </div>
+ <h2> / Key Decisions</h2>
+ <div class="table-wrap">
+ <table>
+ <tr>
+ <th> / Decision</th>
+ <th> / Choice</th>
+ <th> / Rationale</th>
+ </tr>
+ <tr>
+ <td> / Language</td>
+ <td>Python / Python stdlib</td>
+ <td> / Zero dependencies</td>
+ </tr>
+ <tr>
+ <td> / Structure</td>
+ <td>core/ / Package split</td>
+ <td> 1000+ / Monolith too large</td>
+ </tr>
+ <tr>
+ <td> / Directives</td>
+ <td>@directive + </td>
+ <td> .py </td>
+ </tr>
+ <tr>
+ <td> / Components</td>
+ <td> + component.json</td>
+ <td></td>
+ </tr>
+ <tr>
+ <td>CSS / Themes</td>
+ <td>@template / Inline macro</td>
+ <td> / No extra build step</td>
+ </tr>
+ <tr>
+ <td> / Comments</td>
+ <td>! </td>
+ <td> @ / Distinguish from @ directives</td>
+ </tr>
+ </table>
+ </div>
+ <h2> / Known Issues</h2>
+ <ul>
+ <li>Markdown <code>![alt](src)</code> — <code>img[src=url][alt=text]</code> / Was lost in refactoring — use <code>img[src=url][alt=text]</code> instead</li>
+ <li>attribute / Quote nesting fixed for attribute values with spaces</li>
+ <li> CI/CDGitHub Actions/ No CI/CD yet</li>
+ <li> / No automated test framework yet</li>
+ </ul>
+ <h2> / Project Structure</h2>
+ <div class="code-showcase">
+ <div class="code-showcase-header">
+ <div class="code-dots">
+ <div class="code-dot">
+ </div>
+ <div class="code-dot">
+ </div>
+ <div class="code-dot">
+ </div>
+ </div>
+ <div class="code-tabs">
+ <button class="code-tab active"> LiteML /</button>
+ </div>
+ </div>
+ <div class="code-body">
+ <pre>
+ | LiteML/
+ | <span class="tag">core/</span> ← / Compiler
+ | cli.py ← / CLI
+ | tui.py ← UI / Terminal UI
+ | compiler.py ← / Core compiler
+ | parser.py ← / Parser
+ | directive_loader.py
+ | directive_macros.py
+ | component.py ← / Components
+ | directives/ ← 9 / Plugins
+ | models.py
+ | constants.py
+ | <span class="tag">components/</span> ← 14 UI / UI Components
+ | <span class="tag">templates/</span> ← 12 CSS / CSS Themes
+ | <span class="tag">website/</span> ← / Website
+ | <span class="tag">editors/vscode/</span> ← VS Code 
+ | <span class="tag">tests/</span> ← / Tests
+ </pre>
+ </div>
+ </div>
+ </div>
+ <footer class="site-footer">
+ <div class="container">
+ <p>LiteML · MIT / Open Source MIT License</p>
+ <p>
+ <a href="https://github.com/Zhao-Shengyi/LiteML">GitHub</a>
+ <span style="opacity:0.3;margin:0 0.5rem">·</span>
+ <a href="index.html"> / Home</a>
+ <span style="opacity:0.3;margin:0 0.5rem">·</span>
+ <a href="syntax.html"> / Syntax</a>
+ </p>
+ </div>
+ </footer>
+ </body>
 </html>
