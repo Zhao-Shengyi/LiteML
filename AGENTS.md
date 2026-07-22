@@ -20,7 +20,6 @@ python3 core/cli.py watch input.lite -o output.html
 | Build (directory) | `python3 core/cli.py build src/ -o dist/` |
 | PHP mode | add `--mode=php` |
 | Asset mode | add `--css=inline\|external --js=inline\|external` (controls component style/script output) |
-| Eject directives | add `--eject` (expands `@directive!` to native code) |
 | Watch mode | `python3 core/cli.py watch <file.lite> -o <output>` |
 | Components | `python3 core/cli.py components list\|init <name>` |
 | Directives | `python3 core/cli.py directives list` |

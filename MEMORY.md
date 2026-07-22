@@ -1,5 +1,39 @@
 # 开发记忆
 
+## 2026-07-22 全项目 Bug 扫描
+
+### 做了什么
+- 全面扫描 19 个 Python 文件、9 个指令插件、15 个组件、12 个模板、3 个网站页面、VS Code 扩展
+- 修复 VS Code `language-configuration.json` 的行注释配置 `@` → `!`
+- 更新 `AGENTS.md` 移除不存在的 `--eject` 文档
+
+### 问题与修复
+1. **language-configuration.json 行注释还是 `@`**
+   - 语法已从 `@` 改为 `!`，但 VS Code 配置未同步
+   - 修复：`lineComment` 改为 `"! "`
+
+2. **AGENTS.md 提到 `--eject` 但 cli.py 未实现**
+   - 实际指令已自动内联展开，无需独立 eject 开关
+   - 修复：删除该行文档
+
+3. **MEMORY.md 组件数写 14 但实际是 15**
+   - 漏记了 `toast` 组件
+
+### 已知未修复（均为旧记录）
+- Markdown 图片 `![alt](src)` 语法缺失
+- `@audio`/`@video` 宏冗余（标准 tag 语法已覆盖）
+- TextMate grammar 的 `@endraw`/`@endphp` 与解析器缩进逻辑不匹配（仅影响高亮范围，不影响编译）
+
+### 验证通过
+- Python 语法：19 个文件全部通过
+- 编译器：HTML / PHP / watch 模式正常
+- 指令：9 个全部可加载
+- 组件：15 个全部可用，`component.json` 全部合法 JSON
+- 模板：12 个全部完整（theme.css + example.lite + example.html）
+- 网站：3 页全部可构建，与仓库已同步
+- 向后兼容：`@use` / `@` 注释语法兼容
+- 深层嵌套、空行、引号等边缘情况正常
+
 ## 2026-07-22 官网翻新：动效 + 视觉升级
 
 ### 做了什么
