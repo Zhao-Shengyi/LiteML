@@ -50,7 +50,7 @@ liteml build 你的文件.lite -o 输出.html
 
 | Document / 文档 | Description / 说明 |
 | :--- | :--- |
-| [docs/SYNTAX.md](docs/SYNTAX.md) | Full syntax reference / 完整语法参考手册 |
+| [docs/syntax-en.md](docs/syntax-en.md) · [docs/syntax-cn.md](docs/syntax-cn.md) | Full syntax reference / 完整语法参考手册（中英分卷） |
 | [README.md](README.md) | This file / 本文件 |
 
 ## Project Structure / 项目结构
@@ -70,7 +70,8 @@ LiteML/
 ├── tests/             ← 测试文件
 ├── website/           ← 官方网站
 ├── docs/              ← 文档
-│   ├── SYNTAX.md      ←   语法参考
+│   ├── syntax-en.md ←   语法参考（英文）
+│   ├── syntax-cn.md ←   语法参考（中文）
 │   ├── AGENTS.md      ←   AI 代理指引
 │   └── prompts/       ←   提示词
 ├── packages/          ← 打包发布

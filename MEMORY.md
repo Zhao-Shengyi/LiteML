@@ -96,7 +96,7 @@
 ### 做了什么
 - 创建 `website/` 目录，用 LiteML 构建官方文档网站
   - `index.html` — 首页（英雄区 + 核心特性 + 快速开始 + 模板画廊）
-  - `syntax.html` — 完整语法参考（整合 docs/SYNTAX.md 全部内容）
+  - `syntax.html` — 完整语法参考（整合 syntax-en.md / syntax-cn.md 全部内容）
   - `history.html` — 开发历程（整合两个 MEMORY.md 的时间线）
 - 所有页面中英双语，使用自定义 website/style.css
 - 修复 `parser.py` 属性值引号问题：`[attr="value with spaces"]` 现在正确编译
@@ -135,7 +135,7 @@
 - 修复了 `.class` 和 `#id` 简写（无标签名时默认 div）：
   - `classify_line` 中 `.` 和 `#` 开头的行归为 tag 类型
   - `parse_tag_line` 中无标签名时检查是否以 `.`/`#` 开头，默认 tag 为 `div`
-- 更新了 `parser.py`、`compiler.py`、VS Code grammar、docs/SYNTAX.md、test 文件、prompt 文件
+- 更新了 `parser.py`、`compiler.py`、VS Code grammar、SYNTAX.md（现拆为 syntax-en.md / syntax-cn.md）、test 文件、prompt 文件
 
 ### 动机
 - `@` 同时用于注释和指令（`@flex`、`@modal`...）容易混淆
@@ -299,7 +299,7 @@
 
 ### 做了什么
 - 将 `README.md` 改为中英双语版本
-- 将 `SYNTAX.md` 改为中英双语版本，每个章节标题、术语、示例都配有中英文对照
+- 将 `SYNTAX.md`（现拆为 syntax-en.md / syntax-cn.md）改为中英双语版本，每个章节标题、术语、示例都配有中英文对照
 - 编译示例中的文本也做了中英双语示范
 - 附录速查表所有条目均为中英文并列
 
@@ -320,7 +320,7 @@
   - 开源许可证选择
   - 编译器技术栈推荐
   - 所有 16 个章节的全面总结
-- 在 LiteML 仓库中创建了 `SYNTAX.md`，一份完整的语法参考手册
+- 在 LiteML 仓库中创建了 `SYNTAX.md`（后拆为 syntax-en.md / syntax-cn.md），一份完整的语法参考手册
 - 涵盖 13 个章节：基础语法、标签属性、多媒体宏、长文本、PHP 模板、LiteCSS、LiteJS、行为属性、Eject 回退、逃生舱、双模式、实战示例、指令速查表
 - 每个语法点都配有 LiteML 源码 + 编译后 HTML 的对照示例
 - 末尾附有完整的指令速查表，方便快速查阅

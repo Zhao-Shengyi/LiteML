@@ -62,4 +62,4 @@ Test fixtures: `tests/test_full.lite`, `test_php.lite`, `test_use.lite`.
 
 ## Prompts (for LLMs using LiteML)
 
-See `prompts/usage-prompt.md` and `prompts/decompile-prompt.md`. Full language reference in `SYNTAX.md` (1090 lines).
+See `prompts/usage-prompt.md` and `prompts/decompile-prompt.md`. Full language reference in `syntax-en.md` (English) / `syntax-cn.md` (中文).
