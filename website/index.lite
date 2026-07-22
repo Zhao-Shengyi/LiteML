@@ -7,10 +7,15 @@ html[lang=zh-CN]
     meta[name=description][content="LiteML 是一个极简的 HTML 预处理器，用缩进代替闭合标签，用符号代替冗长属性。支持 PHP 模板引擎、声明式布局、组件系统和 12 款 CSS 模板。"]
     @css(website/style.css)
   body
+    .float-orbs
+      .float-orb
+      .float-orb
+      .float-orb
+
     header.site-header
       .container
         a.logo[href=index.html]
-          span L
+          span.logo-symbol L
           | iteML
         .nav-links
           a.active[href=index.html] 首页 / Home
@@ -20,170 +25,262 @@ html[lang=zh-CN]
 
     .hero
       .container
-        .hero-badge 🚀 v0.3 — 开源 / Open Source
+        .hero-badge
+          | 🚀 v0.3
+          span[style="opacity:0.4;margin:0 0.4rem"] ·
+          | 开源 / Open Source
         h1
-          | 极简 HTML 预处理器
+          | 极简
+          span.gradient-text  HTML
           br
-          span Minimal HTML Preprocessor
-        p 用缩进代替闭合标签，用符号代替冗长属性 — 省 50% 代码，提 2 倍速。
-        p Indentation over closing tags, symbols over verbose attributes — 50% less code, 2x faster.
+          | 预处理器
+          span.gradient-text-accent  LiteML
+        p.hero-sub
+          | 用缩进代替闭合标签，用符号代替冗长属性 ——
+          strong  省 50% 代码
+          | ，提 2 倍速
         .hero-actions
-          a.btn.btn-primary[href=syntax.html] 语法文档 / Docs
+          a.btn.btn-primary[href=syntax.html] 📖 语法文档 / Docs
           a.btn.btn-outline[href=https://github.com/Zhao-Shengyi/LiteML][target=_blank] GitHub →
-    .container
-      .section-title
-        h2 核心特性 / Core Features
-        p LiteML 的设计理念：少写代码，多做事
+        .hero-stats
+          .hero-stat
+            .hero-stat-num 28+
+            .hero-stat-label 指令 / Directives
+          .hero-stat
+            .hero-stat-num 12
+            .hero-stat-label CSS 模板 / Themes
+          .hero-stat
+            .hero-stat-num 14
+            .hero-stat-label 组件 / Components
+          .hero-stat
+            .hero-stat-num 0
+            .hero-stat-label 依赖 / Dependencies
 
-      .features
-        .feature-card
-          .feature-icon 📝
-          h3 缩进即结构 / Indentation = Structure
-          p 用缩进代替闭合标签，告别嵌套地狱。2 空格规则，清晰直观。
-          p Indentation replaces closing tags. 2-space rule, crystal clear.
-
-        .feature-card
-          .feature-icon 🎨
-          h3 CSS 选择器语法 / CSS Selectors
-          p 标签、ID、类、属性一行写完：<code>div#app.card[href=/]</code>
-          p Tag, ID, class, attributes in one line: <code>div#app.card[href=/]</code>
-
-        .feature-card
-          .feature-icon 🧩
-          h3 组件系统 / Components
-          p 原生 HTML/CSS/JS 写组件，<code>use component-name</code> 一行引用。
-          p Native HTML/CSS/JS components, one line to use: <code>use component-name</code>
-
-        .feature-card
-          .feature-icon 🎭
-          h3 12 款 CSS 模板 / 12 Themes
-          p 极简、现代、暗色、玻璃态、新拟态… <code>@template(name)</code> 一行换肤。
-          p Minimal, modern, dark, glass, neumorph… <code>@template(name)</code> one line.
-
-        .feature-card
-          .feature-icon ⚡
-          h3 声明式布局 / Declarative Layout
-          p <code>@flex</code>、<code>@grid</code>、<code>@waterfall</code> — 一行指令搞定复杂 CSS。
-          p <code>@flex</code>, <code>@grid</code>, <code>@waterfall</code> — complex CSS in one line.
-
-        .feature-card
-          .feature-icon 🚀
-          h3 PHP 模板引擎 / PHP Templates
-          p 内置 <code>@if</code>、<code>@foreach</code>、<code>{{ $var }}</code>，一行切换 PHP 模式。
-          p Built-in <code>@if</code>, <code>@foreach</code>, <code>{{ $var }}</code>. One flag for PHP mode.
-
-      .section-title
-        h2 快速开始 / Quick Start
-        p 3 步上手 LiteML
-
-      .code-demo
-        .code-tabs
-          .code-tab.active 📄 example.lite
-          .code-tab → HTML
-          .code-tab → PHP
-        .code-body
-          pre
-            | <span class="cm">! html5</span>
-            | html[lang=zh-CN]
-            |   head
-            |     <span class="hl">@template(minimal)</span>
-            |     title 我的第一个 LiteML 页面
-            |   body
-            |     .container
-            |       h1 你好，世界！
-            |       p 这是用 <span class="tag">LiteML</span> 写的。
-            |       .card
-            |         h3 卡片标题
-            |         p 缩进即嵌套，无需闭合标签。
-
-      p 更多语法请查阅 <a[href=syntax.html]>完整语法参考 / Full Syntax Reference</a>。
-
-      .section-title
-        h2 精选模板 / Template Gallery
-        p 一行 <code>@template(name)</code> 即可应用主题
-
-      .template-grid
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/minimal][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#fff,#eee)"]
-          .name 极简 Minimal
-          .desc 干净留白
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/modern][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#6366f1,#a78bfa)"]
-          .name 现代 Modern
-          .desc 渐变圆角
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/dark][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#0f1117,#222639)"]
-          .name 暗色 Dark
-          .desc 深色护眼
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/glass][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#667eea,#764ba2)"]
-          .name 玻璃 Glass
-          .desc 毛玻璃效果
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/neumorph][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#e4e9f0,#c8cdd4)"]
-          .name 新拟态 Neumorph
-          .desc 柔软浮雕
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/retro][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#f5f0e8,#d9cebc)"]
-          .name 复古 Retro
-          .desc 暖色衬线
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/corporate][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#2563eb,#0ea5e9)"]
-          .name 商务 Corporate
-          .desc 专业蓝色
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/blog][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#fefefe,#eee)"]
-          .name 博客 Blog
-          .desc 阅读优先
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/landing][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#f97316,#3b82f6)"]
-          .name 着陆 Landing
-          .desc 强 CTA
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/card][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#8b5cf6,#f43f5e)"]
-          .name 卡片 Card
-          .desc 网格卡片
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/gradient][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#f093fb,#4facfe)"]
-          .name 渐变 Gradient
-          .desc 多彩渐变
-
-        a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/terminal][target=_blank]
-          .preview[style="background:linear-gradient(135deg,#0c0c0c,#33ff66)"]
-          .name 终端 Terminal
-          .desc 黑底绿字
-
-      .section-title
-        h2 技术栈 / Tech Stack
-        p 纯 Python 标准库，零依赖
-
-      .features
-        .feature-card
-          .feature-icon 🐍
-          h3 编译器 / Compiler
-          p 纯 Python 实现，零外部依赖。<code>core/</code> 包模块化设计，支持 HTML/PHP 双模式输出。
-
-        .feature-card
-          .feature-icon 📦
-          h3 CLI + TUI
-          p 命令行 <code>build</code>/<code>watch</code> 支持文件与目录；Textual 终端 UI 提供可视化编辑体验。
-
-        .feature-card
-          .feature-icon 💻
-          h3 VS Code 扩展
-          p 语法高亮、错误诊断、一键编译。<code>.lite</code> 文件专属支持。
-
-    .site-footer
+    section
       .container
-        p LiteML — 开源 MIT 协议 / Open Source MIT License
-        p 用 LiteML 构建 / Built with LiteML
+        .section-title
+          .label 核心特性 / Core Features
+          h2 少写代码，多做事
+          p.section-divider
+          p 用更少的语法做更多的事
+
+        .features
+          .feature-card
+            .feature-icon 📝
+            h3 缩进即结构
+            p 用 2 空格缩进代替闭合标签，告别嵌套地狱。结构一目了然。
+            p
+              code div
+              br
+              code   h1 标题
+              br
+              code   p 内容
+
+          .feature-card
+            .feature-icon 🎨
+            h3 CSS 选择器语法
+            p 标签、ID、class、属性一行写完，省去重复书写。
+            p
+              code div#app.card[href=/]
+
+          .feature-card
+            .feature-icon 🧩
+            h3 组件系统
+            p 用原生 HTML/CSS/JS 写组件，一行引用。
+            p
+              code use dark-mode-toggle
+              br
+              code use navbar
+
+          .feature-card
+            .feature-icon 🎭
+            h3 12 款 CSS 模板
+            p 极简、现代、暗色、玻璃态、新拟态……一行换肤。
+            p
+              code @template(minimal)
+              br
+              code @template(dark)
+
+          .feature-card
+            .feature-icon ⚡
+            h3 声明式布局
+            p Flexbox、Grid、瀑布流……一行指令搞定复杂 CSS。
+            p
+              code div@flex(center, between)
+              br
+              code div@grid(cols=3, gap=16px)
+
+          .feature-card
+            .feature-icon 🚀
+            h3 PHP 模板引擎
+            p 内置 Blade 风格控制流，一键切换 PHP 模式。
+            p
+              code --mode=php
+              br
+              code @if / @foreach / {{ $var }}
+
+    section.code-demo-section
+      .container
+        .section-title
+          .label 快速开始 / Quick Start
+          h2 3 行代码跑起来
+          p 这是 LiteML 源码 → HTML 的直观对照
+
+        .code-showcase
+          .code-showcase-header
+            .code-dots
+              .code-dot
+              .code-dot
+              .code-dot
+            .code-tabs
+              button.code-tab.active 📄 example.lite
+              button.code-tab ▶ 编译输出 HTML
+          .code-body
+            pre
+              | <span class="cm">! html5</span>
+              | html[lang=zh-CN]
+              |   head
+              |     <span class="hl">@template(minimal)</span>
+              |     title 我的页面
+              |   body
+              |     .container
+              |       h1 你好，<span class="hl">LiteML</span>！
+              |       .card
+              |         h3 卡片标题
+              |         p 缩进即嵌套，无需闭合标签。
+              |         a.btn[href=#] 了解更多
+
+    section
+      .container
+        .section-title
+          .label 模板预览 / Theme Gallery
+          h2 精选 12 款 CSS 模板
+          p 一行 <code>@template(name)</code> 即可应用
+
+        .template-gallery
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/minimal][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#f8f9fa,#e9ecef)"]
+            .template-info
+              .template-name 极简 Minimal
+              .template-desc 干净留白，专注内容
+              .template-tag @template(minimal)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/modern][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#6366f1,#a78bfa,#60a5fa)"]
+            .template-info
+              .template-name 现代 Modern
+              .template-desc 渐变点缀，柔和圆角
+              .template-tag @template(modern)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/dark][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#0f1117,#1a1d28,#222639)"]
+            .template-info
+              .template-name 暗色 Dark
+              .template-desc 深色背景，护眼舒适
+              .template-tag @template(dark)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/glass][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#667eea,#764ba2,#f093fb)"]
+            .template-info
+              .template-name 玻璃 Glass
+              .template-desc 毛玻璃，深邃层次
+              .template-tag @template(glass)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/neumorph][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#e4e9f0,#c8cdd4,#ffffff)"]
+            .template-info
+              .template-name 新拟态 Neumorph
+              .template-desc 柔软浮雕，细腻质感
+              .template-tag @template(neumorph)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/retro][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#f5f0e8,#efe8d8,#d9cebc)"]
+            .template-info
+              .template-name 复古 Retro
+              .template-desc 暖色调，衬线质感
+              .template-tag @template(retro)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/corporate][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#2563eb,#0ea5e9,#38bdf8)"]
+            .template-info
+              .template-name 商务 Corporate
+              .template-desc 专业蓝色，清晰结构
+              .template-tag @template(corporate)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/blog][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#fefefe,#f8f9fa,#e9ecef)"]
+            .template-info
+              .template-name 博客 Blog
+              .template-desc 阅读优先，舒适排版
+              .template-tag @template(blog)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/landing][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#f97316,#fb923c,#3b82f6)"]
+            .template-info
+              .template-name 着陆 Landing
+              .template-desc 大标题，强 CTA 按钮
+              .template-tag @template(landing)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/card][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#8b5cf6,#a78bfa,#f43f5e)"]
+            .template-info
+              .template-name 卡片 Card
+              .template-desc 网格卡片，优雅展示
+              .template-tag @template(card)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/gradient][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#f093fb,#4facfe,#43e97b)"]
+            .template-info
+              .template-name 渐变 Gradient
+              .template-desc 多彩渐变，大胆活力
+              .template-tag @template(gradient)
+
+          a.template-card[href=https://github.com/Zhao-Shengyi/LiteML/tree/main/templates/terminal][target=_blank]
+            .template-preview[style="background:linear-gradient(135deg,#0c0c0c,#1a1a1a,#33ff66)"]
+            .template-info
+              .template-name 终端 Terminal
+              .template-desc 黑底绿字，黑客美学
+              .template-tag @template(terminal)
+
+    section.stats-section
+      .container
+        .stats-grid
+          .stat-item
+            .stat-icon 🐍
+            .stat-number 零
+            .stat-label 外部依赖 / Dependencies
+          .stat-item
+            .stat-icon ⚡
+            .stat-number 2ms
+            .stat-label 编译速度 / Compile Speed
+          .stat-item
+            .stat-icon 📦
+            .stat-number 2
+            .stat-label 输出模式 HTML / PHP
+          .stat-item
+            .stat-icon 💻
+            .stat-number 3
+            .stat-label 入口 CLI / TUI / VSCode
+
+    section.cta-section
+      .container
+        h2 开始用 LiteML 构建吧
+        p 开源 MIT 许可，欢迎贡献和反馈
+        .cta-actions
+          a.btn.btn-primary[href=syntax.html] 📖 阅读文档 / Read Docs
+          a.btn.btn-outline[href=https://github.com/Zhao-Shengyi/LiteML][target=_blank] ⭐ GitHub Star
+          a.btn.btn-ghost[href=https://github.com/Zhao-Shengyi/LiteML/archive/refs/heads/main.zip] 📥 下载 ZIP / Download
+
+    footer.site-footer
+      .container
+        p LiteML · 开源 MIT 协议 / Open Source MIT License
+        p
+          | 用
+          a[href=index.html]  LiteML
+          |  构建 / Built with LiteML
+        p
+          a[href=https://github.com/Zhao-Shengyi/LiteML] GitHub
+          span[style="opacity:0.3;margin:0 0.5rem"] ·
+          a[href=syntax.html] 语法 / Syntax
+          span[style="opacity:0.3;margin:0 0.5rem"] ·
+          a[href=history.html] 历程 / History

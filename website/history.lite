@@ -10,7 +10,7 @@ html[lang=zh-CN]
     header.site-header
       .container
         a.logo[href=index.html]
-          span L
+          span.logo-symbol L
           | iteML
         .nav-links
           a[href=index.html] 首页 / Home
@@ -18,91 +18,76 @@ html[lang=zh-CN]
           a.active[href=history.html] 历程 / History
           a[href=https://github.com/Zhao-Shengyi/LiteML][target=_blank] GitHub
 
-    .container
-      h1 开发历程 / Development History
-      p LiteML 编译器的完整开发记录 — 关键决策、Bug 修复和经验教训。
-      p Complete development log — key decisions, bug fixes, and lessons learned.
+    .container.timeline-page
+      h1 🏗️ 开发历程 / Development History
+      p 从概念到实现的关键决策、Bug 修复和经验教训。完全开源。
 
       .timeline
-        .timeline-item
+        .timeline-item.featured
           .timeline-date 2026-07-22
-          .timeline-title 🎨 CSS 模板系统 / Template System
+          .timeline-title 🎨 官网 + CSS 模板系统 / Website & Theme System
           .timeline-body
-            p 创建 12 款 CSS 模板，支持 <code>@template(name)</code> 一行引用：
-            ul
-              li 模板涵盖极简、现代、暗色、玻璃态、新拟态、复古等风格
-              li 每款模板包含 theme.css + 中英双语 example.lite/example.html
-              li CLI 新增 <code>templates list</code> 子命令
-              li 每个模板使用 CSS 变量，用户可覆盖自定义
+            p 创建官方网站（LiteML 自举构建），同步修复属性值引号嵌套 Bug。
+            p 完成 12 款 CSS 模板，<code>@template(name)</code> 一行引用，每款配中英双语示例。
 
-        .timeline-item
+        .timeline-item.featured
           .timeline-date 2026-07-22
-          .timeline-title 🔧 语法清理 + Bug 修复 / Syntax Cleanup
+          .timeline-title 🔧 语法清理 + .class 简写修复 / Syntax Cleanup
           .timeline-body
-            p 注释前缀从 <code>@</code> 改为 <code>!</code>，组件引用从 <code>@use</code> 改为 <code>use</code>。旧语法向后兼容。
-            p 修复 <code>.class</code> 和 <code>#id</code> 简写问题 — 省略标签名时默认 <code>div</code>。
+            p 注释从 <code>@</code> → <code>!</code>（<code>@</code> 兼容）；组件引用 <code>@use</code> → <code>use</code>。
+            p 修复 <code>.container</code>、<code>#main</code> 等简写不被识别的问题：省略标签名时默认 <code>div</code>。
 
         .timeline-item
           .timeline-date 2026-07-21
-          .timeline-title 🏗️ 重构：模块拆分 + 组件系统 + TUI / Refactoring
+          .timeline-title 🏗️ 重构：模块拆分 / Refactoring into core/ Package
           .timeline-body
-            p 将单文件 <code>liteml.py</code>（1046 行）拆分为 <code>core/</code> 包：
+            p 单文件 <code>liteml.py</code>（1046 行）→ <code>core/</code> 包，8 个模块各司其职：
             ul
-              li constants.py — 常量定义
-              li models.py — 数据结构（Node, ParsedLine, ComponentInfo）
-              li parser.py — .lite 语法解析、行类型分类、预处理
-              li directive_loader.py — @directive 装饰器注册 + 自动发现
-              li directive_macros.py — 独立宏 (@audio, @video, @flex...)
-              li component.py — 组件加载器
-              li compiler.py — 编译核心
-              li cli.py — 命令行入口 + TUI
-
-            p 实现了 <code>@use</code> 组件系统，支持约定式和清单式发现。
-            p 创建了 Textual TUI（<code>core/tui.py</code>），提供可视化文件浏览 + 编辑 + 编译预览。
+              li parser / compiler / cli / tui 独立
+              li directive_loader + directive_macros + directives/ 插件体系
+              li component.py 组件加载器
+            p 同时创建了 Textual TUI（<code>core/tui.py</code>），实现可视化编辑预览。
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title 💻 VS Code 扩展 / VS Code Extension
           .timeline-body
-            p 创建完整的 VS Code 扩展，支持：
+            p 完整的 VS Code 扩展，包含：
             ul
-              li TextMate 语法高亮覆盖全部 token 类型
-              li 诊断检查器检测缩进、未知标签、PHP 配对等 9 类错误
+              li TextMate 语法高亮覆盖全部 token
+              li 诊断检查器（缩进、未知标签、PHP 配对等 9 类）
               li 一键编译（Ctrl+Alt+B）
-              li 自定义编译器路径
-            p 修复了 linter 将 JS 检查和编译器检查串联而非短路的问题。
+            p 修复了 linter 中 JS 检查和编译器检查的短路问题。
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title ⚙️ 编译器开发 / Compiler Development
           .timeline-body
-            p 创造了 <code>liteml.py</code>（约 1000 行 Python 标准库），支持：
+            p 用 Python 标准库实现完整编译器，约 1000 行。支持：
             ul
-              li HTML/PHP 双模式输出
+              li HTML / PHP 双模式输出
               li 缩进嵌套 + CSS 选择器语法
-              li 布局指令（@flex, @grid, @waterfall 等）
-              li 交互指令（@modal, @theme-toggle, @like）
+              li 布局 / 交互指令 + LiteJS 无代码交互
               li PHP 模板引擎（@if, @foreach, {{ $var }}）
-              li Eject 回退机制、@raw 块、长文本、代码块
-              li CLI build/watch 命令
+              li Eject 回退、@raw 块、长文本、代码块
+              li CLI build / watch 命令
+            p 修复了 6 个核心 Bug（缩进栈、@else 输出、PHP 指令关闭等）。
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title 📝 语法文档 + 双语化 / Documentation
           .timeline-body
-            p 创建了 <code>SYNTAX.md</code> — 完整的 LiteML 语法参考手册（1090 行，13 章）。
-            p 将 README.md 和 SYNTAX.md 全部中英双语化。
-            p 编写了 prompts/（AI 写 LiteML / 反编译 HTML 到 LiteML）。
+            p 创建 <code>SYNTAX.md</code>（1090 行，13 章），全部中英双语。
+            p 编写 AI 提示词（prompts/）：教 AI 写 LiteML、反编译 HTML 回 LiteML。
 
       h2 关键决策 / Key Decisions
-      p 开发过程中做的一些重要技术选择：
 
       .table-wrap
         table
           tr
-            th 决策 / Decision
-            th 方案 / Choice
-            th 理由 / Rationale
+            th 决策
+            th 方案
+            th 理由
           tr
             td 编译语言
             td Python 标准库
@@ -110,10 +95,10 @@ html[lang=zh-CN]
           tr
             td 模块结构
             td core/ 包拆分
-            td 单一 liteml.py 达 1000+ 行，难以维护
+            td 单文件 1000+ 行难以维护
           tr
             td 指令系统
-            td @directive 装饰器 + 插件发现
+            td @directive 装饰器 + 自动发现
             td 新增指令只需创建一个 .py 文件
           tr
             td 组件加载
@@ -122,53 +107,56 @@ html[lang=zh-CN]
           tr
             td CSS 模板
             td @template 宏内联读取
-            td 无需额外构建步骤，一行引用
+            td 无需额外构建步骤
           tr
             td 注释语法
             td ! 前缀
             td 与 @ 指令区分，避免混淆
-          tr
-            td .class 简写
-            td 默认 div
-            td 符合直觉，减少重复书写
 
       h2 已知问题 / Known Issues
-      p 当前版本的已知限制：
 
       ul
-        li Markdown 图片语法 <code>![alt](src)</code> 在重构中丢失 — 可用标准 <code>img[src=url][alt=text]</code> 替代
-        li <code>@audio</code>/<code>@video</code> 宏与标准标签功能重复，未来可能移除
-        li attribute 值包含空格时可能出现引号嵌套问题
+        li Markdown 图片语法 <code>![alt](src)</code> 在重构中丢失 — 可用 <code>img[src=url][alt=text]</code> 替代
+        li attribute 值含空格时已修复引号嵌套问题
         li 尚无 CI/CD（GitHub Actions）
         li 尚无自动化测试框架
 
-      h2 架构概览 / Architecture
+      h2 项目结构 / Project Structure
 
-      .code-demo
-        .code-tabs
-          .code-tab.active 项目结构 / Project Structure
+      .code-showcase
+        .code-showcase-header
+          .code-dots
+            .code-dot
+            .code-dot
+            .code-dot
+          .code-tabs
+            button.code-tab.active 📁 LiteML/
         .code-body
           pre
             | LiteML/
-            | ├── core/               ← 编译器包
+            | ├── <span class="tag">core/</span>          ← 编译器包
             | │   ├── cli.py          ← 命令行入口
             | │   ├── tui.py          ← 终端 UI
             | │   ├── compiler.py     ← 编译核心
             | │   ├── parser.py       ← 语法解析
             | │   ├── directive_loader.py
             | │   ├── directive_macros.py
-            | │   ├── component.py    ← 组件加载
-            | │   ├── directives/     ← 插件指令
+            | │   ├── component.py
+            | │   ├── directives/     ← 9 个插件指令
             | │   ├── models.py
             | │   └── constants.py
-            | ├── components/         ← 14 个 UI 组件
-            | ├── templates/          ← 12 款 CSS 模板
-            | ├── editors/vscode/     ← VS Code 扩展
-            | ├── website/            ← 官网源码
-            | ├── tests/              ← 测试文件
-            | └── prompts/            ← AI 提示词
+            | ├── <span class="tag">components/</span>    ← 14 个 UI 组件
+            | ├── <span class="tag">templates/</span>     ← 12 款 CSS 模板
+            | ├── <span class="tag">website/</span>       ← 官网源码
+            | ├── <span class="tag">editors/vscode/</span> ← VS Code 扩展
+            | └── <span class="tag">tests/</span>         ← 测试文件
 
-    .site-footer
+    footer.site-footer
       .container
-        p LiteML — 开源 MIT 协议 / Open Source MIT License
-        p 用 LiteML 构建 / Built with LiteML
+        p LiteML · 开源 MIT 协议 / Open Source MIT License
+        p
+          a[href=https://github.com/Zhao-Shengyi/LiteML] GitHub
+          span[style="opacity:0.3;margin:0 0.5rem"] ·
+          a[href=index.html] 首页 / Home
+          span[style="opacity:0.3;margin:0 0.5rem"] ·
+          a[href=syntax.html] 语法 / Syntax
