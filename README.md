@@ -70,10 +70,10 @@ LiteML/
 ├── tests/             ← 测试文件
 ├── website/           ← 官方网站
 ├── docs/              ← 文档
-│   ├── syntax-en.md ←   语法参考（英文）
-│   ├── syntax-cn.md ←   语法参考（中文）
-│   ├── AGENTS.md      ←   AI 代理指引
+│   ├── syntax-en.md   ←   语法参考（英文）
+│   ├── syntax-cn.md   ←   语法参考（中文）
 │   └── prompts/       ←   提示词
+├── AGENTS.md          ← AI 代理指引
 ├── packages/          ← 打包发布
 │   ├── npm/           ←   npm 包裹器
 │   ├── build/         ←   pip 构建产物 (gitignored)
