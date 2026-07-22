@@ -152,41 +152,69 @@
       <div class="container">
         <div class="section-title">
           <div class="label">快速开始 / Quick Start</div>
-          <h2>3 行代码跑起来 / 3 Lines to Get Started</h2>
-          <p>这是 LiteML 源码编译为 HTML 的直观对照 / LiteML source vs compiled HTML</p>
+          <h2>源码 vs HTML 对照 / Source vs Output</h2>
+          <p>左边是 LiteML 源码，右边是编译后的 HTML · LiteML source on the left, compiled HTML on the right</p>
         </div>
-        <div class="code-showcase">
-          <div class="code-showcase-header">
-            <div class="code-dots">
-              <div class="code-dot">
-              </div>
-              <div class="code-dot">
-              </div>
-              <div class="code-dot">
-              </div>
+        <div class="code-compare">
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span class="dot r">
+              </span>
+              <span class="dot y">
+              </span>
+              <span class="dot g">
+              </span>
+              <span class="label">📄 example.lite</span>
             </div>
-            <div class="code-tabs">
-              <button class="code-tab active">📄 example.lite</button>
-              <button class="code-tab">▶ HTML 输出 / Output</button>
+            <div class="code-panel-body">
+              <pre>
+                | <span class="cm">! html5</span>
+                | html[lang=zh-CN]
+                |   head
+                |     <span class="hl">@template(minimal)</span>
+                |     title 我的页面
+                |   body
+                |     .container
+                |       h1 你好，<span class="hl">LiteML</span>！
+                |       .card
+                |         h3 卡片标题
+                |         p 缩进即嵌套，无需闭合标签。
+                |         a.btn[href=#] 了解更多
+              </pre>
             </div>
           </div>
-          <div class="code-body">
-            <pre>
-              | <span class="cm">! html5</span>
-              | html[lang=zh-CN]
-              |   head
-              |     <span class="hl">@template(minimal)</span>
-              |     title 我的页面 / My Page
-              |   body
-              |     .container
-              |       h1 你好，<span class="hl">LiteML</span>！
-              |       p Hello, LiteML!
-              |       .card
-              |         h3 卡片标题 / Card Title
-              |         p 缩进即嵌套，无需闭合标签。
-              |           | Indentation is nesting — no closing tags needed.
-              |         a.btn[href=#] 了解更多 / Learn More
-            </pre>
+          <div class="code-panel-arrow">▶</div>
+          <div class="code-panel">
+            <div class="code-panel-header">
+              <span class="dot r">
+              </span>
+              <span class="dot y">
+              </span>
+              <span class="dot g">
+              </span>
+              <span class="label">▶ HTML 输出 / Output</span>
+            </div>
+            <div class="code-panel-body">
+              <pre>
+                | <span class="html">&lt;!DOCTYPE html&gt;</span>
+                | &lt;html lang="zh-CN"&gt;
+                |   &lt;head&gt;
+                |     <span class="hl">&lt;style&gt;/* Minimal 模板 CSS */&lt;/style&gt;</span>
+                |     &lt;title&gt;我的页面&lt;/title&gt;
+                |   &lt;/head&gt;
+                |   &lt;body&gt;
+                |     &lt;div class="container"&gt;
+                |       &lt;h1&gt;你好，LiteML！&lt;/h1&gt;
+                |       &lt;div class="card"&gt;
+                |         &lt;h3&gt;卡片标题&lt;/h3&gt;
+                |         &lt;p&gt;缩进即嵌套，无需闭合标签。&lt;/p&gt;
+                |         &lt;a class="btn" href="#"&gt;了解更多&lt;/a&gt;
+                |       &lt;/div&gt;
+                |     &lt;/div&gt;
+                |   &lt;/body&gt;
+                | &lt;/html&gt;
+              </pre>
+            </div>
           </div>
         </div>
       </div>

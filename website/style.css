@@ -451,6 +451,62 @@ section { padding: 4rem 0; position: relative; }
 .code-body pre .op { color: #94e2d5; }     /* 操作符 */
 .code-body pre .dim { color: #585b70; }    /* 暗淡文字 */
 
+/* —— 代码并排对照 —— */
+.code-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 2rem 0;
+}
+.code-panel {
+  background: rgba(0,0,0,0.35);
+  min-width: 0;
+}
+.code-panel-header {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid var(--border);
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+.code-panel-header .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.code-panel-header .dot.r { background: #ff5f56; }
+.code-panel-header .dot.y { background: #ffbd2e; }
+.code-panel-header .dot.g { background: #27c93f; }
+.code-panel-header .label { margin-left: 0.3rem; font-weight: 600; color: var(--text-muted); }
+.code-panel-body {
+  padding: 1.2rem;
+  overflow-x: auto;
+}
+.code-panel-body pre {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: #cdd6f4;
+}
+.code-panel-body pre .arrow { color: var(--text-dim); font-size: 0.75rem; }
+.code-panel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  color: var(--text-dim);
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+}
+
 /* ===== 模板画廊 ===== */
 .template-gallery {
   display: grid;
