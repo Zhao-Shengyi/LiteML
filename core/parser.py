@@ -249,6 +249,8 @@ def parse_tag_line(content: str) -> Node:
             # 常规属性 [attr=val] 或 [attr]
             if '=' in attr_content:
                 k, v = attr_content.split('=', 1)
+                # 去掉值两端的引号（单引号或双引号）
+                v = v.strip().strip('"\'')
                 node.attributes.append((k.strip(), v.strip()))
             else:
                 node.attributes.append((attr_content.strip(), ''))

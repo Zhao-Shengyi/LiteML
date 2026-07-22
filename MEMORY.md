@@ -1,5 +1,20 @@
 # 开发记忆
 
+## 2026-07-22 官网 + 属性值引号修复
+
+### 做了什么
+- 创建 `website/` 目录，用 LiteML 构建官方文档网站
+  - `index.html` — 首页（英雄区 + 核心特性 + 快速开始 + 模板画廊）
+  - `syntax.html` — 完整语法参考（整合 SYNTAX.md 全部内容）
+  - `history.html` — 开发历程（整合两个 MEMORY.md 的时间线）
+- 所有页面中英双语，使用自定义 website/style.css
+- 修复 `parser.py` 属性值引号问题：`[attr="value with spaces"]` 现在正确编译
+  - 去掉值两端的引号后再输出，避免 `content=""value""` 的双引号嵌套
+
+### 遇到问题
+1. **meta description 被 sed 截断**：sed 替换把 `LiteML` 从内容中去掉了
+   - 手动修复三个文件的 description 内容
+
 ## 2026-07-22 CSS 模板系统：12 款主题 + @template 宏
 
 ### 做了什么

@@ -1,0 +1,262 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 语法参考 · LiteML / Syntax Reference
+    meta[name=description][content="LiteML 完整语法参考手册 — 从基础结构到 PHP 模板引擎，中英双语对照。"]
+    @css(website/style.css)
+  body
+    header.site-header
+      .container
+        a.logo[href=index.html]
+          span L
+          | iteML
+        .nav-links
+          a[href=index.html] 首页 / Home
+          a.active[href=syntax.html] 语法 / Syntax
+          a[href=history.html] 历程 / History
+          a[href=https://github.com/Zhao-Shengyi/LiteML][target=_blank] GitHub
+
+    .container
+      h1 语法参考 / Syntax Reference
+      p 完整语法手册，每个规则都配有 LiteML 源码与编译后 HTML 的对照。中英双语。
+      p Complete syntax reference with LiteML source and compiled HTML side by side. Bilingual.
+
+      .syntax-section
+        h2 1. 基础结构 / Basic Structure
+        h3 文档声明 / DOCTYPE
+        p 使用 <code>! html5</code> 声明 HTML5 文档类型。仅第一行生效。
+        pre
+          | <span class="lite">! html5</span>
+          | <span class="html">← &lt;!DOCTYPE html&gt;</span>
+
+        h3 注释 / Comments
+        p 使用 <code>!</code> 前缀写注释（<code>@</code> 前缀也兼容）。
+        pre
+          | <span class="lite">! 这是一条注释 / This is a comment</span>
+          | <span class="html">← &lt;!-- 这是一条注释 / This is a comment --&gt;</span>
+
+        h3 缩进嵌套 / Indentation Nesting
+        p 2 空格缩进表示父子关系，编译器自动生成闭合标签。这是 LiteML 最核心的规则。
+        pre
+          | <span class="lite">! html5</span>
+          | html
+          |   head
+          |     title 页面标题
+          |   body
+          |     h1 你好
+          |     p 正文内容
+
+        h3 自闭合标签 / Void Elements
+        p 以下标签自动自闭合，无需手动添加 <code>/</code>：
+        p <code>meta input img br hr link area base col embed source track wbr</code>
+        pre
+          | <span class="lite">meta[charset=UTF-8]</span>
+          | <span class="lite">input[type=text][name=email]</span>
+          | <span class="html">← &lt;meta charset="UTF-8"&gt;</span>
+          | <span class="html">← &lt;input type="text" name="email"&gt;</span>
+
+      .syntax-section
+        h2 2. 标签属性 / Tag Attributes
+        h3 CSS 选择器语法
+        p 一行语法：<code>tag#id.class1.class2[attr=val] 文本内容</code>
+        pre
+          | <span class="lite">div#app.container.active[data-x=1] 内容</span>
+          | <span class="html">← &lt;div id="app" class="container active" data-x="1"&gt;内容&lt;/div&gt;</span>
+
+        h3 .class 和 #id 简写
+        p 省略标签名时默认 <code>div</code>：
+        pre
+          | <span class="lite">.container</span>
+          | <span class="lite">#main.content</span>
+          | <span class="html">← &lt;div class="container"&gt;</span>
+          | <span class="html">← &lt;div id="main" class="content"&gt;</span>
+
+      .syntax-section
+        h2 3. CSS 模板 / Templates
+        p 在 <code>&lt;head&gt;</code> 中用 <code>@template(name)</code> 应用主题。
+        pre
+          | <span class="lite">head</span>
+          |   <span class="lite">@template(minimal)</span>
+          |   <span class="lite">title 我的页面</span>
+        p 内置 12 款模板：minimal, modern, dark, glass, neumorph, retro, corporate, blog, landing, card, gradient, terminal。
+
+      .syntax-section
+        h2 4. 组件引用 / Components
+        p 使用 <code>use 组件名</code> 引入组件（<code>@use</code> 也兼容）。
+        pre
+          | <span class="lite">use dark-mode-toggle</span>
+          | <span class="html">← 注入组件的 HTML + CSS + JS</span>
+        p 组件存放在 <code>components/</code> 目录，支持约定式（template.html + style.css + script.js）和清单式（component.json）。
+
+      .syntax-section
+        h2 5. 布局指令 / Layout Directives (LiteCSS)
+        p 通过 <code>@</code> 后缀在标签行附加布局指令。
+
+        h3 @flex
+        pre
+          | <span class="lite">div@flex(center, between)</span>
+          |   p 左侧
+          |   p 右侧
+          | <span class="html">← &lt;div style="display:flex;align-items:center;justify-content:space-between"&gt;</span>
+
+        h3 @grid
+        pre
+          | <span class="lite">div@grid(cols=3, gap=16px)</span>
+          |   .card 卡片 1
+          |   .card 卡片 2
+          |   .card 卡片 3
+
+        h3 @waterfall / @position / @transition / @hide
+        p 瀑布流布局、定位、过渡动画、响应式隐藏 — 全部一行指令搞定。
+
+      .syntax-section
+        h2 6. 交互指令 / Interaction Directives (LiteJS)
+        p 无代码交互组件，自动注入 JavaScript。
+        pre
+          | <span class="lite">button@modal(id=myModal) 打开弹窗</span>
+          | <span class="lite">button@theme-toggle 切换主题</span>
+          | <span class="lite">button@like 点赞</span>
+
+      .syntax-section
+        h2 7. 行为属性 / Behaviors
+        p 用 <code>[*behavior]</code> 语法添加表单验证行为。
+        pre
+          | <span class="lite">input[type=text][*required][*email][*minlength=3]</span>
+          | <span class="html">← 编译为带验证属性的 input + 自动注入 JS 验证逻辑</span>
+        p 支持：<code>*required</code> <code>*email</code> <code>*url</code> <code>*minlength</code> <code>*maxlength</code> <code>*range</code> <code>*pattern</code>
+
+      .syntax-section
+        h2 8. PHP 模板引擎 / PHP Templates
+        p 使用 <code>--mode=php</code> 编译，支持 Blade 风格的控制流。
+
+        h3 变量输出
+        pre
+          | <span class="lite">p {{ $user->name }}</span>
+          | <span class="lite">p {!! $rawHtml !!}</span>
+          | <span class="html">← &lt;p&gt;&lt;?php echo htmlspecialchars( $user->name ); ?&gt;&lt;/p&gt;</span>
+
+        h3 控制流
+        pre
+          | <span class="lite">@if($loggedIn)</span>
+          |   p 欢迎回来！
+          | @else
+          |   p 请登录
+          | @endif
+
+        h3 循环
+        pre
+          | <span class="lite">@foreach($items as $item)</span>
+          |   .card
+          |     h3 {{ $item->title }}
+          | @endforeach
+
+        h3 @include
+        p 引入其他文件：<code>@include(header.lite)</code>
+
+      .syntax-section
+        h2 9. 多媒体宏 / Media Macros
+        pre
+          | <span class="lite">@audio(song.mp3 | controls)</span>
+          | <span class="lite">@video(video.mp4 | controls, width=100%)</span>
+          | <span class="lite">@embed(https://youtu.be/xxx | ratio=16:9)</span>
+          | <span class="lite">@icon(star)</span>
+          | <span class="lite">@css(path/to/style.css)</span>
+          | <span class="lite">@js(path/to/script.js | defer)</span>
+
+      .syntax-section
+        h2 10. 其他特性 / Other Features
+        h3 长文本块
+        p 用 <code>"""</code> 包裹多段文字，自动拆分为 <code>&lt;p&gt;</code>：
+        pre
+          | <span class="lite">"""</span>
+          | 第一段文字。空行分割段落。
+          |
+          | 第二段文字。
+          | """
+
+        h3 代码块
+        p 用 <code>```</code> 包裹代码：
+        pre
+          | <span class="lite">```python</span>
+          | def hello():
+          |     print("Hello!")
+          | ```
+
+        h3 @raw 块
+        p 原样输出原始内容，不做任何编译：
+        pre
+          | <span class="lite">@raw</span>
+          | @flex 这行不会被编译
+          |   @if 也不会被处理
+          | @endraw
+
+        h3 @eject 回退
+        p 指令后加 <code>!</code> 回退为原生实现：
+        pre
+          | <span class="lite">div@flex(center, between)!</span>
+          | <span class="html">← 展开为完整的 flex CSS，而非简写指令</span>
+
+      .syntax-section
+        h2 速查表 / Quick Reference
+
+      .table-wrap
+        table
+          tr
+            th 语法 / Syntax
+            th 说明 / Description
+            th 示例 / Example
+          tr
+            td <code>! html5</code>
+            td DOCTYPE 声明
+            td <code>! html5</code>
+          tr
+            td <code>! 注释</code>
+            td HTML 注释
+            td <code>! TODO</code>
+          tr
+            td <code>tag#id.class</code>
+            td CSS 选择器语法
+            td <code>div#app.box</code>
+          tr
+            td <code>.class</code>
+            td 省略 div
+            td <code>.container</code>
+          tr
+            td <code>[attr=val]</code>
+            td HTML 属性
+            td <code>a[href=/]</code>
+          tr
+            td <code>{{ var }}</code>
+            td PHP 转义输出
+            td <code>{{ $name }}</code>
+          tr
+            td <code>{!! var !!}</code>
+            td PHP 原始输出
+            td <code>{!! $html !!}</code>
+          tr
+            td <code>@flex(a, j)</code>
+            td Flexbox 布局
+            td <code>div@flex(center)</code>
+          tr
+            td <code>@grid(c, g)</code>
+            td 网格布局
+            td <code>div@grid(cols=3)</code>
+          tr
+            td <code>@template(n)</code>
+            td CSS 模板
+            td <code>@template(minimal)</code>
+          tr
+            td <code>use name</code>
+            td 组件引用
+            td <code>use navbar</code>
+          tr
+            td <code>@include(p)</code>
+            td PHP 文件引入
+            td <code>@include(header)</code>
+
+    .site-footer
+      .container
+        p LiteML — 开源 MIT 协议 / Open Source MIT License
+        p 用 LiteML 构建 / Built with LiteML
