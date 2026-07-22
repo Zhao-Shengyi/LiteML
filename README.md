@@ -39,25 +39,24 @@ LiteML 之于 HTML，就像 TypeScript 之于 JavaScript。
 
 ## Quick Start / 快速开始
 
+### 方式一：pip 安装（推荐）
+
 ```bash
-# 1. 解压快速入门包
-unzip liteml-quickstart.zip
-cd liteml-quickstart
-
-# 2. 编译第一个页面
-python3 core/cli.py build examples/intro.lite -o examples/intro.html
-
-# 3. 打开 examples/intro.html 查看结果
-# 4. 阅读 README.md 学习完整语法
+pip install liteml
+liteml build 你的文件.lite -o 输出.html
 ```
 
-或者直接使用项目源码：
+### 方式二：从源码运行
 
 ```bash
 git clone https://github.com/Zhao-Shengyi/LiteML.git
 cd LiteML
 python3 core/cli.py build 你的文件.lite -o 输出.html
 ```
+
+### 方式三：快速入门包
+
+下载 `liteml-quickstart.zip`，解压即用：
 
 ## Documentation / 文档
 

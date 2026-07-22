@@ -12,7 +12,7 @@
       <div class="container">
         <a class="logo" href="index.html">
           <span class="logo-symbol">L</span>
-          | iteML
+          iteML
         </a>
         <div class="nav-links">
           <a href="index.html">首页 / Home</a>
@@ -39,263 +39,274 @@
         <a href="#sec10">10. 其他 / Others</a>
         <a href="#quickref">速查表 / Quick Ref</a>
       </div>
-      <div class="syntax-section">#sec1</div>
-      <h2>
-        <span class="sec-num">1</span>
-          | 基础结构 / Basic Structure
-      </h2>
-      <h3>文档声明 / DOCTYPE</h3>
-      <p>使用 <code>! html5</code> 声明 HTML5 文档类型，仅第一行生效。 Write <code>! html5</code> on the first line to declare HTML5.</p>
-      <pre>
-          | <span class="lite">! html5</span>  <span class="arrow">←</span>  <span class="html">&lt;!DOCTYPE html&gt;</span>
-      </pre>
-      <h3>注释 / Comments</h3>
-      <p>使用 <code>!</code> 前缀写注释（<code>@</code> 前缀也兼容）。 Prefix with <code>!</code> for comments (<code>@</code> also works).</p>
-      <pre>
-          | <span class="lite">! 这是一条注释 / This is a comment</span>
-          | <span class="arrow">←</span>  <span class="html">&lt;!-- 这是一条注释 / This is a comment --&gt;</span>
-      </pre>
-      <h3>缩进嵌套 / Indentation Nesting</h3>
-      <p>2 空格缩进表示父子关系，编译器自动生成闭合标签。 Use 2-space indentation for parent-child — closing tags are automatic.</p>
-      <pre>
-          | ! html5
-          | html
-          |   head
-          |     title 页面标题 / Page Title
-          |   body
-          |     h1 你好 / Hello
-          |     p 正文 / Body text
-      </pre>
-      <h3>自闭合标签 / Void Elements</h3>
-      <p>以下标签自动自闭合：These tags self-close automatically:</p>
-      <p>
-        <code>meta input img br hr link area base col embed source track wbr</code>
-      </p>
-      <pre>
-          | <span class="lite">meta[charset=UTF-8]</span>  <span class="arrow">←</span>  <span class="html">&lt;meta charset="UTF-8"&gt;</span>
-          | <span class="lite">input[type=text][name=email]</span>  <span class="arrow">←</span>  <span class="html">&lt;input type="text" name="email"&gt;</span>
-      </pre>
-      <div class="syntax-section">#sec2</div>
-      <h2>
-        <span class="sec-num">2</span>
-          | 标签属性 / Tag Attributes
-      </h2>
-      <h3>CSS 选择器语法 / CSS Selector Syntax</h3>
-      <p><code>tag#id.class1.class2[attr=val] 文本 / text</code></p>
-      <pre>
-          | <span class="lite">div#app.container.active[data-x=1] 内容 / content</span>
-          | <span class="arrow">←</span>  <span class="html">&lt;div id="app" class="container active" data-x="1"&gt;内容 / content&lt;/div&gt;</span>
-      </pre>
-      <h3><code>.class</code> 和 <code>#id</code> 简写 / Shorthand</h3>
-      <p>省略标签名时默认 <code>div</code>。 Omitting the tag name defaults to <code>div</code>.</p>
-      <pre>
-          | <span class="lite">.container</span>    <span class="arrow">←</span>  <span class="html">&lt;div class="container"&gt;</span>
-          | <span class="lite">#main.content</span>  <span class="arrow">←</span>  <span class="html">&lt;div id="main" class="content"&gt;</span>
-      </pre>
-      <div class="syntax-section">#sec3</div>
-      <h2>
-        <span class="sec-num">3</span>
-          | CSS 模板 / Templates
-      </h2>
-      <p>在 <code>&lt;head&gt;</code> 中用 <code>@template(name)</code> 应用主题。 Apply a theme in <code>&lt;head&gt;</code> with <code>@template(name)</code>.</p>
-      <pre>
-          | head
-          |   <span class="hl">@template(minimal)</span>
-          |   title 我的页面 / My Page
-      </pre>
-      <p>内置 12 款模板：12 built-in themes: minimal, modern, dark, glass, neumorph, retro, corporate, blog, landing, card, gradient, terminal.</p>
-      <div class="syntax-section">#sec4</div>
-      <h2>
-        <span class="sec-num">4</span>
-          | 组件引用 / Components
-      </h2>
-      <p>使用 <code>use 组件名</code> 引入组件（<code>@use</code> 也兼容）。 Use <code>use component-name</code> to load a component (<code>@use</code> also works).</p>
-      <pre>
-          | <span class="lite">use dark-mode-toggle</span>
-          | <span class="arrow">←</span>  注入组件的 HTML + CSS + JS / Injects component HTML + CSS + JS
-      </pre>
-      <div class="syntax-section">#sec5</div>
-      <h2>
-        <span class="sec-num">5</span>
-          | 布局指令 / Layout Directives (LiteCSS)
-      </h2>
-      <h3>@flex</h3>
-      <pre>
-          | <span class="lite">div@flex(center, between)</span>
-          |   p 左侧 / Left
-          |   p 右侧 / Right
-          | <span class="arrow">←</span>  <span class="html">&lt;div style="display:flex;align-items:center;justify-content:space-between"&gt;</span>
-      </pre>
-      <h3>@grid</h3>
-      <pre>
-          | <span class="lite">div@grid(cols=3, gap=16px)</span>
-          |   .card 卡片 1 / Card 1
-          |   .card 卡片 2 / Card 2
-          |   .card 卡片 3 / Card 3
-      </pre>
-      <h3>@waterfall / @position / @transition / @hide</h3>
-      <p>瀑布流、定位、过渡、响应式隐藏 — 全部一行指令搞定。 Masonry, positioning, transitions, responsive hiding — all in one line.</p>
-      <div class="syntax-section">#sec6</div>
-      <h2>
-        <span class="sec-num">6</span>
-          | 交互指令 / Interaction Directives (LiteJS)
-      </h2>
-      <p>无代码交互组件，自动注入 JavaScript。 No-code interactions with auto-injected JavaScript.</p>
-      <pre>
-          | <span class="lite">button@modal(id=myModal) 打开弹窗 / Open Modal</span>
-          | <span class="lite">button@theme-toggle 切换主题 / Toggle Theme</span>
-          | <span class="lite">button@like 点赞 / Like</span>
-      </pre>
-      <div class="syntax-section">#sec7</div>
-      <h2>
-        <span class="sec-num">7</span>
-          | 行为属性 / Behaviors
-      </h2>
-      <p>用 <code>[*behavior]</code> 语法添加表单验证。 Add form validation with <code>[*behavior]</code> syntax.</p>
-      <pre>
-          | <span class="lite">input[type=text][*required][*email][*minlength=3]</span>
-      </pre>
-      <p>支持 / Supports: <code>*required</code> <code>*email</code> <code>*url</code> <code>*minlength</code> <code>*maxlength</code> <code>*range</code> <code>*pattern</code></p>
-      <div class="syntax-section">#sec8</div>
-      <h2>
-        <span class="sec-num">8</span>
-          | PHP 模板引擎 / PHP Template Engine
-      </h2>
-      <p>使用 <code>--mode=php</code> 编译。 Compile with <code>--mode=php</code>.</p>
-      <h3>变量输出 / Variable Output</h3>
-      <pre>
-          | <span class="lite">p {{ $user->name }}</span>  <span class="arrow">←</span>  转义输出 / Escaped
-          | <span class="lite">p {!! $rawHtml !!}</span>  <span class="arrow">←</span>  原始输出 / Raw
-      </pre>
-      <h3>控制流 / Control Flow</h3>
-      <pre>
-          | @if($loggedIn)
-          |   p 欢迎回来！/ Welcome back!
-          | @else
-          |   p 请登录 / Please login
-          | @endif
-      </pre>
-      <h3>循环 / Loops</h3>
-      <pre>
-          | @foreach($items as $item)
-          |   .card
-          |     h3 {{ $item->title }}
-          | @endforeach
-      </pre>
-      <div class="syntax-section">#sec9</div>
-      <h2>
-        <span class="sec-num">9</span>
-          | 多媒体宏 / Media Macros
-      </h2>
-      <pre>
-          | <span class="lite">@audio(song.mp3 | controls)</span>
-          | <span class="lite">@video(video.mp4 | controls, width=100%)</span>
-          | <span class="lite">@embed(https://youtu.be/xxx | ratio=16:9)</span>
-          | <span class="lite">@icon(star)</span>
-          | <span class="lite">@css(path/to/style.css)</span>
-          | <span class="lite">@js(path/to/script.js | defer)</span>
-      </pre>
-      <div class="syntax-section">#sec10</div>
-      <h2>
-        <span class="sec-num">10</span>
-          | 其他特性 / Other Features
-      </h2>
-      <h3>长文本块 / Long Text Blocks</h3>
-      <p>用 <code>"""</code> 包裹多段文字，自动拆分为 <code>&lt;p&gt;</code>。 Wrap with <code>"""</code> for auto-paragraph splitting.</p>
-      <pre>
-          | """
-          | 第一段。空行分割段落。
-          | First paragraph. Blank line = new paragraph.
-          |
-          | 第二段文字。
-          | Second paragraph.
-          | """
-      </pre>
-      <h3>代码块 / Code Blocks</h3>
-      <pre>
-          | ```python
-          | def hello():
-          |     print("Hello!")
-          | ```
-      </pre>
-      <h3>@raw 块 / Raw Blocks</h3>
-      <p>原样输出，不做任何编译。 Output verbatim without compilation.</p>
-      <h3>@eject 回退 / Eject Fallback</h3>
-      <p>指令后加 <code>!</code> 回退为原生实现。 Append <code>!</code> to a directive to eject to native code.</p>
-      <div class="syntax-section">#quickref</div>
-      <h2>
-        <span class="sec-num">
-        </span>
-          | ⚡ 速查表 / Quick Reference
-      </h2>
-      <div class="table-wrap">
-        <table>
-          <tr>
-            <th>语法 / Syntax</th>
-            <th>说明 / Description</th>
-            <th>示例 / Example</th>
-          </tr>
-          <tr>
-            <td><code>! html5</code></td>
-            <td>DOCTYPE 声明</td>
-            <td><code>! html5</code></td>
-          </tr>
-          <tr>
-            <td><code>! 注释</code></td>
-            <td>HTML 注释 / Comment</td>
-            <td><code>! TODO / todos</code></td>
-          </tr>
-          <tr>
-            <td><code>tag#id.class</code></td>
-            <td>CSS 选择器 / Selectors</td>
-            <td><code>div#app.box</code></td>
-          </tr>
-          <tr>
-            <td><code>.class</code></td>
-            <td>省略 div / Default div</td>
-            <td><code>.container</code></td>
-          </tr>
-          <tr>
-            <td><code>[attr=val]</code></td>
-            <td>HTML 属性 / Attributes</td>
-            <td><code>a[href=/]</code></td>
-          </tr>
-          <tr>
-            <td><code>{{ var }}</code></td>
-            <td>PHP 转义输出 / Escaped</td>
-            <td><code>{{ $name }}</code></td>
-          </tr>
-          <tr>
-            <td><code>{!! var !!}</code></td>
-            <td>PHP 原始输出 / Raw</td>
-            <td><code>{!! $html !!}</code></td>
-          </tr>
-          <tr>
-            <td><code>@flex(a, j)</code></td>
-            <td>Flexbox 布局</td>
-            <td><code>div@flex(center)</code></td>
-          </tr>
-          <tr>
-            <td><code>@grid(c, g)</code></td>
-            <td>网格布局 / Grid</td>
-            <td><code>div@grid(cols=3)</code></td>
-          </tr>
-          <tr>
-            <td><code>@template(n)</code></td>
-            <td>CSS 模板 / Themes</td>
-            <td><code>@template(minimal)</code></td>
-          </tr>
-          <tr>
-            <td><code>use name</code></td>
-            <td>组件引用 / Component</td>
-            <td><code>use navbar</code></td>
-          </tr>
-          <tr>
-            <td><code>@include(p)</code></td>
-            <td>PHP 引入 / Include</td>
-            <td><code>@include(header)</code></td>
-          </tr>
-        </table>
+      <div id="sec1" class="syntax-section">
+        <h2>
+          <span class="sec-num">1</span>
+          基础结构 / Basic Structure
+        </h2>
+        <h3>文档声明 / DOCTYPE</h3>
+        <p>使用 <code>! html5</code> 声明 HTML5 文档类型，仅第一行生效。 Write <code>! html5</code> on the first line to declare HTML5.</p>
+        <pre>
+          <span class="lite">! html5</span>  <span class="arrow">←</span>  <span class="html">&lt;!DOCTYPE html&gt;</span>
+        </pre>
+        <h3>注释 / Comments</h3>
+        <p>使用 <code>!</code> 前缀写注释（<code>@</code> 前缀也兼容）。 Prefix with <code>!</code> for comments (<code>@</code> also works).</p>
+        <pre>
+          <span class="lite">! 这是一条注释 / This is a comment</span>
+          <span class="arrow">←</span>  <span class="html">&lt;!-- 这是一条注释 / This is a comment --&gt;</span>
+        </pre>
+        <h3>缩进嵌套 / Indentation Nesting</h3>
+        <p>2 空格缩进表示父子关系，编译器自动生成闭合标签。 Use 2-space indentation for parent-child — closing tags are automatic.</p>
+        <pre>
+          ! html5
+          html
+            head
+              title 页面标题 / Page Title
+            body
+              h1 你好 / Hello
+              p 正文 / Body text
+        </pre>
+        <h3>自闭合标签 / Void Elements</h3>
+        <p>以下标签自动自闭合：These tags self-close automatically:</p>
+        <p>
+          <code>meta input img br hr link area base col embed source track wbr</code>
+        </p>
+        <pre>
+          <span class="lite">meta[charset=UTF-8]</span>  <span class="arrow">←</span>  <span class="html">&lt;meta charset="UTF-8"&gt;</span>
+          <span class="lite">input[type=text][name=email]</span>  <span class="arrow">←</span>  <span class="html">&lt;input type="text" name="email"&gt;</span>
+        </pre>
+      </div>
+      <div id="sec2" class="syntax-section">
+        <h2>
+          <span class="sec-num">2</span>
+          标签属性 / Tag Attributes
+        </h2>
+        <h3>CSS 选择器语法 / CSS Selector Syntax</h3>
+        <p><code>tag#id.class1.class2[attr=val] 文本 / text</code></p>
+        <pre>
+          <span class="lite">div#app.container.active[data-x=1] 内容 / content</span>
+          <span class="arrow">←</span>  <span class="html">&lt;div id="app" class="container active" data-x="1"&gt;内容 / content&lt;/div&gt;</span>
+        </pre>
+        <h3><code>.class</code> 和 <code>#id</code> 简写 / Shorthand</h3>
+        <p>省略标签名时默认 <code>div</code>。 Omitting the tag name defaults to <code>div</code>.</p>
+        <pre>
+          <span class="lite">.container</span>    <span class="arrow">←</span>  <span class="html">&lt;div class="container"&gt;</span>
+          <span class="lite">#main.content</span>  <span class="arrow">←</span>  <span class="html">&lt;div id="main" class="content"&gt;</span>
+        </pre>
+      </div>
+      <div id="sec3" class="syntax-section">
+        <h2>
+          <span class="sec-num">3</span>
+          CSS 模板 / Templates
+        </h2>
+        <p>在 <code>&lt;head&gt;</code> 中用 <code>@template(name)</code> 应用主题。 Apply a theme in <code>&lt;head&gt;</code> with <code>@template(name)</code>.</p>
+        <pre>
+          head
+            <span class="hl">@template(minimal)</span>
+            title 我的页面 / My Page
+        </pre>
+        <p>内置 12 款模板：12 built-in themes: minimal, modern, dark, glass, neumorph, retro, corporate, blog, landing, card, gradient, terminal.</p>
+      </div>
+      <div id="sec4" class="syntax-section">
+        <h2>
+          <span class="sec-num">4</span>
+          组件引用 / Components
+        </h2>
+        <p>使用 <code>use 组件名</code> 引入组件（<code>@use</code> 也兼容）。 Use <code>use component-name</code> to load a component (<code>@use</code> also works).</p>
+        <pre>
+          <span class="lite">use dark-mode-toggle</span>
+          <span class="arrow">←</span>  注入组件的 HTML + CSS + JS / Injects component HTML + CSS + JS
+        </pre>
+      </div>
+      <div id="sec5" class="syntax-section">
+        <h2>
+          <span class="sec-num">5</span>
+          布局指令 / Layout Directives (LiteCSS)
+        </h2>
+        <h3>@flex</h3>
+        <pre>
+          <span class="lite">div@flex(center, between)</span>
+            p 左侧 / Left
+            p 右侧 / Right
+          <span class="arrow">←</span>  <span class="html">&lt;div style="display:flex;align-items:center;justify-content:space-between"&gt;</span>
+        </pre>
+        <h3>@grid</h3>
+        <pre>
+          <span class="lite">div@grid(cols=3, gap=16px)</span>
+            .card 卡片 1 / Card 1
+            .card 卡片 2 / Card 2
+            .card 卡片 3 / Card 3
+        </pre>
+        <h3>@waterfall / @position / @transition / @hide</h3>
+        <p>瀑布流、定位、过渡、响应式隐藏 — 全部一行指令搞定。 Masonry, positioning, transitions, responsive hiding — all in one line.</p>
+      </div>
+      <div id="sec6" class="syntax-section">
+        <h2>
+          <span class="sec-num">6</span>
+          交互指令 / Interaction Directives (LiteJS)
+        </h2>
+        <p>无代码交互组件，自动注入 JavaScript。 No-code interactions with auto-injected JavaScript.</p>
+        <pre>
+          <span class="lite">button@modal(id=myModal) 打开弹窗 / Open Modal</span>
+          <span class="lite">button@theme-toggle 切换主题 / Toggle Theme</span>
+          <span class="lite">button@like 点赞 / Like</span>
+        </pre>
+      </div>
+      <div id="sec7" class="syntax-section">
+        <h2>
+          <span class="sec-num">7</span>
+          行为属性 / Behaviors
+        </h2>
+        <p>用 <code>[*behavior]</code> 语法添加表单验证。 Add form validation with <code>[*behavior]</code> syntax.</p>
+        <pre>
+          <span class="lite">input[type=text][*required][*email][*minlength=3]</span>
+        </pre>
+        <p>支持 / Supports: <code>*required</code> <code>*email</code> <code>*url</code> <code>*minlength</code> <code>*maxlength</code> <code>*range</code> <code>*pattern</code></p>
+      </div>
+      <div id="sec8" class="syntax-section">
+        <h2>
+          <span class="sec-num">8</span>
+          PHP 模板引擎 / PHP Template Engine
+        </h2>
+        <p>使用 <code>--mode=php</code> 编译。 Compile with <code>--mode=php</code>.</p>
+        <h3>变量输出 / Variable Output</h3>
+        <pre>
+          <span class="lite">p {{ $user->name }}</span>  <span class="arrow">←</span>  转义输出 / Escaped
+          <span class="lite">p {!! $rawHtml !!}</span>  <span class="arrow">←</span>  原始输出 / Raw
+        </pre>
+        <h3>控制流 / Control Flow</h3>
+        <pre>
+          @if($loggedIn)
+            p 欢迎回来！/ Welcome back!
+          @else
+            p 请登录 / Please login
+          @endif
+        </pre>
+        <h3>循环 / Loops</h3>
+        <pre>
+          @foreach($items as $item)
+            .card
+              h3 {{ $item->title }}
+          @endforeach
+        </pre>
+      </div>
+      <div id="sec9" class="syntax-section">
+        <h2>
+          <span class="sec-num">9</span>
+          多媒体宏 / Media Macros
+        </h2>
+        <pre>
+          <span class="lite">@audio(song.mp3 | controls)</span>
+          <span class="lite">@video(video.mp4 | controls, width=100%)</span>
+          <span class="lite">@embed(https://youtu.be/xxx | ratio=16:9)</span>
+          <span class="lite">@icon(star)</span>
+          <span class="lite">@css(path/to/style.css)</span>
+          <span class="lite">@js(path/to/script.js | defer)</span>
+        </pre>
+      </div>
+      <div id="sec10" class="syntax-section">
+        <h2>
+          <span class="sec-num">10</span>
+          其他特性 / Other Features
+        </h2>
+        <h3>长文本块 / Long Text Blocks</h3>
+        <p>用 <code>"""</code> 包裹多段文字，自动拆分为 <code>&lt;p&gt;</code>。 Wrap with <code>"""</code> for auto-paragraph splitting.</p>
+        <pre>
+          """
+          第一段。空行分割段落。
+          First paragraph. Blank line = new paragraph.
+          
+          第二段文字。
+          Second paragraph.
+          """
+        </pre>
+        <h3>代码块 / Code Blocks</h3>
+        <pre>
+          ```python
+          def hello():
+              print("Hello!")
+          ```
+        </pre>
+        <h3>@raw 块 / Raw Blocks</h3>
+        <p>原样输出，不做任何编译。 Output verbatim without compilation.</p>
+        <h3>@eject 回退 / Eject Fallback</h3>
+        <p>指令后加 <code>!</code> 回退为原生实现。 Append <code>!</code> to a directive to eject to native code.</p>
+      </div>
+      <div id="quickref" class="syntax-section">
+        <h2>
+          <span class="sec-num">
+          </span>
+          ⚡ 速查表 / Quick Reference
+        </h2>
+        <div class="table-wrap">
+          <table>
+            <tr>
+              <th>语法 / Syntax</th>
+              <th>说明 / Description</th>
+              <th>示例 / Example</th>
+            </tr>
+            <tr>
+              <td><code>! html5</code></td>
+              <td>DOCTYPE 声明</td>
+              <td><code>! html5</code></td>
+            </tr>
+            <tr>
+              <td><code>! 注释</code></td>
+              <td>HTML 注释 / Comment</td>
+              <td><code>! TODO / todos</code></td>
+            </tr>
+            <tr>
+              <td><code>tag#id.class</code></td>
+              <td>CSS 选择器 / Selectors</td>
+              <td><code>div#app.box</code></td>
+            </tr>
+            <tr>
+              <td><code>.class</code></td>
+              <td>省略 div / Default div</td>
+              <td><code>.container</code></td>
+            </tr>
+            <tr>
+              <td><code>[attr=val]</code></td>
+              <td>HTML 属性 / Attributes</td>
+              <td><code>a[href=/]</code></td>
+            </tr>
+            <tr>
+              <td><code>{{ var }}</code></td>
+              <td>PHP 转义输出 / Escaped</td>
+              <td><code>{{ $name }}</code></td>
+            </tr>
+            <tr>
+              <td><code>{!! var !!}</code></td>
+              <td>PHP 原始输出 / Raw</td>
+              <td><code>{!! $html !!}</code></td>
+            </tr>
+            <tr>
+              <td><code>@flex(a, j)</code></td>
+              <td>Flexbox 布局</td>
+              <td><code>div@flex(center)</code></td>
+            </tr>
+            <tr>
+              <td><code>@grid(c, g)</code></td>
+              <td>网格布局 / Grid</td>
+              <td><code>div@grid(cols=3)</code></td>
+            </tr>
+            <tr>
+              <td><code>@template(n)</code></td>
+              <td>CSS 模板 / Themes</td>
+              <td><code>@template(minimal)</code></td>
+            </tr>
+            <tr>
+              <td><code>use name</code></td>
+              <td>组件引用 / Component</td>
+              <td><code>use navbar</code></td>
+            </tr>
+            <tr>
+              <td><code>@include(p)</code></td>
+              <td>PHP 引入 / Include</td>
+              <td><code>@include(header)</code></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <footer class="site-footer">

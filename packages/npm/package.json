@@ -1,0 +1,21 @@
+{
+  "name": "liteml",
+  "version": "0.2.0",
+  "description": "LiteML Compiler JS wrapper — compile .lite files to HTML/PHP",
+  "main": "index.js",
+  "bin": {
+    "liteml": "./bin/liteml.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "bin/",
+    "README.md"
+  ],
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

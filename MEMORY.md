@@ -1,5 +1,22 @@
 # 开发记忆
 
+## 2026-07-22 pip 打包发布
+
+### 做了什么
+- 创建 `pyproject.toml`，使用 setuptools 构建
+- 修改 `cli.py` 和 `tui.py` 的 `sys.path` 为条件添加（`if not __package__`）
+- `liteml` 命令已可用（`liteml version` / `liteml build` / `liteml components list` 等）
+- 更新 `README.md` 加入 pip 安装说明
+- 创建 `packages/npm/` JS 包裹器（保留，但有性能开销）
+
+### 验证
+- `pip install -e .` 安装成功
+- `liteml build` HTML/PHP 模式均正常
+- `liteml components list` → 15 个组件
+- `liteml directives list` → 9 个指令
+- `liteml templates list` → 12 个模板
+- 原生 `python3 core/cli.py` 仍然兼容
+
 ## 2026-07-22 全项目 Bug 扫描
 
 ### 做了什么
