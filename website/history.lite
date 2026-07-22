@@ -5,7 +5,7 @@ html[lang=zh-CN]
     meta[name=viewport][content="width=device-width, initial-scale=1.0"]
     title 开发历程 · LiteML / Development History
     meta[name=description][content="LiteML 编译器的完整开发历程 — 从概念到实现的关键决策、Bug 修复和经验教训。"]
-    @css(website/style.css)
+    @css(style.css)
   body
     header.site-header
       .container
@@ -21,6 +21,7 @@ html[lang=zh-CN]
     .container.timeline-page
       h1 🏗️ 开发历程 / Development History
       p 从概念到实现的关键决策、Bug 修复和经验教训。完全开源。
+      p Key decisions, bug fixes, and lessons learned from concept to implementation. Fully open source.
 
       .timeline
         .timeline-item.featured
@@ -28,98 +29,110 @@ html[lang=zh-CN]
           .timeline-title 🎨 官网 + CSS 模板系统 / Website & Theme System
           .timeline-body
             p 创建官方网站（LiteML 自举构建），同步修复属性值引号嵌套 Bug。
+            p Created the official website built with LiteML itself (self-bootstrapping). Fixed the nested-quote bug in attribute values.
             p 完成 12 款 CSS 模板，<code>@template(name)</code> 一行引用，每款配中英双语示例。
+            p 12 CSS themes with <code>@template(name)</code> one-line usage, each with bilingual examples.
 
         .timeline-item.featured
           .timeline-date 2026-07-22
           .timeline-title 🔧 语法清理 + .class 简写修复 / Syntax Cleanup
           .timeline-body
             p 注释从 <code>@</code> → <code>!</code>（<code>@</code> 兼容）；组件引用 <code>@use</code> → <code>use</code>。
+            p Comments: <code>@</code> → <code>!</code> (<code>@</code> still works). Components: <code>@use</code> → <code>use</code>.
             p 修复 <code>.container</code>、<code>#main</code> 等简写不被识别的问题：省略标签名时默认 <code>div</code>。
+            p Fixed <code>.container</code> / <code>#main</code> shorthand — defaults to <code>div</code> when no tag name is given.
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title 🏗️ 重构：模块拆分 / Refactoring into core/ Package
           .timeline-body
             p 单文件 <code>liteml.py</code>（1046 行）→ <code>core/</code> 包，8 个模块各司其职：
+            p Monolithic <code>liteml.py</code> (1046 lines) → <code>core/</code> package with 8 focused modules:
             ul
-              li parser / compiler / cli / tui 独立
-              li directive_loader + directive_macros + directives/ 插件体系
-              li component.py 组件加载器
+              li parser / compiler / cli / tui 独立 / separated
+              li directive_loader + directive_macros + directives/ 插件体系 / plugin system
+              li component.py 组件加载器 / component loader
             p 同时创建了 Textual TUI（<code>core/tui.py</code>），实现可视化编辑预览。
+            p Also created a Textual TUI (<code>core/tui.py</code>) for visual editing and preview.
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title 💻 VS Code 扩展 / VS Code Extension
           .timeline-body
             p 完整的 VS Code 扩展，包含：
+            p A full VS Code extension featuring:
             ul
-              li TextMate 语法高亮覆盖全部 token
-              li 诊断检查器（缩进、未知标签、PHP 配对等 9 类）
-              li 一键编译（Ctrl+Alt+B）
+              li TextMate 语法高亮覆盖全部 token / syntax highlighting for all tokens
+              li 诊断检查器（缩进、未知标签、PHP 配对等 9 类）/ linter (indentation, unknown tags, PHP pairing)
+              li 一键编译（Ctrl+Alt+B）/ one-click compile
             p 修复了 linter 中 JS 检查和编译器检查的短路问题。
+            p Fixed the linter's short-circuit issue between JS checks and compiler checks.
 
         .timeline-item
           .timeline-date 2026-07-21
           .timeline-title ⚙️ 编译器开发 / Compiler Development
           .timeline-body
             p 用 Python 标准库实现完整编译器，约 1000 行。支持：
+            p A full compiler in ~1000 lines of pure Python stdlib. Features:
             ul
-              li HTML / PHP 双模式输出
-              li 缩进嵌套 + CSS 选择器语法
-              li 布局 / 交互指令 + LiteJS 无代码交互
-              li PHP 模板引擎（@if, @foreach, {{ $var }}）
-              li Eject 回退、@raw 块、长文本、代码块
+              li HTML / PHP 双模式输出 / dual output modes
+              li 缩进嵌套 + CSS 选择器语法 / indentation nesting + CSS selectors
+              li 布局 / 交互指令 + LiteJS 无代码交互 / layout & interaction directives
+              li PHP 模板引擎（@if, @foreach, {{ $var }}）/ PHP template engine
+              li Eject 回退、@raw 块、长文本、代码块 / eject, raw blocks, long text, code blocks
               li CLI build / watch 命令
             p 修复了 6 个核心 Bug（缩进栈、@else 输出、PHP 指令关闭等）。
+            p Fixed 6 core bugs (indent stack, @else output, PHP directive closing, etc.).
 
         .timeline-item
           .timeline-date 2026-07-21
-          .timeline-title 📝 语法文档 + 双语化 / Documentation
+          .timeline-title 📝 语法文档 + 双语化 / Documentation & Bilingual
           .timeline-body
             p 创建 <code>SYNTAX.md</code>（1090 行，13 章），全部中英双语。
+            p Created <code>SYNTAX.md</code> (1090 lines, 13 chapters), fully bilingual.
             p 编写 AI 提示词（prompts/）：教 AI 写 LiteML、反编译 HTML 回 LiteML。
+            p Wrote AI prompts (prompts/): teach AI to write LiteML and decompile HTML back to LiteML.
 
       h2 关键决策 / Key Decisions
 
       .table-wrap
         table
           tr
-            th 决策
-            th 方案
-            th 理由
+            th 决策 / Decision
+            th 方案 / Choice
+            th 理由 / Rationale
           tr
-            td 编译语言
-            td Python 标准库
-            td 零依赖，即开即用
+            td 编译语言 / Language
+            td Python 标准库 / Python stdlib
+            td 零依赖，即开即用 / Zero dependencies
           tr
-            td 模块结构
-            td core/ 包拆分
-            td 单文件 1000+ 行难以维护
+            td 模块结构 / Structure
+            td core/ 包拆分 / Package split
+            td 单文件 1000+ 行难以维护 / Monolith too large
           tr
-            td 指令系统
+            td 指令系统 / Directives
             td @directive 装饰器 + 自动发现
             td 新增指令只需创建一个 .py 文件
           tr
-            td 组件加载
+            td 组件加载 / Components
             td 约定式 + component.json
             td 简单场景直接放文件，复杂场景显式声明
           tr
-            td CSS 模板
-            td @template 宏内联读取
-            td 无需额外构建步骤
+            td CSS 模板 / Themes
+            td @template 宏内联读取 / Inline macro
+            td 无需额外构建步骤 / No extra build step
           tr
-            td 注释语法
+            td 注释语法 / Comments
             td ! 前缀
-            td 与 @ 指令区分，避免混淆
+            td 与 @ 指令区分，避免混淆 / Distinguish from @ directives
 
       h2 已知问题 / Known Issues
 
       ul
-        li Markdown 图片语法 <code>![alt](src)</code> 在重构中丢失 — 可用 <code>img[src=url][alt=text]</code> 替代
-        li attribute 值含空格时已修复引号嵌套问题
-        li 尚无 CI/CD（GitHub Actions）
-        li 尚无自动化测试框架
+        li Markdown 图片语法 <code>![alt](src)</code> 在重构中丢失 — 可用 <code>img[src=url][alt=text]</code> 替代 / Was lost in refactoring — use <code>img[src=url][alt=text]</code> instead
+        li attribute 值含空格时已修复引号嵌套问题 / Quote nesting fixed for attribute values with spaces
+        li 尚无 CI/CD（GitHub Actions）/ No CI/CD yet
+        li 尚无自动化测试框架 / No automated test framework yet
 
       h2 项目结构 / Project Structure
 
@@ -130,26 +143,26 @@ html[lang=zh-CN]
             .code-dot
             .code-dot
           .code-tabs
-            button.code-tab.active 📁 LiteML/
+            button.code-tab.active 📁 LiteML /
         .code-body
           pre
             | LiteML/
-            | ├── <span class="tag">core/</span>          ← 编译器包
-            | │   ├── cli.py          ← 命令行入口
-            | │   ├── tui.py          ← 终端 UI
-            | │   ├── compiler.py     ← 编译核心
-            | │   ├── parser.py       ← 语法解析
+            | ├── <span class="tag">core/</span>          ← 编译器包 / Compiler
+            | │   ├── cli.py          ← 命令行 / CLI
+            | │   ├── tui.py          ← 终端 UI / Terminal UI
+            | │   ├── compiler.py     ← 编译核心 / Core compiler
+            | │   ├── parser.py       ← 语法解析 / Parser
             | │   ├── directive_loader.py
             | │   ├── directive_macros.py
-            | │   ├── component.py
-            | │   ├── directives/     ← 9 个插件指令
+            | │   ├── component.py    ← 组件加载 / Components
+            | │   ├── directives/     ← 9 个插件指令 / Plugins
             | │   ├── models.py
             | │   └── constants.py
-            | ├── <span class="tag">components/</span>    ← 14 个 UI 组件
-            | ├── <span class="tag">templates/</span>     ← 12 款 CSS 模板
-            | ├── <span class="tag">website/</span>       ← 官网源码
+            | ├── <span class="tag">components/</span>    ← 14 个 UI 组件 / UI Components
+            | ├── <span class="tag">templates/</span>     ← 12 款 CSS 模板 / CSS Themes
+            | ├── <span class="tag">website/</span>       ← 官网源码 / Website
             | ├── <span class="tag">editors/vscode/</span> ← VS Code 扩展
-            | └── <span class="tag">tests/</span>         ← 测试文件
+            | └── <span class="tag">tests/</span>         ← 测试文件 / Tests
 
     footer.site-footer
       .container
