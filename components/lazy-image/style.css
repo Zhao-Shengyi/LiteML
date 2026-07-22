@@ -1,0 +1,10 @@
+.lazy-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  background: #f0f0f0;
+}
+.lazy-img.loaded { opacity: 1; }
+.lazy-img.error { opacity: 0.3; }

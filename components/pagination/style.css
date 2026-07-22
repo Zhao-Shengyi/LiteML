@@ -1,0 +1,23 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  justify-content: center;
+  padding: 1rem 0;
+}
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+}
+.page-link:hover { background: #f0f0f0; }
+.page-current { background: #667eea; color: #fff; font-weight: 600; }
+.page-dots { padding: 0 0.25rem; color: #999; }

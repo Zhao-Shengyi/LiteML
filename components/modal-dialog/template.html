@@ -1,0 +1,13 @@
+<dialog class="modal-dialog" id="my-modal">
+  <div class="modal-header">
+    <slot name="title"><h3>对话框标题</h3></slot>
+    <button class="modal-close" aria-label="关闭">✕</button>
+  </div>
+  <div class="modal-body"><slot>对话框内容</slot></div>
+  <div class="modal-footer">
+    <slot name="footer">
+      <button class="modal-btn modal-btn-secondary modal-cancel">取消</button>
+      <button class="modal-btn modal-btn-primary modal-confirm">确认</button>
+    </slot>
+  </div>
+</dialog>

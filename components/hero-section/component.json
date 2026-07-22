@@ -1,0 +1,5 @@
+{
+  "name": "hero-section",
+  "description": "首屏大图区，含标题、副标题和行动按钮",
+  "files": { "template": "template.html", "style": "style.css" }
+}

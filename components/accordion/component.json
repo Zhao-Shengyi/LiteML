@@ -1,0 +1,5 @@
+{
+  "name": "accordion",
+  "description": "折叠面板组件，点击标题展开/收起内容",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

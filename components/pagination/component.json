@@ -1,0 +1,5 @@
+{
+  "name": "pagination",
+  "description": "分页条，适用于列表/博客/搜索结果翻页",
+  "files": { "template": "template.html", "style": "style.css" }
+}

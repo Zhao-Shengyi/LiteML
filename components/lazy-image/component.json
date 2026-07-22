@@ -1,0 +1,5 @@
+{
+  "name": "lazy-image",
+  "description": "懒加载图片，滚动到视口时才加载，支持占位和加载失败兜底",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

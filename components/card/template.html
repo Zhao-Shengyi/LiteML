@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-img">
+    <slot name="image">
+      <img src="https://via.placeholder.com/400x200" alt="placeholder">
+    </slot>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title"><slot name="title">卡片标题</slot></h3>
+    <p class="card-desc"><slot name="desc">卡片描述内容</slot></p>
+    <div class="card-footer">
+      <slot name="footer">
+        <a class="card-link" href="#">查看详情 →</a>
+      </slot>
+    </div>
+  </div>
+</div>

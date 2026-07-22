@@ -1,0 +1,5 @@
+{
+  "name": "navbar",
+  "description": "响应式导航栏，桌面端水平菜单，移动端汉堡菜单",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

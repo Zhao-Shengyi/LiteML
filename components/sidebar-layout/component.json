@@ -1,0 +1,5 @@
+{
+  "name": "sidebar-layout",
+  "description": "侧边栏 + 主内容区两栏布局",
+  "files": { "template": "template.html", "style": "style.css" }
+}

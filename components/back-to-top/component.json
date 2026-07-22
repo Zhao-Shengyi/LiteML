@@ -1,0 +1,5 @@
+{
+  "name": "back-to-top",
+  "description": "回到顶部按钮，页面滚动后显示，点击平滑回到顶部",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

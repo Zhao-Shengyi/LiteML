@@ -1,0 +1,5 @@
+{
+  "name": "tabs",
+  "description": "标签页切换组件，支持任意数量标签页",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

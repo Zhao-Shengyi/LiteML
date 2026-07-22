@@ -1,0 +1,5 @@
+{
+  "name": "modal-dialog",
+  "description": "模态对话框，比 @modal 指令更完整，支持标题/内容/操作按钮",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

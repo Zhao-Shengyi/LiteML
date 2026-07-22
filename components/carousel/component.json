@@ -1,0 +1,5 @@
+{
+  "name": "carousel",
+  "description": "轮播图组件，支持自动播放、指示器、上一页/下一页",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}

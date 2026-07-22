@@ -1,0 +1,5 @@
+{
+  "name": "card",
+  "description": "通用卡片组件，含图片区、标题、描述和操作按钮",
+  "files": { "template": "template.html", "style": "style.css" }
+}

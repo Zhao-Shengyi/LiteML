@@ -1,0 +1,5 @@
+{
+  "name": "breadcrumb",
+  "description": "面包屑导航，显示当前页面在网站层级中的位置",
+  "files": { "template": "template.html", "style": "style.css" }
+}

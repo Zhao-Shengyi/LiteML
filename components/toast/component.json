@@ -1,0 +1,5 @@
+{
+  "name": "toast",
+  "description": "消息提示组件，自动消失，支持成功/错误/警告/信息四种类型",
+  "files": { "template": "template.html", "style": "style.css", "script": "script.js" }
+}
