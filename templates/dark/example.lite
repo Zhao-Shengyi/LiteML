@@ -1,0 +1,39 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 暗色模式 · Dark 模板示例 / Template Example
+    @template(dark)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 项目 / Projects
+        a[href=#] 关于 / About
+
+      h1 暗色模式 Dark Mode
+      p 深色背景配合亮色强调文字，护眼且富有科技感。适合开发工具、仪表盘和创意展示。
+      p Dark backgrounds with bright accent text — eye-friendly and tech-forward. Great for dev tools, dashboards, and showcases.
+
+      .card
+        h3 深色卡片 / Dark Card
+        p 卡片使用比背景稍亮的深色，层次分明而不刺眼。
+        p Cards use a slightly lighter shade than the background for clear hierarchy.
+        code const greeting = "Hello, Dark!";
+        p
+          a.btn.btn-primary[href=#] 查看源码 / View Source
+          a.btn.btn-outline[href=#] 文档 / Docs
+
+      .card
+        h3 代码高亮 / Code Highlighting
+        pre
+          code function fibonacci(n) {
+            code   if (n <= 1) return n;
+            code   return fibonacci(n - 1) + fibonacci(n - 2);
+          code }
+
+      form
+        label[for=token] API Token / 访问令牌
+        input[type=text][id=token][placeholder=输入访问令牌 / Enter your token]
+        button.btn.btn-primary[type=submit] 验证 / Verify

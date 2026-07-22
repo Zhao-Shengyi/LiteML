@@ -1,0 +1,43 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 渐变风格 · Gradient 模板示例 / Template Example
+    @template(gradient)
+  body
+    .color-bar
+      span
+      span
+      span
+      span
+      span
+
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 作品 / Works
+        a[href=#] 联系 / Contact
+
+      h1 渐变风格 Gradient
+      p 大胆的多彩渐变组合，适合创意工作室和个人品牌展示。
+      p Bold, colorful gradient combinations. Perfect for creative studios and personal branding.
+
+      .card
+        h3 卡片标题 / Card Title
+        p 每张卡片顶部带有渐变色装饰条，增强视觉层次。
+        p Each card features a gradient accent bar on top for enhanced visual hierarchy.
+        a.btn.btn-primary[href=#] 查看作品 / View Works
+        a.btn.btn-2[href=#] 关于我 / About Me
+
+      .card
+        h3 色彩系统 / Color System
+        p 内置 5 组预定义渐变色，可自由组合。<code>--gradient-1</code> 到 <code>--gradient-5</code>。
+        p 5 predefined gradients ready to use — <code>--gradient-1</code> through <code>--gradient-5</code>.
+
+      form
+        label[for=name] 姓名 / Name
+        input[type=text][id=name][placeholder=你的名字 / Your name]
+        label[for=desc] 描述 / Message
+        textarea[id=desc][placeholder=说点什么... / Say something...]
+        button.btn.btn-primary[type=submit] 发送 / Send

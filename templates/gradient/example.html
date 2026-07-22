@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>渐变风格 · Gradient 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       渐变风格 · Gradient
+       多彩渐变 · 活力 · 大胆
+       ============================================ */
+    
+    :root {
+      --gradient-1: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-2: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-3: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient-4: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      --gradient-5: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+      --bg: #0f0f1a;
+      --bg-alt: #1a1a2e;
+      --text: #f0f0ff;
+      --text-muted: #9898b8;
+      --primary: #f5576c;
+      --radius: 16px;
+      --font: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+      --max-w: 960px;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* —— 排版 —— */
+    h1, h2, h3 { font-weight: 800; line-height: 1.2; margin-top: 1.2em; }
+    h1 { font-size: 3rem; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h2 { font-size: 2rem; background: var(--gradient-2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h3 { font-size: 1.25rem; }
+    p, li { margin-top: 0.75em; color: var(--text-muted); }
+    a { color: #fca5f0; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    /* —— 渐变卡片 —— */
+    .card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+    }
+    .card h3 { margin-top: 0; }
+    
+    /* —— 渐变按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary { background: var(--gradient-1); color: #fff; box-shadow: 0 4px 20px rgba(245,87,108,0.35); }
+    .btn-primary:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(245,87,108,0.5); }
+    .btn-2 { background: var(--gradient-2); color: #fff; box-shadow: 0 4px 20px rgba(79,172,254,0.35); }
+    
+    /* —— 表单 —— */
+    input, textarea, select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: #f5576c; box-shadow: 0 0 0 3px rgba(245,87,108,0.15); }
+    ::placeholder { color: var(--text-muted); }
+    label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      gap: 2rem;
+      padding: 1.2rem 0;
+    }
+    nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav a:hover, nav a.active { background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    
+    /* —— 装饰色块 —— */
+    .color-bar {
+      display: flex; gap: 0; height: 6px; margin-bottom: 2rem;
+    }
+    .color-bar span { flex: 1; }
+    .color-bar span:nth-child(1) { background: var(--gradient-1); }
+    .color-bar span:nth-child(2) { background: var(--gradient-2); }
+    .color-bar span:nth-child(3) { background: var(--gradient-3); }
+    .color-bar span:nth-child(4) { background: var(--gradient-4); }
+    .color-bar span:nth-child(5) { background: var(--gradient-5); }
+    
+    @media (max-width: 640px) {
+      h1 { font-size: 2rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="color-bar">
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+      <span>
+      </span>
+    </div>
+    <div class="container">
+      <nav>
+        <a class="active" href="#">首页 / Home</a>
+        <a href="#">作品 / Works</a>
+        <a href="#">联系 / Contact</a>
+      </nav>
+      <h1>渐变风格 Gradient</h1>
+      <p>大胆的多彩渐变组合，适合创意工作室和个人品牌展示。</p>
+      <p>Bold, colorful gradient combinations. Perfect for creative studios and personal branding.</p>
+      <div class="card">
+        <h3>卡片标题 / Card Title</h3>
+        <p>每张卡片顶部带有渐变色装饰条，增强视觉层次。</p>
+        <p>Each card features a gradient accent bar on top for enhanced visual hierarchy.</p>
+        <a class="btn btn-primary" href="#">查看作品 / View Works</a>
+        <a class="btn btn-2" href="#">关于我 / About Me</a>
+      </div>
+      <div class="card">
+        <h3>色彩系统 / Color System</h3>
+        <p>内置 5 组预定义渐变色，可自由组合。<code>--gradient-1</code> 到 <code>--gradient-5</code>。</p>
+        <p>5 predefined gradients ready to use — <code>--gradient-1</code> through <code>--gradient-5</code>.</p>
+      </div>
+      <form>
+        <label for="name">姓名 / Name</label>
+        <input type="text" id="name" placeholder="你的名字 / Your name">
+        <label for="desc">描述 / Message</label>
+        <textarea id="desc" placeholder="说点什么... / Say something...">
+        </textarea>
+        <button class="btn btn-primary" type="submit">发送 / Send</button>
+      </form>
+    </div>
+  </body>
+</html>

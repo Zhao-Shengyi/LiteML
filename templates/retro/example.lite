@@ -1,0 +1,36 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 复古风格 · Retro 模板示例 / Template Example
+    @template(retro)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 文章 / Posts
+        a[href=#] 关于 / About
+
+      h1 复古风格 Retro
+      p 暖色调、衬线字体、纹理质感。适合博客、杂志和个人网站。
+      p Warm tones, serif typefaces, textured feel. Perfect for blogs, magazines, and personal websites.
+
+      .card
+        h3 怀旧卡片 / Vintage Card
+        p 卡片带有左侧装饰边框和暖色背景，营造舒适的复古阅读氛围。
+        p Cards feature a decorative left border and warm background for a cozy vintage reading experience.
+        a.btn[href=#] 阅读更多 / Read More
+
+      blockquote
+        p 「设计不是增加装饰，而是去除妨碍表达的障碍。」
+        p "Design is not adding decoration, but removing obstacles to expression."
+
+      h2 排版展示 / Typography
+      p Georgia 衬线字体配合暖米色背景，长时间阅读也不疲劳。链接使用砖红色强调。
+      p Georgia serif on warm beige is easy on the eyes for long reading sessions. Links pop in brick red.
+
+      form
+        label[for=comment] 留下评论 / Leave a Comment
+        textarea[id=comment][placeholder=写下你的想法... / Share your thoughts...]
+        button.btn.btn-primary[type=submit] 发表 / Post

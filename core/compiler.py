@@ -82,7 +82,7 @@ class LiteMLCompiler:
             # 根据缩进关闭已打开的标签
             self._close_to_indent(indent)
 
-            line_type = classify_line(content)
+            line_type = classify_line(content, i)
 
             if line_type == 'doctype':
                 self.output_lines.append('<!DOCTYPE html>')

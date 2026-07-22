@@ -46,19 +46,19 @@ Compiles to / 编译为：
 
 ### Comments / 注释
 
-Use the `@` prefix for comments:
+Use the `!` prefix for comments (`@` prefix also works for backward compatibility):
 
-使用 `@` 前缀写注释：
+使用 `!` 前缀写注释（`@` 前缀也兼容）：
 
 ```lite
-@ This is a comment / 这是一个注释
-@ TODO: Add footer / 添加页脚
+! 这是一个注释
+! TODO: Add footer / 添加页脚
 ```
 
 Compiles to / 编译为：
 
 ```html
-<!-- This is a comment / 这是一个注释 -->
+<!-- 这是一个注释 -->
 <!-- TODO: Add footer / 添加页脚 -->
 ```
 
@@ -1005,7 +1005,7 @@ html[lang=zh-CN]
 | Directive / 指令 | Description / 说明 | Example / 示例 |
 | :--- | :--- | :--- |
 | `! html5` | DOCTYPE declaration / 文档声明 | `! html5` |
-| `@ comment` | HTML comment / 注释 | `@ TODO / 待办` |
+| `! comment` | HTML comment / 注释 | `! TODO / 待办` |
 
 ### Layout Directives (LiteCSS) / 布局指令
 

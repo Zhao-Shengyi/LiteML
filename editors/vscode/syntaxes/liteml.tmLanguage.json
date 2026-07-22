@@ -22,7 +22,7 @@
     },
 
     "comments": {
-      "match": "^(\\s*)(@\\s+.*)$",
+      "match": "^(\\s*)([!@]\\s+.*)$",
       "captures": {
         "2": { "name": "comment.line" }
       }
@@ -175,7 +175,7 @@
     },
 
     "use-component": {
-      "match": "^\\s*(@use)\\s+([\\w-]+)",
+      "match": "^\\s*(@?use)\\s+([\\w-]+)",
       "captures": {
         "1": { "name": "keyword.control" },
         "2": { "name": "support.class.component" }

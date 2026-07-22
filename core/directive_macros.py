@@ -7,6 +7,7 @@ LiteML 宏指令处理器
 ⚠️ 标签附加指令（@grid, @modal, @theme-toggle 等）已拆分到 directives/ 目录下。
 """
 
+import os
 import re
 from typing import List
 
@@ -109,6 +110,22 @@ def render_macro(content: str, prefix: str) -> List[str]:
     if m:
         css = _parse_flex_params(m.group(1))
         lines.append(f'{prefix}<div style="{css}">')
+        return lines
+
+    # @template(name) — 引用 CSS 模板（从 templates/name/theme.css 读取）
+    m = re.match(r'@template\(([^)]+)\)$', content)
+    if m:
+        name = m.group(1).strip().strip('"\'')
+        template_path = os.path.join('templates', name, 'theme.css')
+        try:
+            with open(template_path, 'r', encoding='utf-8') as f:
+                css_content = f.read()
+            lines.append(f'{prefix}<style>')
+            for cl in css_content.split('\n'):
+                lines.append(f'{prefix}{cl}')
+            lines.append(f'{prefix}</style>')
+        except FileNotFoundError:
+            lines.append(f'{prefix}<!-- ⚠️ 模板 "{name}" 未找到 → templates/{name}/theme.css -->')
         return lines
 
     return lines

@@ -6,7 +6,7 @@ html[lang=zh-CN]
     title LiteML 测试页面
 
   body
-    @ 这是一个注释
+    ! 这是一个注释
     header.nav
       h1.logo MySite
       nav
@@ -19,7 +19,7 @@ html[lang=zh-CN]
         h2 欢迎来到 LiteML
         p.intro 这是一种为新手设计的极简 HTML 预处理器语法
 
-      @ 特性列表
+      ! 特性列表
       section.features@waterfall(cols=3, gap=16px)
         div.card
           h3 ✅ 无需闭合标签

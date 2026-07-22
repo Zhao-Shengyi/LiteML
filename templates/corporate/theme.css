@@ -1,0 +1,119 @@
+/* ============================================
+   商务风格 · Corporate
+   专业蓝色 · 清晰结构 · 信赖感
+   ============================================ */
+
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f4f7fc;
+  --text: #1f2a44;
+  --text-muted: #6b7a99;
+  --border: #dce3ef;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #0ea5e9;
+  --success: #10b981;
+  --radius: 6px;
+  --shadow: 0 1px 3px rgba(37,99,235,0.08);
+  --font: -apple-system, 'SF Pro', 'PingFang SC', sans-serif;
+  --max-w: 1100px;
+  --space: 1.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+}
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+/* —— 排版 —— */
+h1, h2, h3 { font-weight: 700; line-height: 1.25; margin-top: 1.5em; color: var(--text); }
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.65rem; color: var(--primary); }
+h3 { font-size: 1.2rem; }
+p, li { margin-top: 0.6em; color: #4a5a7a; }
+a { color: var(--primary); text-decoration: none; font-weight: 500; }
+a:hover { text-decoration: underline; }
+
+/* —— 按钮 —— */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: #fff; box-shadow: 0 2px 8px rgba(37,99,235,0.3); }
+.btn-primary:hover { background: var(--primary-hover); box-shadow: 0 4px 12px rgba(37,99,235,0.4); }
+.btn-outline { border: 1.5px solid var(--border); color: var(--text); background: var(--bg); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-success { background: var(--success); color: #fff; }
+
+/* —— 卡片 —— */
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-top: 1.5rem;
+}
+.card:hover { box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
+
+/* —— 表格 —— */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+th { background: var(--bg-alt); font-weight: 600; color: var(--text); }
+tr:hover td { background: var(--bg-alt); }
+
+/* —— 表单 —— */
+input, textarea, select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font: inherit;
+  font-size: 0.9rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: border 0.2s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; }
+
+/* —— 导航 —— */
+nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+nav a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+nav a:hover, nav a.active { color: var(--primary); }
+
+/* —— 徽章 —— */
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.badge-primary { background: #dbeafe; color: var(--primary); }
+.badge-success { background: #d1fae5; color: #065f46; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem; }
+  .container { padding: 0 1rem; }
+}

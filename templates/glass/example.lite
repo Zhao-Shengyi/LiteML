@@ -1,0 +1,37 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 玻璃态 · Glass 模板示例 / Template Example
+    @template(glass)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 作品 / Works
+        a[href=#] 联系 / Contact
+
+      h1 玻璃态 Glassmorphism
+      p 毛玻璃效果让界面层次丰富，适合个人主页和作品集展示。
+      p Frosted glass effects create rich visual depth. Perfect for personal portfolios and landing pages.
+
+      .glass
+        h3 玻璃卡片 / Glass Card
+        p 背景模糊透过卡片显现，营造深邃的层次感。使用 <code>backdrop-filter: blur()</code> 实现。
+        p The background blur shows through the card, creating a sense of depth — powered by <code>backdrop-filter: blur()</code>.
+        a.btn[href=#] 探索作品 / Explore
+        a.btn.btn-primary[href=#] 联系我 / Contact Me
+
+      .glass
+        h3 技术特点 / Features
+        p 纯 CSS 实现，兼容现代浏览器。渐变背景搭配半透明卡片，视觉效果出众。
+        p Pure CSS, works in all modern browsers. Gradient background + translucent cards = stunning visuals.
+
+      form
+        label[for=email] 订阅更新 / Subscribe
+        input[type=email][id=email][placeholder=your@email.com]
+        button.btn.btn-primary[type=submit] 订阅 / Subscribe
+
+      footer
+        p © 2026 Glass Template · 玻璃模板

@@ -1,0 +1,115 @@
+/* ============================================
+   复古风格 · Retro
+   暖色调 · 衬线字体 · 纹理感
+   ============================================ */
+
+:root {
+  --bg: #f5f0e8;
+  --bg-alt: #efe8d8;
+  --text: #3d3229;
+  --text-muted: #9a8b7a;
+  --border: #d9cebc;
+  --primary: #c0392b;
+  --primary-hover: #a93226;
+  --accent: #d4a04a;
+  --radius: 4px;
+  --font: 'Georgia', 'Noto Serif SC', 'Source Han Serif CN', serif;
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --max-w: 800px;
+  --space: 1.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+/* —— 排版 —— */
+h1, h2, h3 { font-weight: 700; line-height: 1.3; margin-top: 1.8em; letter-spacing: -0.02em; }
+h1 { font-size: 2.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+h2 { font-size: 1.75rem; color: var(--primary); }
+h3 { font-size: 1.2rem; }
+p, li { margin-top: 0.8em; text-align: justify; }
+a { color: var(--primary); text-decoration: underline; }
+a:hover { color: var(--primary-hover); }
+
+/* —— 按钮 —— */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.6rem;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn:hover { background: var(--primary); color: #fff; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+
+/* —— 卡片 —— */
+.card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  margin-top: 1.5rem;
+  border-left: 4px solid var(--accent);
+}
+.card h3 { margin-top: 0; }
+
+/* —— 表单 —— */
+input, textarea, select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fcfaf5;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: border 0.2s;
+}
+input:focus, textarea:focus { outline: none; border-color: var(--primary); background: #fff; }
+label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+
+/* —— 导航 —— */
+nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1.2rem 0;
+  border-bottom: 2px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+nav a { color: var(--text-muted); text-decoration: none; }
+nav a:hover, nav a.active { color: var(--primary); }
+
+/* —— 引用 —— */
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.8rem 1.5rem;
+  border-left: 4px solid var(--accent);
+  background: var(--bg-alt);
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.75rem; }
+}

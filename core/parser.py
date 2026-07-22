@@ -91,12 +91,12 @@ def try_parse_code_block(content: str) -> Tuple[bool, str, str]:
 PHP_DIRECTIVES = {'@if', '@elseif', '@else', '@foreach', '@while', '@for'}
 
 
-def classify_line(content: str) -> str:
+def classify_line(content: str, line_number: int = 0) -> str:
     """识别行类型，返回类型标识字符串。
     类型列表（按优先级）：
       empty        — 空行
-      doctype      — ! html5
-      comment      — @ 或 @\\t
+      doctype      — ! html5 (仅第 1 行)
+      comment      — ! 或 @ 开头（后跟空格）
       php_ctrl     — @if/@foreach 等
       include      — @include(...)
       php_block    — @php
@@ -107,16 +107,22 @@ def classify_line(content: str) -> str:
       text_block   — '''...''' (长文本块)
       code_block   - ```...``` (代码块)
       macro        — @xxx(...) 宏指令
-      use_comp     — @use xxx 组件引用
+      use_comp     — use xxx 或 @use xxx 组件引用
       raw_html     — < 开头的原生 HTML
       tag          — 普通标签行
     """
     if not content:
         return 'empty'
 
-    if content == '! html5':
+    # ! html5 — 仅第一行视为 doctype
+    if content == '! html5' and line_number == 0:
         return 'doctype'
 
+    # ! 开头的注释（不在第一行时）
+    if content.startswith('! '):
+        return 'comment'
+
+    # @ 开头的注释（向后兼容）
     if content.startswith('@ ') or content.startswith('@\t'):
         return 'comment'
 
@@ -145,7 +151,7 @@ def classify_line(content: str) -> str:
     if is_code:
         return 'code_block'
 
-    if content.startswith('@use '):
+    if content.startswith('use ') or content.startswith('@use '):
         return 'use_comp'
 
     if content.startswith('@') and not content.startswith('@@'):
@@ -154,8 +160,8 @@ def classify_line(content: str) -> str:
     if content.startswith('<'):
         return 'raw_html'
 
-    # 普通标签行：必须以字母开头
-    if re.match(r'^[a-zA-Z]', content):
+    # 普通标签行：标签名或 .class / #id 简写（省略标签名时默认为 div）
+    if re.match(r'^[a-zA-Z.#]', content):
         return 'tag'
 
     # 兜底：作为原始内容输出
@@ -187,10 +193,14 @@ def parse_tag_line(content: str) -> Node:
     # 提取标签名
     m = re.match(r'^([a-zA-Z][\w-]*)', remaining)
     if not m:
-        # 没有合法标签名，原样输出
-        return node
-    node.tag = m.group(1)
-    remaining = remaining[m.end():]
+        # 没有显式标签名，但以 . 或 # 开头 → 默认为 div
+        if remaining.startswith(('.', '#')):
+            node.tag = 'div'
+        else:
+            return node
+    else:
+        node.tag = m.group(1)
+        remaining = remaining[m.end():]
     node.is_void = node.tag in VOID_ELEMENTS
 
     # #id
@@ -266,5 +276,9 @@ def parse_eject_component(content: str) -> str:
 
 
 def parse_use_component(content: str) -> str:
-    """从 @use xxx 中提取组件名"""
-    return content[5:].strip()
+    """从 use xxx 或 @use xxx 中提取组件名"""
+    if content.startswith('@use '):
+        # 向后兼容: @use component
+        return content[5:].strip()
+    # 新语法: use component
+    return content[4:].strip()

@@ -1,0 +1,44 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 博客风格 · Blog 模板示例 / Template Example
+    @template(blog)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 归档 / Archive
+        a[href=#] 关于 / About
+
+      h1 博客风格示例 / Blog Style Demo
+      p.meta
+        span 📅 2026-07-22
+        span 📂 设计 / Design
+        span 👁️ 5 min read
+
+      p 这是一篇示例文章，展示 Blog 模板的排版效果。博客风格优先考虑阅读体验：使用衬线字体、适中的行高和窄栏宽。
+      p This is a sample article demonstrating the Blog template's typography. Reader experience comes first — serif fonts, comfortable line height, and narrow column width.
+
+      p 正文使用 Georgia 衬线字体，1.1rem 字号，1.85 行高。研究表明这样的设置能减少长时间阅读的疲劳感。
+      p Body text uses Georgia serif at 1.1rem with 1.85 line height — proven to reduce eye strain during long reading sessions.
+
+      h2 文章排版 / Article Typography
+      p 标题使用无衬线字体（Inter）形成对比。链接使用 2px 粗下划线强调。
+      p Headings use sans-serif (Inter) for contrast. Links are underlined with a bold 2px stroke.
+
+      blockquote
+        p 「好的排版让读者感受不到排版的存在。」
+        p "Good typography is invisible to the reader."
+
+      h3 相关文章 / Related Posts
+      .card
+        h3 如何选择博客主题 / Choosing a Blog Theme
+        p.meta 📅 2026-07-20
+        a.btn[href=#] 阅读全文 / Read More
+
+      .card
+        h3 CSS 变量实战 / CSS Variables in Practice
+        p.meta 📅 2026-07-18
+        a.btn[href=#] 阅读全文 / Read More

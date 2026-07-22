@@ -1,0 +1,36 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 新拟态 · Neumorph 模板示例 / Template Example
+    @template(neumorph)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 组件 / Components
+        a[href=#] 设置 / Settings
+
+      h1 新拟态 Neumorphism
+      p 柔软阴影营造浮雕质感，按钮按下时呈现内凹效果，模拟真实物理交互。
+      p Soft shadows create a embossed, clay-like texture. Pressed elements sink inward for tangible feedback.
+
+      .card
+        h3 浮雕卡片 / Embossed Card
+        p 卡片带有外阴影突出，悬停时变为内阴影，模拟物理按压感。
+        p Cards protrude with outer shadows, then sink on hover — mimicking real-world materials.
+        a.btn.btn-primary[href=#] 体验一下 / Try Now
+        a.btn[href=#] 了解更多 / Learn More
+
+      .card
+        h3 表单示例 / Form Example
+        form
+          label[for=search] 搜索 / Search
+          input[type=text][id=search][placeholder=输入关键词... / Enter keywords...]
+          button.btn.btn-primary[type=submit] 搜索 / Search
+
+      .card
+        h3 交互反馈 / Interaction Feedback
+        p 所有可交互元素都有细腻的阴影变化，兼顾美观与可用性。
+        p Every interactive element responds with subtle shadow changes — beautiful and usable.

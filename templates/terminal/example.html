@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>终端风格 · Terminal 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       终端风格 · Terminal
+       黑底绿字 · 等宽字体 · 复古黑客风
+       ============================================ */
+    
+    :root {
+      --bg: #0c0c0c;
+      --bg-alt: #1a1a1a;
+      --text: #33ff66;
+      --text-muted: #33aa55;
+      --text-dim: #226633;
+      --border: #33ff6633;
+      --primary: #33ff66;
+      --primary-hover: #66ff99;
+      --accent: #ffcc00;
+      --radius: 0;
+      --font: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      --max-w: 900px;
+      --cursor: '█';
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* —— 排版 —— */
+    h1, h2, h3 { font-weight: 700; line-height: 1.2; margin-top: 1.5em; text-transform: uppercase; letter-spacing: 2px; }
+    h1 { font-size: 2rem; color: var(--primary); text-shadow: 0 0 10px rgba(51,255,102,0.5); }
+    h2 { font-size: 1.4rem; color: var(--accent); }
+    h3 { font-size: 1.1rem; }
+    p, li { margin-top: 0.75em; }
+    a { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; text-decoration-style: dotted; }
+    a:hover { color: var(--primary); }
+    
+    /* —— 行首提示符 —— */
+    .prompt::before { content: '$ '; color: var(--text-dim); }
+    .prompt-root::before { content: '# '; color: var(--accent); }
+    
+    /* —— 按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1.4rem;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+    .btn-primary:hover { background: var(--primary-hover); }
+    
+    /* —— 卡片 —— */
+    .card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      background: var(--bg-alt);
+    }
+    .card h3 { margin-top: 0; }
+    
+    /* —— 表单 —— */
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.9rem;
+      caret-color: var(--text);
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--text); box-shadow: 0 0 8px rgba(51,255,102,0.2); }
+    ::placeholder { color: var(--text-dim); }
+    label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+    nav a:hover, nav a.active { color: var(--primary); }
+    
+    /* —— 进度条（装饰） —— */
+    .progress {
+      height: 1.2em;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      margin-top: 0.5rem;
+      position: relative;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--text);
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .progress-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.7rem;
+      color: var(--bg);
+    }
+    
+    /* —— 闪烁光标动画 —— */
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+    .cursor::after {
+      content: var(--cursor);
+      animation: blink 1s step-end infinite;
+      color: var(--text);
+    }
+    
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a class="active" href="#">~/home</a>
+        <a href="#">~/projects</a>
+        <a href="#">~/about</a>
+      </nav>
+      <h1>终端风格 Terminal</h1>
+      <p class="prompt">黑底绿字 · 等宽字体 · 终端美学</p>
+      <p class="prompt">Green on black · monospace · hacker aesthetic</p>
+      <div class="card">
+        <h3>$ 系统信息 / System Info</h3>
+        <p class="prompt">主机名: liteml-dev / Hostname: liteml-dev</p>
+        <p class="prompt">内核: LiteML v0.3 / Kernel: LiteML v0.3</p>
+        <p class="prompt">运行时间: 7 天 3 小时 / Uptime: 7 days 3 hours</p>
+        <div class="progress">
+          <div class="progress-bar" style=""width: 73%"">
+          </div>
+          <div class="progress-label">73%</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>$ 最近文件 / Recent Files</h3>
+        <p class="prompt">📄 example.lite</p>
+        <p class="prompt">📄 theme.css</p>
+        <p class="prompt">📄 README.md</p>
+        <a class="btn btn-primary" href="#">$ 查看全部 / View All</a>
+      </div>
+      <form>
+        <label for="cmd">$ 输入命令 / Enter command</label>
+        <input type="text" id="cmd" placeholder="输入命令... / Type a command...">
+        <button class="btn" type="submit">⏎ 执行 / Execute</button>
+      </form>
+    </div>
+  </body>
+</html>

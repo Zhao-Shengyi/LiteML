@@ -6,6 +6,6 @@ html
   body
     h1 我的页面
 
-    @use dark-mode-toggle
+    use dark-mode-toggle
 
-    p 这是一个使用 @use 组件加载的暗色模式切换按钮。
+    p 这是一个使用 use 组件加载的暗色模式切换按钮。

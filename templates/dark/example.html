@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>暗色模式 · Dark 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       暗色模式 · Dark
+       深灰背景 · 亮色强调 · 护眼
+       ============================================ */
+    
+    :root {
+      --bg: #0f1117;
+      --bg-alt: #1a1d28;
+      --bg-card: #222639;
+      --text: #e4e8f1;
+      --text-muted: #7c829b;
+      --border: #2d3148;
+      --primary: #a78bfa;
+      --primary-hover: #c4b5fd;
+      --accent: #34d399;
+      --radius: 10px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.4);
+      --font: -apple-system, 'SF Pro', 'PingFang SC', sans-serif;
+      --font-mono: 'SF Mono', 'JetBrains Mono', monospace;
+      --max-w: 960px;
+      --space: 1.5rem;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* —— 排版 —— */
+    h1, h2, h3 { font-weight: 700; line-height: 1.3; margin-top: 1.5em; }
+    h1 { font-size: 2.5rem; background: linear-gradient(135deg, var(--primary), #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.25rem; }
+    p, li { margin-top: 0.75em; color: #b0b7cc; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--primary-hover); text-decoration: underline; }
+    
+    /* —— 按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.6rem;
+      border: none;
+      border-radius: var(--radius);
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--primary); color: #000; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    
+    /* —— 卡片 —— */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-top: 1.5rem;
+    }
+    
+    /* —— 表单 —— */
+    input, textarea, select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font: inherit;
+      font-size: 0.9rem;
+      background: var(--bg-alt);
+      color: var(--text);
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(167,139,250,0.2); }
+    label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      gap: 2rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover, nav a.active { color: var(--primary); }
+    
+    /* —— 代码块 —— */
+    pre, code {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.2em 0.5em;
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+    pre { padding: 1rem; overflow-x: auto; }
+    pre code { border: none; padding: 0; background: transparent; }
+    
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a class="active" href="#">首页 / Home</a>
+        <a href="#">项目 / Projects</a>
+        <a href="#">关于 / About</a>
+      </nav>
+      <h1>暗色模式 Dark Mode</h1>
+      <p>深色背景配合亮色强调文字，护眼且富有科技感。适合开发工具、仪表盘和创意展示。</p>
+      <p>Dark backgrounds with bright accent text — eye-friendly and tech-forward. Great for dev tools, dashboards, and showcases.</p>
+      <div class="card">
+        <h3>深色卡片 / Dark Card</h3>
+        <p>卡片使用比背景稍亮的深色，层次分明而不刺眼。</p>
+        <p>Cards use a slightly lighter shade than the background for clear hierarchy.</p>
+        <code>const greeting = "Hello, Dark!";</code>
+        <p>
+          <a class="btn btn-primary" href="#">查看源码 / View Source</a>
+          <a class="btn btn-outline" href="#">文档 / Docs</a>
+        </p>
+      </div>
+      <div class="card">
+        <h3>代码高亮 / Code Highlighting</h3>
+        <pre>
+          <code>function fibonacci(n) {</code>
+          <code>if (n <= 1) return n;</code>
+          <code>return fibonacci(n - 1) + fibonacci(n - 2);</code>
+          <code>}</code>
+        </pre>
+      </div>
+      <form>
+        <label for="token">API Token / 访问令牌</label>
+        <input type="text" id="token" placeholder="输入访问令牌 / Enter your token">
+        <button class="btn btn-primary" type="submit">验证 / Verify</button>
+      </form>
+    </div>
+  </body>
+</html>

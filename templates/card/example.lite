@@ -1,0 +1,59 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 卡片风格 · Card 模板示例 / Template Example
+    @template(card)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 浏览 / Browse
+        a[href=#] 收藏 / Favorites
+
+      h1 卡片风格 Card UI
+      p 以卡片为基本单元，网格布局展示内容。适合作品集、商品展示和仪表盘。
+      p Cards as the fundamental unit, arranged in a responsive grid. Great for portfolios, product showcases, and dashboards.
+
+      .card-grid
+        .card
+          .card-img
+          .card-body
+            h3 卡片标题 / Card Title
+            p 这是一张展示卡片，包含图片区域和文字描述。
+            p A showcase card with image area and text description.
+            .meta
+              span 💡 设计 / Design
+              span 3 分钟前 / 3 min ago
+            a.btn.btn-primary[href=#] 查看详情 / View Details
+
+        .card
+          .card-img
+          .card-body
+            h3 响应式网格 / Responsive Grid
+            p 卡片网格自动适应屏幕宽度，桌面端多列显示。
+            p Card grid auto-adapts to screen width, multi-column on desktop.
+            .meta
+              span 📱 响应式 / Responsive
+              span 5 分钟前 / 5 min ago
+            a.btn.btn-outline[href=#] 了解更多 / Learn More
+
+        .card
+          .card-img
+          .card-body
+            h3 交互反馈 / Hover Effect
+            p 卡片悬停时上浮并加深阴影，提供明确交互反馈。
+            p Cards float up with deeper shadow on hover for clear interaction feedback.
+            .meta
+              span ✨ 动效 / Animation
+              span 8 分钟前 / 8 min ago
+            a.btn.btn-outline[href=#] 查看 / View
+
+      h2 最新动态 / Latest Update
+      .card
+        .card-body
+          h3 LiteML v0.3 发布 / v0.3 Released
+          p 新增 12 款 CSS 模板，支持 @template 语法 / 12 CSS templates with @template syntax
+          .meta 📅 2026-07-22
+          a.btn.btn-primary[href=#] 了解更多 / Learn More

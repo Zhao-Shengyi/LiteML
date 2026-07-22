@@ -31,7 +31,8 @@ LiteML 之于 HTML，就像 TypeScript 之于 JavaScript。
 - **Declarative layout / 声明式布局** — `@flex`, `@grid`, `@waterfall` for complex CSS / 一行指令搞定复杂 CSS
 - **No-code interactions / 无代码交互** — `@modal`, `@carousel`, `[*required]` without writing JS / 无需手写 JS
 - **PHP template engine / PHP 模板引擎** — `@if`, `@foreach`, `{{ $var }}` built-in / 内置模板语法
-- **Component system / 组件系统** — `@use` components written in native HTML/CSS/JS / 用原生代码写组件
+- **Component system / 组件系统** — `use` components written in native HTML/CSS/JS / 用原生代码写组件
+- **CSS Templates / CSS 模板** — 12 themes via `@template(name)`, one line to style / 一行代码应用主题
 - **Eject mechanism / 代码回退** — One-click revert to pure native code / 一键回退纯原生代码
 - **Dual mode / 双模式** — PHP SSR & JS SPA / 服务端渲染与客户端交互
 - **AI-optimized / AI 优化** — 50% less tokens, higher accuracy / 省 50% Token，更高准确率

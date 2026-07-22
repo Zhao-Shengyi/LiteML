@@ -72,6 +72,10 @@ Examples:
     dp = sub.add_parser('directives', help='列出所有可用指令')
     dp.add_argument('action', choices=['list'], help='操作')
 
+    # ── templates ──
+    tp = sub.add_parser('templates', help='CSS 模板管理')
+    tp.add_argument('action', choices=['list'], help='操作')
+
     # ── version ──
     sub.add_parser('version', help='显示版本')
 
@@ -91,6 +95,8 @@ Examples:
         _cmd_components(args)
     elif args.command == 'directives':
         _cmd_directives(args)
+    elif args.command == 'templates':
+        _cmd_templates(args)
 
 
 # ══════════════════════════════════════════════
@@ -193,6 +199,44 @@ def _cmd_directives(args):
             print(f'  @{d}')
     else:
         print('没有已注册的指令。')
+
+
+def _cmd_templates(args):
+    """templates 子命令"""
+    import os
+    templates_dir = 'templates'
+    if not os.path.isdir(templates_dir):
+        print('templates/ 目录不存在。')
+        return
+    names = sorted([
+        d for d in os.listdir(templates_dir)
+        if os.path.isdir(os.path.join(templates_dir, d))
+        and os.path.isfile(os.path.join(templates_dir, d, 'theme.css'))
+    ])
+    if names:
+        print(f'可用 CSS 模板 ({len(names)}):')
+        descs = {
+            'minimal': '极简主义 · 干净留白',
+            'modern': '现代风格 · 渐变圆角',
+            'dark': '暗色模式 · 深色护眼',
+            'glass': '玻璃态 · 毛玻璃效果',
+            'neumorph': '新拟态 · 柔软浮雕',
+            'retro': '复古风格 · 暖色衬线',
+            'corporate': '商务风格 · 专业蓝色',
+            'blog': '博客风格 · 阅读优先',
+            'landing': '着陆页 · 大标题强 CTA',
+            'card': '卡片风格 · 网格卡片',
+            'gradient': '渐变风格 · 多彩渐变',
+            'terminal': '终端风格 · 黑底绿字',
+        }
+        for n in names:
+            desc = descs.get(n, '')
+            print(f'  • @template({n})  — {desc}')
+        print()
+        print('用法: 在 .lite 文件的 <head> 中添加 @template(模板名)')
+        print('示例: @template(minimal)')
+    else:
+        print('templates/ 中没有找到模板（需要包含 theme.css）。')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>新拟态 · Neumorph 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       新拟态 · Neumorphism
+       柔软浮雕 · 阴影质感 · 极简色彩
+       ============================================ */
+    
+    :root {
+      --bg: #e4e9f0;
+      --text: #3e4a5e;
+      --text-muted: #8e9aaf;
+      --primary: #5b7cfa;
+      --primary-hover: #4a6ae0;
+      --radius: 16px;
+      --shadow-light: #ffffff;
+      --shadow-dark: #c8cdd4;
+      --shadow-outset: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+      --shadow-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+      --font: -apple-system, 'SF Pro', 'PingFang SC', sans-serif;
+      --max-w: 960px;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 2rem 0;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+    
+    /* —— 排版 —— */
+    h1, h2, h3 { font-weight: 600; line-height: 1.3; margin-top: 1.5em; color: var(--text); }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.25rem; }
+    p, li { margin-top: 0.75em; color: var(--text-muted); }
+    a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--primary-hover); }
+    
+    /* —— 卡片(浮雕) —— */
+    .card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-outset);
+      margin-top: 1.5rem;
+      border: none;
+    }
+    .card h3 { margin-top: 0; }
+    .card:hover { box-shadow: var(--shadow-inset); }
+    
+    /* —— 按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      border: none;
+      border-radius: 50px;
+      background: var(--bg);
+      box-shadow: var(--shadow-outset);
+      color: var(--text);
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn:hover { box-shadow: var(--shadow-inset); color: var(--primary); }
+    .btn-primary { color: var(--primary); }
+    .btn-primary:hover { color: var(--primary-hover); }
+    
+    /* —— 输入框(内凹) —— */
+    input, textarea, select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 12px;
+      background: var(--bg);
+      box-shadow: var(--shadow-inset);
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.2s;
+      caret-color: var(--primary);
+    }
+    input:focus, textarea:focus { outline: none; box-shadow: var(--shadow-inset), 0 0 0 2px var(--primary); }
+    ::placeholder { color: var(--text-muted); }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      gap: 1rem;
+      padding: 1.2rem 0;
+    }
+    nav a {
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    nav a:hover, nav a.active { box-shadow: var(--shadow-outset); color: var(--text); }
+    
+    @media (max-width: 640px) {
+      h1 { font-size: 1.75rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a class="active" href="#">首页 / Home</a>
+        <a href="#">组件 / Components</a>
+        <a href="#">设置 / Settings</a>
+      </nav>
+      <h1>新拟态 Neumorphism</h1>
+      <p>柔软阴影营造浮雕质感，按钮按下时呈现内凹效果，模拟真实物理交互。</p>
+      <p>Soft shadows create a embossed, clay-like texture. Pressed elements sink inward for tangible feedback.</p>
+      <div class="card">
+        <h3>浮雕卡片 / Embossed Card</h3>
+        <p>卡片带有外阴影突出，悬停时变为内阴影，模拟物理按压感。</p>
+        <p>Cards protrude with outer shadows, then sink on hover — mimicking real-world materials.</p>
+        <a class="btn btn-primary" href="#">体验一下 / Try Now</a>
+        <a class="btn" href="#">了解更多 / Learn More</a>
+      </div>
+      <div class="card">
+        <h3>表单示例 / Form Example</h3>
+        <form>
+          <label for="search">搜索 / Search</label>
+          <input type="text" id="search" placeholder="输入关键词... / Enter keywords...">
+          <button class="btn btn-primary" type="submit">搜索 / Search</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>交互反馈 / Interaction Feedback</h3>
+        <p>所有可交互元素都有细腻的阴影变化，兼顾美观与可用性。</p>
+        <p>Every interactive element responds with subtle shadow changes — beautiful and usable.</p>
+      </div>
+    </div>
+  </body>
+</html>

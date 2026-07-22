@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>着陆页 · Landing 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       着陆页 · Landing Page
+       大标题 · 强 CTA · 视觉冲击
+       ============================================ */
+    
+    :root {
+      --bg: #0b0e17;
+      --bg-alt: #111827;
+      --text: #f9fafb;
+      --text-muted: #9ca3af;
+      --primary: #f97316;
+      --primary-hover: #ea580c;
+      --accent: #3b82f6;
+      --radius: 12px;
+      --font: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --max-w: 1100px;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    
+    /* —— 英雄区 —— */
+    .hero {
+      text-align: center;
+      padding: 6rem 0 4rem;
+      background: radial-gradient(ellipse at top, rgba(249,115,22,0.12) 0%, transparent 60%);
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { font-size: 1.25rem; color: var(--text-muted); margin-top: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    
+    /* —— 通用排版 —— */
+    h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-top: 1.5em; }
+    h3 { font-size: 1.35rem; font-weight: 700; margin-top: 1.2em; }
+    p, li { margin-top: 0.75em; color: var(--text-muted); }
+    a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--primary-hover); }
+    
+    /* —— CTA 按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border: none;
+      border-radius: 50px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #fb923c);
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(249,115,22,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(249,115,22,0.5); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.2); color: var(--text); background: transparent; backdrop-filter: blur(4px); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    
+    /* —— 卡片 —— */
+    .card {
+      background: var(--bg-alt);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      transition: all 0.3s;
+    }
+    .card:hover { border-color: rgba(249,115,22,0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .card h3 { margin-top: 0; }
+    
+    /* —— 特性网格 —— */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    
+    /* —— 表单 —— */
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(249,115,22,0.15); }
+    ::placeholder { color: var(--text-muted); }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--text-muted); }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+    nav a { color: var(--text-muted); font-size: 0.9rem; margin-left: 2rem; }
+    nav a:hover, nav a.active { color: var(--text); }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero { padding: 4rem 0 2rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo">🚀 LiteML</div>
+        <div>
+          <a href="#">功能 / Features</a>
+          <a href="#">价格 / Pricing</a>
+          <a href="#">文档 / Docs</a>
+          <a class="btn btn-outline" href="#">开始使用 / Get Started</a>
+        </div>
+      </nav>
+    </div>
+    <div class="hero">
+      <h1>用 LiteML 构建你的下一个产品</h1>
+      <p>Build your next product with LiteML</p>
+      <p>极简语法、组件系统、CSS 模板，让前端开发效率翻倍。</p>
+      <p>Minimal syntax, component system, CSS templates — double your frontend productivity.</p>
+      <p>
+        <a class="btn btn-primary" href="#">免费开始 / Start Free →</a>
+        <a class="btn btn-outline" href="#">查看文档 / View Docs</a>
+      </p>
+    </div>
+    <div class="container">
+      <h2>核心功能 / Core Features</h2>
+      <div class="features">
+        <div class="card">
+          <h3>⚡ 极速开发 / Rapid Development</h3>
+          <p>比传统 HTML 少写 50% 代码，缩进即结构。</p>
+          <p>Write 50% less code than traditional HTML. Indentation = structure.</p>
+        </div>
+        <div class="card">
+          <h3>🎨 CSS 模板 / CSS Templates</h3>
+          <p>12 款精选模板，一行代码即可应用主题。</p>
+          <p>12 handcrafted themes, one line to apply.</p>
+        </div>
+        <div class="card">
+          <h3>🧩 组件系统 / Component System</h3>
+          <p>可复用的 HTML/CSS/JS 组件，一次编写处处使用。</p>
+          <p>Reusable HTML/CSS/JS components — write once, use everywhere.</p>
+        </div>
+      </div>
+      <h2>订阅更新 / Stay Updated</h2>
+      <form>
+        <input type="email" placeholder="输入邮箱地址 / Enter your email">
+        <button class="btn btn-primary" type="submit">订阅 / Subscribe</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 现代风格 · Modern 模板示例 / Template Example
+    @template(modern)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 产品 / Products
+        a[href=#] 关于 / About
+        a[href=#] 联系 / Contact
+
+      h1 现代风格 Modern
+      p 渐变色彩、柔和阴影、圆角设计。适合现代应用和创意项目。
+      p Gradient accents, soft shadows, rounded corners. Perfect for modern apps and creative projects.
+
+      h3 卡片组件 / Card Component
+      .card
+        h3 渐变标题 / Gradient Title
+        p 卡片带有柔和阴影，悬停时轻微上浮，提供细腻的交互反馈。
+        p Cards float subtly on hover with a soft shadow for delightful interaction.
+        a.btn.btn-primary[href=#] 开始使用 / Get Started
+        a.btn.btn-outline[href=#] 了解更多 / Learn More
+
+      .card
+        h3 响应式设计 / Responsive Design
+        p 所有组件都经过响应式优化，在移动设备上同样出色。
+        p All components are fully responsive and look great on mobile devices.
+
+      h2 订阅更新 / Stay Updated
+      form
+        label[for=email] 电子邮箱 / Email
+        input[type=email][id=email][placeholder=your@email.com]
+        button.btn.btn-primary[type=submit] 订阅 / Subscribe

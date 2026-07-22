@@ -1,0 +1,54 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 商务风格 · Corporate 模板示例 / Template Example
+    @template(corporate)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 产品 / Products
+        a[href=#] 服务 / Services
+        a[href=#] 关于 / About
+        a[href=#] 联系 / Contact
+
+      h1 商务风格 Corporate
+      p 专业蓝色调，清晰的信息层级，适合企业官网和管理后台。
+      p Professional blue palette, clear information hierarchy. Ideal for corporate websites and admin dashboards.
+
+      .card
+        h3 产品特点 / Features
+        p 卡片设计简洁实用，适合展示功能模块和数据统计。
+        p Clean, practical card design for showcasing features and statistics.
+        span.badge.badge-primary 新版 / New
+        span.badge.badge-success 稳定 / Stable
+        p
+          a.btn.btn-primary[href=#] 免费试用 / Free Trial
+          a.btn.btn-outline[href=#] 了解更多 / Learn More
+
+      h2 数据表格 / Data Table
+      table
+        tr
+          th 项目 / Project
+          th 状态 / Status
+          th 进度 / Progress
+        tr
+          td 首页改版 / Homepage Redesign
+          td
+            span.badge.badge-primary 进行中 / In Progress
+          td 75%
+        tr
+          td 后台优化 / Backend Optimization
+          td
+            span.badge.badge-success 已完成 / Completed
+          td 100%
+
+      h3 联系表单 / Contact Form
+      form
+        label[for=company] 公司名称 / Company
+        input[type=text][id=company][placeholder=输入公司名称 / Enter company name]
+        label[for=phone] 联系电话 / Phone
+        input[type=tel][id=phone][placeholder=输入电话 / Enter phone number]
+        button.btn.btn-primary[type=submit] 提交咨询 / Submit Inquiry

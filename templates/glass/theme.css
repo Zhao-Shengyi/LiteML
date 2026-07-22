@@ -1,0 +1,105 @@
+/* ============================================
+   玻璃态 · Glassmorphism
+   毛玻璃效果 · 半透明 · 模糊背景
+   ============================================ */
+
+:root {
+  --bg-start: #667eea;
+  --bg-end: #764ba2;
+  --glass-bg: rgba(255,255,255,0.18);
+  --glass-border: rgba(255,255,255,0.25);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  --text: #1a1a2e;
+  --text-light: rgba(255,255,255,0.9);
+  --text-muted: rgba(255,255,255,0.6);
+  --primary: #fff;
+  --radius: 16px;
+  --blur: 16px;
+  --font: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+  --max-w: 960px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: var(--font);
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+/* —— 排版 —— */
+h1, h2, h3 { font-weight: 600; line-height: 1.3; margin-top: 1.2em; }
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.25rem; }
+p, li { margin-top: 0.75em; color: var(--text-muted); }
+a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+
+/* —— 玻璃卡片 —— */
+.glass, .card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+.card h3 { margin-top: 0; }
+
+/* —— 按钮 —— */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  background: rgba(255,255,255,0.12);
+  color: var(--text-light);
+  font: inherit;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s;
+}
+.btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+.btn-primary { background: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.5); }
+
+/* —— 表单 —— */
+input, textarea, select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-light);
+  font: inherit;
+  font-size: 0.9rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+}
+input:focus, textarea:focus { outline: none; background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
+::placeholder { color: rgba(255,255,255,0.4); }
+label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+
+/* —— 导航 —— */
+nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+}
+nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+nav a:hover, nav a.active { color: var(--text-light); }
+
+/* —— 页脚 —— */
+footer { margin-top: 3rem; padding: 1.5rem 0; border-top: 1px solid var(--glass-border); text-align: center; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 2rem; }
+}

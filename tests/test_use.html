@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>组件测试</title>
+  <style>
+/* 暗色模式切换按钮 */
+.dm-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 999px;
+  background: var(--bg-color, #fff);
+  color: var(--text-color, #333);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.dm-toggle:hover {
+  opacity: 0.8;
+}
+
+.dm-icon {
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+/* 暗色模式样式 — 由 JS 切换 data-theme 属性 */
+[data-theme="dark"] .dm-toggle {
+  --bg-color: #2d3748;
+  --border-color: #4a5568;
+  --text-color: #e2e8f0;
+}
+
+[data-theme="dark"] .dm-toggle .dm-icon::before {
+  content: "☀️";
+}
+
+[data-theme="dark"] .dm-toggle .dm-text::before {
+  content: "亮色模式";
+}
+
+  </style>
+  </head>
+  <body>
+    <h1>我的页面</h1>
+    <button id="dark-mode-toggle" class="dm-toggle" aria-label="切换暗色模式">
+      <span class="dm-icon">🌙</span>
+      <span class="dm-text">暗色模式</span>
+    </button>
+    
+    <p>这是一个使用 use 组件加载的暗色模式切换按钮。</p>
+  <script>
+// 暗色模式切换
+(function() {
+  'use strict';
+
+  const STORAGE_KEY = 'liteml-theme';
+
+  // 初始化：读取本地存储或系统偏好
+  function initTheme() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      document.documentElement.dataset.theme = saved;
+      return;
+    }
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
+  }
+
+  // 切换
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.dataset.theme || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.dataset.theme = next;
+    localStorage.setItem(STORAGE_KEY, next);
+  }
+
+  // 绑定按钮
+  function initToggle() {
+    const btn = document.getElementById('dark-mode-toggle');
+    if (btn) {
+      btn.addEventListener('click', toggleTheme);
+    }
+  }
+
+  // 监听系统主题变化
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
+    }
+  });
+
+  initTheme();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initToggle);
+  } else {
+    initToggle();
+  }
+})();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, initial-scale=1.0"">
+    <title>卡片风格 · Card 模板示例 / Template Example</title>
+    <style>
+    /* ============================================
+       卡片风格 · Card UI
+       卡片为王 · 网格布局 · 轻阴影
+       ============================================ */
+    
+    :root {
+      --bg: #f0f2f5;
+      --bg-alt: #ffffff;
+      --text: #1e293b;
+      --text-muted: #94a3b8;
+      --border: #e8ecf1;
+      --primary: #8b5cf6;
+      --primary-hover: #7c3aed;
+      --accent: #f43f5e;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.10);
+      --font: 'Inter', -apple-system, 'PingFang SC', sans-serif;
+      --max-w: 1100px;
+    }
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 0;
+    }
+    
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    
+    /* —— 卡片网格 —— */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    /* —— 卡片 —— */
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: all 0.3s;
+      margin-top: 0;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .card-body { padding: 1.5rem; }
+    .card-img { width: 100%; height: 180px; object-fit: cover; background: linear-gradient(135deg, var(--primary), var(--accent)); }
+    .card h3 { font-size: 1.2rem; font-weight: 700; margin-top: 0; }
+    .card p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; }
+    .card .meta { display: flex; align-items: center; gap: 0.75rem; margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); }
+    
+    /* —— 通用排版 —— */
+    h1, h2 { font-weight: 800; line-height: 1.25; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; margin-top: 1.5em; }
+    p, li { margin-top: 0.6em; }
+    a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--primary-hover); }
+    
+    /* —— 按钮 —— */
+    .btn {
+      display: inline-block;
+      padding: 0.55rem 1.4rem;
+      border: none;
+      border-radius: 50px;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { border: 1.5px solid var(--border); color: var(--text); background: var(--bg-alt); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    
+    /* —— 表单 —— */
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      font-size: 0.9rem;
+      background: var(--bg-alt);
+      color: var(--text);
+      transition: border 0.2s;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,92,246,0.12); }
+    label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; }
+    
+    /* —— 导航 —— */
+    nav {
+      display: flex;
+      gap: 2rem;
+      padding: 1rem 0;
+      align-items: center;
+    }
+    nav a { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+    nav a:hover, nav a.active { color: var(--primary); }
+    
+    @media (max-width: 640px) {
+      .card-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.5rem; }
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <a class="active" href="#">首页 / Home</a>
+        <a href="#">浏览 / Browse</a>
+        <a href="#">收藏 / Favorites</a>
+      </nav>
+      <h1>卡片风格 Card UI</h1>
+      <p>以卡片为基本单元，网格布局展示内容。适合作品集、商品展示和仪表盘。</p>
+      <p>Cards as the fundamental unit, arranged in a responsive grid. Great for portfolios, product showcases, and dashboards.</p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-img">
+          </div>
+          <div class="card-body">
+            <h3>卡片标题 / Card Title</h3>
+            <p>这是一张展示卡片，包含图片区域和文字描述。</p>
+            <p>A showcase card with image area and text description.</p>
+            <div class="meta">
+              <span>💡 设计 / Design</span>
+              <span>3 分钟前 / 3 min ago</span>
+            </div>
+            <a class="btn btn-primary" href="#">查看详情 / View Details</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+          </div>
+          <div class="card-body">
+            <h3>响应式网格 / Responsive Grid</h3>
+            <p>卡片网格自动适应屏幕宽度，桌面端多列显示。</p>
+            <p>Card grid auto-adapts to screen width, multi-column on desktop.</p>
+            <div class="meta">
+              <span>📱 响应式 / Responsive</span>
+              <span>5 分钟前 / 5 min ago</span>
+            </div>
+            <a class="btn btn-outline" href="#">了解更多 / Learn More</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-img">
+          </div>
+          <div class="card-body">
+            <h3>交互反馈 / Hover Effect</h3>
+            <p>卡片悬停时上浮并加深阴影，提供明确交互反馈。</p>
+            <p>Cards float up with deeper shadow on hover for clear interaction feedback.</p>
+            <div class="meta">
+              <span>✨ 动效 / Animation</span>
+              <span>8 分钟前 / 8 min ago</span>
+            </div>
+            <a class="btn btn-outline" href="#">查看 / View</a>
+          </div>
+        </div>
+      </div>
+      <h2>最新动态 / Latest Update</h2>
+      <div class="card">
+        <div class="card-body">
+          <h3>LiteML v0.3 发布 / v0.3 Released</h3>
+          <p>新增 12 款 CSS 模板，支持 @template 语法 / 12 CSS templates with @template syntax</p>
+          <div class="meta">📅 2026-07-22</div>
+          <a class="btn btn-primary" href="#">了解更多 / Learn More</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

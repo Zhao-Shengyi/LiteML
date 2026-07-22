@@ -1,0 +1,46 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 着陆页 · Landing 模板示例 / Template Example
+    @template(landing)
+  body
+    .container
+      nav
+        .logo 🚀 LiteML
+        div
+          a[href=#] 功能 / Features
+          a[href=#] 价格 / Pricing
+          a[href=#] 文档 / Docs
+          a.btn.btn-outline[href=#] 开始使用 / Get Started
+
+    .hero
+      h1 用 LiteML 构建你的下一个产品
+      p Build your next product with LiteML
+      p 极简语法、组件系统、CSS 模板，让前端开发效率翻倍。
+      p Minimal syntax, component system, CSS templates — double your frontend productivity.
+      p
+        a.btn.btn-primary[href=#] 免费开始 / Start Free →
+        a.btn.btn-outline[href=#] 查看文档 / View Docs
+
+    .container
+      h2 核心功能 / Core Features
+      .features
+        .card
+          h3 ⚡ 极速开发 / Rapid Development
+          p 比传统 HTML 少写 50% 代码，缩进即结构。
+          p Write 50% less code than traditional HTML. Indentation = structure.
+        .card
+          h3 🎨 CSS 模板 / CSS Templates
+          p 12 款精选模板，一行代码即可应用主题。
+          p 12 handcrafted themes, one line to apply.
+        .card
+          h3 🧩 组件系统 / Component System
+          p 可复用的 HTML/CSS/JS 组件，一次编写处处使用。
+          p Reusable HTML/CSS/JS components — write once, use everywhere.
+
+      h2 订阅更新 / Stay Updated
+      form
+        input[type=email][placeholder=输入邮箱地址 / Enter your email]
+        button.btn.btn-primary[type=submit] 订阅 / Subscribe

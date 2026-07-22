@@ -1,0 +1,48 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 极简主义 · Minimal 模板示例 / Template Example
+    @template(minimal)
+  body
+    .container
+      nav
+        a.active[href=#] 首页 / Home
+        a[href=#] 文章 / Blog
+        a[href=#] 关于 / About
+        a[href=#] 联系 / Contact
+
+      h1 极简主义 Minimal
+      p 干净、留白、专注内容。Minimal 模板使用细字重和大留白来创造舒适的阅读体验。
+      p Clean, whitespace-focused, content-first. Minimal template uses light font weight and generous whitespace for a comfortable reading experience.
+
+      h2 排版 Typography
+      p 这是一段正文，展示极简风格的排版效果。链接使用下划线区分，保持克制、优雅。
+      p This is body text demonstrating minimal typography. Links are underlined for subtle distinction.
+      p
+        a[href=#] 了解更多 / Learn more →
+
+      h3 卡片组件 / Card Component
+      .card
+        h3 卡片标题 / Card Title
+        p 卡片带有简洁边框和适当内边距，可以放置任何内容。
+        p Cards use simple borders and padding to contain any content.
+        a.btn[href=#] 查看详情 / View Details
+
+      .card
+        h3 另一张卡片 / Another Card
+        p 极简风格不添加阴影或圆角，保持平面和纯粹。
+        p Minimal style avoids shadows and rounded corners — flat and pure.
+
+      h2 表单示例 / Form Example
+      form
+        label[for=name] 姓名 / Your Name
+        input[type=text][id=name][placeholder=请输入姓名 / Enter your name]
+        label[for=msg] 留言 / Message
+        textarea[id=msg][placeholder=请输入留言内容 / Type your message here]
+        button.btn.btn-primary[type=submit] 提交 / Submit
+
+      h2 使用方式 / Usage
+      p 在 <code>&lt;head&gt;</code> 中添加 <code>@template(minimal)</code> 即可引用此模板。
+      p Add <code>@template(minimal)</code> to your <code>&lt;head&gt;</code> to use this template.

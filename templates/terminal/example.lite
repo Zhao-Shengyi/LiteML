@@ -1,0 +1,38 @@
+! html5
+html[lang=zh-CN]
+  head
+    meta[charset=UTF-8]
+    meta[name=viewport][content="width=device-width, initial-scale=1.0"]
+    title 终端风格 · Terminal 模板示例 / Template Example
+    @template(terminal)
+  body
+    .container
+      nav
+        a.active[href=#] ~/home
+        a[href=#] ~/projects
+        a[href=#] ~/about
+
+      h1 终端风格 Terminal
+      p.prompt 黑底绿字 · 等宽字体 · 终端美学
+      p.prompt Green on black · monospace · hacker aesthetic
+
+      .card
+        h3 $ 系统信息 / System Info
+        p.prompt 主机名: liteml-dev / Hostname: liteml-dev
+        p.prompt 内核: LiteML v0.3 / Kernel: LiteML v0.3
+        p.prompt 运行时间: 7 天 3 小时 / Uptime: 7 days 3 hours
+        .progress
+          .progress-bar[style="width: 73%"]
+          .progress-label 73%
+
+      .card
+        h3 $ 最近文件 / Recent Files
+        p.prompt 📄 example.lite
+        p.prompt 📄 theme.css
+        p.prompt 📄 README.md
+        a.btn.btn-primary[href=#] $ 查看全部 / View All
+
+      form
+        label[for=cmd] $ 输入命令 / Enter command
+        input[type=text][id=cmd][placeholder=输入命令... / Type a command...]
+        button.btn[type=submit] ⏎ 执行 / Execute
